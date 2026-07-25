@@ -168,7 +168,91 @@ function Reveal({
 }
 
 function Home() {
+    const [isOpeningPopupOpen, setIsOpeningPopupOpen] = useState(() => {
+    return sessionStorage.getItem("montys-opening-popup-closed") !== "true";
+  });
+
+  const closeOpeningPopup = () => {
+    setIsOpeningPopupOpen(false);
+    sessionStorage.setItem("montys-opening-popup-closed", "true");
+  };
+
+  useEffect(() => {
+    if (!isOpeningPopupOpen) {
+      return undefined;
+    }
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        closeOpeningPopup();
+      }
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpeningPopupOpen]);
   return (
+  <>
+    {isOpeningPopupOpen && (
+      <div
+        className="opening-popup"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="opening-popup-title"
+        onMouseDown={closeOpeningPopup}
+      >
+        <div
+          className="opening-popup__card"
+          onMouseDown={(event) => event.stopPropagation()}
+        >
+
+          <div className="opening-popup__icon">
+            <LuBeer />
+          </div>
+
+          <p className="opening-popup__eyebrow">
+            Es ist bald so weit
+          </p>
+
+          <h2 id="opening-popup-title">
+            Monty&apos;s öffnet seine Türen!
+          </h2>
+
+          <p className="opening-popup__date">
+            Eröffnung ist Mitte September 2026
+          </p>
+
+          <p className="opening-popup__text">
+            Freut euch auf frisch zubereitete Küche, kalte Getränke
+            und gemütliche Abende mitten in Bayreuth.
+          </p>
+
+          <div className="opening-popup__location">
+            <FiMapPin />
+
+            <span>
+              Wölfelstraße 18
+              <small>95444 Bayreuth · im Innenhof</small>
+            </span>
+          </div>
+
+          <button
+            type="button"
+            className="opening-popup__button"
+            onClick={closeOpeningPopup}
+          >
+            Website entdecken
+            <FiArrowRight />
+          </button>
+        </div>
+      </div>
+    )}
+
     <main className="home">
       {/* HERO */}
       <section className="home-hero">
@@ -482,7 +566,8 @@ function Home() {
   </div>
 </section>
 
-    </main>
+        </main>
+  </>
   );
 }
 
