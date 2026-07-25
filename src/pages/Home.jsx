@@ -5,6 +5,7 @@ import burgerImage from "../assets/images/food-burger.jpg";
 import ribsImage from "../assets/images/food-ribs.jpg";
 import heroImage from "../assets/images/hero.jpg";
 import atmosphereImage from "../assets/images/atmosphere.jpg";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   FiArrowRight,
@@ -111,6 +112,61 @@ function ImagePlaceholder({
   );
 }
 
+function Reveal({
+  children,
+  className = "",
+  direction = "up",
+  delay = 0,
+  stagger = false,
+  as: Tag = "div",
+}) {
+  const elementRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const element = elementRef.current;
+
+    if (!element) {
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(element);
+        }
+      },
+      {
+        threshold: 0.15,
+        rootMargin: "0px 0px -70px 0px",
+      }
+    );
+
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <Tag
+      ref={elementRef}
+      className={[
+        "reveal",
+        `reveal--${direction}`,
+        stagger ? "reveal--stagger" : "",
+        isVisible ? "is-visible" : "",
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
+      style={{ "--reveal-delay": `${delay}ms` }}
+    >
+      {children}
+    </Tag>
+  );
+}
+
 function Home() {
   return (
     <main className="home">
@@ -119,7 +175,7 @@ function Home() {
         <div className="home-hero__grain" />
 
         <div className="home-hero__container">
-          <div className="home-hero__content">
+          <div className="home-hero__content home-load-animation home-load-animation--left">
 
             <h1>
               Monty&apos;s
@@ -174,7 +230,7 @@ function Home() {
             </div>
           </div>
 
-          <div className="home-hero__visual">
+          <div className="home-hero__visual home-load-animation home-load-animation--right">
   <img
     src={heroImage}
     alt="Gemütlicher Innenbereich von Monty's Pub & Kitchen"
@@ -186,30 +242,36 @@ function Home() {
 
       {/* HIGHLIGHT-LEISTE */}
       <section className="home-highlights">
-        <div className="home-highlights__container">
-          {highlights.map((highlight) => (
-            <article
-              className="home-highlight-card"
-              key={highlight.title}
-            >
-              <div className="home-highlight-card__icon">
-                {highlight.icon}
-              </div>
+        <Reveal
+  className="home-highlights__container"
+  stagger
+>
+  {highlights.map((highlight) => (
+    <article
+      className="home-highlight-card"
+      key={highlight.title}
+    >
+      <div className="home-highlight-card__icon">
+        {highlight.icon}
+      </div>
 
-              <div>
-                <h2>{highlight.title}</h2>
-                <p>{highlight.text}</p>
-              </div>
-            </article>
-          ))}
-        </div>
+      <div>
+        <h2>{highlight.title}</h2>
+        <p>{highlight.text}</p>
+      </div>
+    </article>
+  ))}
+</Reveal>
       </section>
 
       {/* WILLKOMMEN */}
       <section className="home-welcome">
 
           <div className="home-welcome__layout">
-            <div className="home-welcome__text">
+            <Reveal
+  className="home-welcome__text"
+  direction="left"
+>
               <p>
                 Bei uns treffen ehrliche Gastfreundschaft, frisch zubereitete
                 Küche und eine gemütliche Atmosphäre aufeinander. Wir legen
@@ -230,22 +292,26 @@ function Home() {
               </p>
 
               <div className="home-welcome__quote">
-                <span>Gutes Essen.</span>
-                <span>Gute Freunde.</span>
-                <span>Gute Zeit.</span>
+                <span>Frisch gekocht.</span>
+                <span>Kalt gezapft.</span>
+                <span>Mit Liebe serviert.</span>
               </div>
-            </div>
+            </Reveal>
 
-            <div className="home-welcome__image-wrapper">
+            <Reveal
+  className="home-welcome__image-wrapper"
+  direction="up"
+  delay={100}
+>
   <img
     src={atmosphereImage}
     alt="Warme Pub-Atmosphäre bei Monty's"
     className="home-welcome__image"
   />
-</div>
+</Reveal>
 
-            <aside className="home-welcome__panel">
-  <div className="home-welcome__panel-heading">
+       <aside className="home-welcome__panel">
+  <Reveal className="home-welcome__panel-heading">
     <p className="home-eyebrow">
       Was euch erwartet
     </p>
@@ -258,48 +324,70 @@ function Home() {
       Bei Monty&apos;s gehören gutes Essen, kalte Getränke und
       gemeinsame Abende einfach zusammen.
     </p>
-  </div>
+  </Reveal>
 
-  <ul className="home-welcome__features">
-    <li>
-      <span>01</span>
-      <strong>Frisch zubereitete Pub-Küche</strong>
-    </li>
+  <Reveal
+  as="ul"
+  className="home-welcome__features"
+  stagger
+>
+  <li>
+    <span>01</span>
+    <strong>Frisch zubereitete Pub-Küche</strong>
+  </li>
 
-    <li>
-      <span>02</span>
-      <strong>Ausgewählte Biere und Drinks</strong>
-    </li>
+  <li>
+    <span>02</span>
+    <strong>Ausgewählte Biere und Drinks</strong>
+  </li>
 
-    <li>
-      <span>03</span>
-      <strong>Kneipenquiz und Live-Musik</strong>
-    </li>
+  <li>
+    <span>03</span>
+    <strong>Kneipenquiz und Live-Musik</strong>
+  </li>
 
-    <li>
-      <span>04</span>
-      <strong>Spare Ribs jeden zweiten Donnerstag</strong>
-    </li>
+  <li>
+    <span>04</span>
+    <strong>Spare Ribs jeden zweiten Donnerstag</strong>
+  </li>
+</Reveal>
 
-    <li>
-      <span>05</span>
-      <strong>Gemütliche Atmosphäre im Innenhof</strong>
-    </li>
-  </ul>
+  <Reveal
+  className="home-welcome__special"
+  direction="right"
+  delay={250}
+>
+  <span>05</span>
 
-  <div className="home-welcome__panel-footer">
+  <div>
+    <small>Unser Extra</small>
+
+    <strong>
+      Warme Küche, wenn andere schon schließen
+    </strong>
+
     <p>
-      Lust auf einen gemütlichen Abend?
+      Bei uns bekommt ihr bis 23 Uhr und freitags sowie samstags sogar bis 2 Uhr nachts noch warmes Essen.
     </p>
-
-    <Link
-      to="/reservierung"
-      className="home-welcome__panel-button"
-    >
-      Tisch reservieren
-      <FiArrowRight />
-    </Link>
   </div>
+</Reveal>
+
+  <Reveal
+  className="home-welcome__panel-footer"
+  delay={200}
+>
+  <p>
+    Lust auf einen gemütlichen Abend?
+  </p>
+
+  <Link
+    to="/reservierung"
+    className="home-welcome__panel-button"
+  >
+    Tisch reservieren
+    <FiArrowRight />
+  </Link>
+</Reveal>
 </aside>
           </div>
       </section>
@@ -312,7 +400,10 @@ function Home() {
 
   <div className="home-section-container">
     <div className="home-monty__layout">
-      <div className="home-monty__gallery">
+      <Reveal
+  className="home-monty__gallery"
+  direction="left"
+>
         <figure className="home-monty__image home-monty__image--main">
           <img
             src={montyImage}
@@ -345,9 +436,13 @@ function Home() {
           <span>Chef</span>
           <strong>des Hauses</strong>
         </div>
-      </div>
+      </Reveal>
 
-      <div className="home-monty__content">
+      <Reveal
+  className="home-monty__content"
+  direction="right"
+  delay={120}
+>
         <p className="home-eyebrow">
           Die Geschichte hinter unserem Namen
         </p>
@@ -382,7 +477,7 @@ function Home() {
           Montys Geschichte entdecken
           <FiArrowRight />
         </Link>
-      </div>
+      </Reveal>
     </div>
   </div>
 </section>

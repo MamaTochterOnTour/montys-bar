@@ -579,6 +579,66 @@
   border-top: 1px solid rgba(195, 154, 90, 0.2);
 }
 
+.home-welcome__special {
+  position: relative;
+  z-index: 1;
+  margin: 18px -18px 0;
+padding: 20px 18px;
+
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  align-items: flex-start;
+  gap: 12px;
+
+  overflow: hidden;
+  border: 1px solid rgba(195, 154, 90, 0.55);
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(195, 154, 90, 0.16),
+      transparent 15rem
+    ),
+    linear-gradient(
+      135deg,
+      rgba(195, 154, 90, 0.11),
+      rgba(44, 75, 56, 0.18)
+    );
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.2);
+}
+
+.home-welcome__special > span {
+  color: var(--home-brass);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.78rem;
+  font-style: italic;
+  line-height: 1.45;
+}
+
+.home-welcome__special small {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--home-brass);
+  font-size: 0.56rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.home-welcome__special strong {
+  display: block;
+  color: var(--home-cream);
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.home-welcome__special p {
+  margin: 8px 0 0;
+  color: var(--home-muted);
+  font-size: 0.74rem;
+  line-height: 1.6;
+}
+
 .home-welcome__features li {
   min-width: 0;
   padding: 15px 0;
@@ -1886,5 +1946,124 @@ bottom: auto;
 
   .home-monty__content h2 {
     font-size: 2.45rem;
+  }
+}
+
+/* SCROLL-ANIMATIONEN */
+
+.reveal {
+  --reveal-delay: 0ms;
+
+  opacity: 0;
+  transition:
+    opacity 0.85s ease,
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay);
+  will-change: opacity, transform;
+}
+
+.reveal--up {
+  transform: translateY(42px);
+}
+
+.reveal--left {
+  transform: translateX(-48px);
+}
+
+.reveal--right {
+  transform: translateX(48px);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Elemente innerhalb eines Bereichs nacheinander anzeigen */
+
+.reveal--stagger > * {
+  opacity: 0;
+  transform: translateY(25px);
+  transition:
+    opacity 0.65s ease,
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal--stagger.is-visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal--stagger.is-visible > *:nth-child(1) {
+  transition-delay: 80ms;
+}
+
+.reveal--stagger.is-visible > *:nth-child(2) {
+  transition-delay: 160ms;
+}
+
+.reveal--stagger.is-visible > *:nth-child(3) {
+  transition-delay: 240ms;
+}
+
+.reveal--stagger.is-visible > *:nth-child(4) {
+  transition-delay: 320ms;
+}
+
+.reveal--stagger.is-visible > *:nth-child(5) {
+  transition-delay: 400ms;
+}
+
+/* HERO-ANIMATION BEIM ÖFFNEN */
+
+.home-load-animation {
+  opacity: 0;
+  animation-duration: 1s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  animation-fill-mode: forwards;
+}
+
+.home-load-animation--left {
+  animation-name: home-load-from-left;
+  animation-delay: 120ms;
+}
+
+.home-load-animation--right {
+  animation-name: home-load-from-right;
+  animation-delay: 280ms;
+}
+
+@keyframes home-load-from-left {
+  from {
+    opacity: 0;
+    transform: translateX(-45px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes home-load-from-right {
+  from {
+    opacity: 0;
+    transform: translateX(45px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal--stagger > *,
+  .home-load-animation {
+    opacity: 1;
+    transform: none;
+    animation: none;
+    transition: none;
   }
 }
