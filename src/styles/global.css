@@ -1,0 +1,66 @@
+:root {
+  --color-ink: #0d0d0b;
+  --color-coal: #171713;
+  --color-green: #173a2b;
+  --color-green-soft: #224b38;
+  --color-wood-dark: #3b2518;
+  --color-wood: #6e452d;
+  --color-leather: #9a5d35;
+  --color-brass: #c39a58;
+  --color-cream: #eee6d7;
+  --color-muted: #b8ad9d;
+  --color-border: rgba(195, 154, 88, 0.28);
+
+  --font-heading: Georgia, "Times New Roman", serif;
+  --font-body: Arial, Helvetica, sans-serif;
+
+  --container-width: 1380px;
+  --navbar-height: 92px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(110, 69, 45, 0.12), transparent 32rem),
+    var(--color-ink);
+  color: var(--color-cream);
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.page-placeholder {
+  min-height: 100vh;
+  padding: 150px 24px 80px;
+  background:
+    linear-gradient(135deg, rgba(23, 58, 43, 0.85), rgba(13, 13, 11, 0.97)),
+    var(--color-ink);
+  text-align: center;
+}
+
+.page-placeholder h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  color: var(--color-cream);
+}
