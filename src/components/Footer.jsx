@@ -35,10 +35,6 @@ const footerNavigation = [
     path: "/ueber-uns",
   },
   {
-    label: "Galerie",
-    path: "/galerie",
-  },
-  {
     label: "Karriere",
     path: "/karriere",
   },

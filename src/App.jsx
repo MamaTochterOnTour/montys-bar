@@ -7,10 +7,10 @@ import Reservation from "./pages/Reservation.jsx";
 import Career from "./pages/Career.jsx";
 import DrinksMenu from "./pages/DrinksMenu.jsx";
 import About from "./pages/About.jsx";
-import Gallery from "./pages/Gallery.jsx";
 import Contact from "./pages/Contact.jsx";
 import Imprint from "./pages/Imprint.jsx";
 import Privacy from "./pages/Privacy.jsx";
+import ScrollToTop from "./components/ScrollToTop.jsx";
 import { useState } from "react";
 import {
   BrowserRouter,
@@ -25,7 +25,6 @@ const pages = [
   { path: "/speisekarte", label: "Speisekarte" },
   { path: "/getraenkekarte", label: "Getränkekarte" },
   { path: "/ueber-uns", label: "Über uns" },
-  { path: "/galerie", label: "Galerie" },
   { path: "/karriere", label: "Karriere" },
   { path: "/kontakt", label: "Kontakt" }
 ];
@@ -86,15 +85,6 @@ function Navbar() {
             Tisch reservieren
           </NavLink>
         </nav>
-
-        <button
-          type="button"
-          className="menu-button"
-          onClick={() => setMenuOpen((current) => !current)}
-          aria-label={menuOpen ? "Menü schließen" : "Menü öffnen"}
-        >
-          {menuOpen ? <FiX /> : <FiMenu />}
-        </button>
       </div>
     </header>
   );
@@ -103,57 +93,55 @@ function Navbar() {
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
+
       <Navbar />
 
-     <Routes>
-  <Route path="/" element={<Home />} />
+      <Routes>
+        <Route path="/" element={<Home />} />
 
-  <Route
-    path="/speisekarte"
-    element={<FoodMenu />}
-  />
+        <Route
+          path="/speisekarte"
+          element={<FoodMenu />}
+        />
 
-  <Route
-  path="/getraenkekarte"
-  element={<DrinksMenu />}
-/>
+        <Route
+          path="/getraenkekarte"
+          element={<DrinksMenu />}
+        />
 
-  <Route
-  path="/ueber-uns"
-  element={<About />}
-/>
+        <Route
+          path="/ueber-uns"
+          element={<About />}
+        />
 
-  <Route
-  path="/galerie"
-  element={<Gallery />}
-/>
+        <Route
+          path="/karriere"
+          element={<Career />}
+        />
 
-  <Route
-  path="/karriere"
-  element={<Career />}
-/>
+        <Route
+          path="/kontakt"
+          element={<Contact />}
+        />
 
-  <Route
-  path="/kontakt"
-  element={<Contact />}
-/>
+        <Route
+          path="/reservierung"
+          element={<Reservation />}
+        />
 
-  <Route
-  path="/reservierung"
-  element={<Reservation />}
-/>
+        <Route
+          path="/impressum"
+          element={<Imprint />}
+        />
 
-  <Route
-  path="/impressum"
-  element={<Imprint />}
-/>
-  <Route
-  path="/datenschutz"
-  element={<Privacy />}
-/>
+        <Route
+          path="/datenschutz"
+          element={<Privacy />}
+        />
 
-  <Route path="*" element={<Home />} />
-</Routes>
+        <Route path="*" element={<Home />} />
+      </Routes>
 
       <Footer />
     </BrowserRouter>

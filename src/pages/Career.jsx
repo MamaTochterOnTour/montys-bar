@@ -1,465 +1,1041 @@
-import { useState } from "react";
 import {
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+
+import {
+  Link,
+} from "react-router-dom";
+
+import {
+  FiArrowDown,
+  FiArrowRight,
   FiBriefcase,
+  FiCheck,
   FiClock,
+  FiFileText,
   FiHeart,
+  FiMail,
+  FiSend,
+  FiUploadCloud,
   FiUsers,
 } from "react-icons/fi";
+
+import {
+  LuBeer,
+  LuChefHat,
+} from "react-icons/lu";
+
 import "../styles/career.css";
 
-function Career() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    position: "",
-    availability: "",
-    message: "",
-  });
+const CAREER_EMAIL =
+  "info@montys-bar-bayreuth.de";
 
-  const [error, setError] = useState("");
-  const [cvFile, setCvFile] = useState(null);
-const [additionalFile, setAdditionalFile] = useState(null);
+const careerHighlights = [
+  {
+    icon: <FiHeart />,
+    title: "Herzliches Team",
+    text: "Ein persönliches Arbeitsumfeld, in dem gegenseitiger Respekt und ein gutes Miteinander zählen.",
+  },
+  {
+    icon: <FiClock />,
+    title: "Flexible Einsätze",
+    text: "Je nach Bereich sind unterschiedliche Arbeitszeitmodelle und flexible Einsätze möglich.",
+  },
+  {
+    icon: <FiUsers />,
+    title: "Echte Gemeinschaft",
+    text: "Bei Monty’s soll sich nicht nur jeder Gast, sondern auch jedes Teammitglied willkommen fühlen.",
+  },
+  {
+    icon: <FiBriefcase />,
+    title: "Mitgestalten",
+    text: "Eigene Ideen, Zuverlässigkeit und persönlicher Einsatz sind bei uns ausdrücklich willkommen.",
+  },
+];
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
+const careerAreas = [
+  {
+    number: "01",
+    icon: <LuBeer />,
+    title: "Service & Bar",
+    text: "Du gehst gerne auf Menschen zu, behältst auch an lebhaften Abenden den Überblick und sorgst dafür, dass sich unsere Gäste willkommen fühlen.",
+    features: [
+      "Freundlicher Gästekontakt",
+      "Service im Pub",
+      "Getränke und Bar",
+    ],
+  },
+  {
+    number: "02",
+    icon: <LuChefHat />,
+    title: "Küche",
+    text: "Du arbeitest gerne mit Lebensmitteln, bist zuverlässig und möchtest gemeinsam mit dem Team ehrliche Gerichte für unsere Gäste zubereiten.",
+    features: [
+      "Vor- und Zubereitung",
+      "Sauberes Arbeiten",
+      "Zusammenarbeit im Team",
+    ],
+  },
+  {
+    number: "03",
+    icon: <FiUsers />,
+    title: "Aushilfe & Minijob",
+    text: "Du suchst einen Nebenjob und möchtest unser Team abends, am Wochenende oder bei besonderen Veranstaltungen unterstützen.",
+    features: [
+      "Flexible Einsätze",
+      "Neben Studium oder Beruf",
+      "Verschiedene Aufgaben",
+    ],
+  },
+  {
+    number: "04",
+    icon: <FiMail />,
+    title: "Initiativbewerbung",
+    text: "Dein gewünschter Bereich ist nicht aufgeführt? Dann erzähl uns einfach, wie du Monty’s mit deinen Erfahrungen unterstützen möchtest.",
+    features: [
+      "Eigene Stärken einbringen",
+      "Unkompliziert bewerben",
+      "Persönlich kennenlernen",
+    ],
+  },
+];
 
-    setFormData((currentData) => ({
-      ...currentData,
-      [name]: value,
-    }));
+const applicationSteps = [
+  {
+    number: "01",
+    title: "Bewerbung vorbereiten",
+    text: "Fülle das Formular aus und wähle optional deinen Lebenslauf oder weitere Unterlagen aus.",
+  },
+  {
+    number: "02",
+    title: "E-Mail versenden",
+    text: "Deine E-Mail-App öffnet sich mit allen Angaben. Dort fügst du die ausgewählten Dateien manuell als Anhang hinzu.",
+  },
+  {
+    number: "03",
+    title: "Persönlich kennenlernen",
+    text: "Wir prüfen deine Bewerbung und melden uns bei dir, um die nächsten Schritte persönlich zu besprechen.",
+  },
+];
 
-    if (error) {
-      setError("");
+function Reveal({
+  children,
+  className = "",
+  direction = "up",
+  delay = 0,
+  stagger = false,
+  as: Tag = "div",
+}) {
+  const elementRef = useRef(null);
+  const [isVisible, setIsVisible] =
+    useState(false);
+
+  useEffect(() => {
+    const element = elementRef.current;
+
+    if (!element) {
+      return undefined;
     }
+
+    if (!("IntersectionObserver" in window)) {
+      setIsVisible(true);
+      return undefined;
+    }
+
+    const observer =
+      new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.unobserve(element);
+          }
+        },
+        {
+          threshold: 0.12,
+          rootMargin:
+            "0px 0px -60px 0px",
+        }
+      );
+
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <Tag
+      ref={elementRef}
+      className={[
+        "career-reveal",
+        `career-reveal--${direction}`,
+        stagger
+          ? "career-reveal--stagger"
+          : "",
+        isVisible ? "is-visible" : "",
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
+      style={{
+        "--career-reveal-delay":
+          `${delay}ms`,
+      }}
+    >
+      {children}
+    </Tag>
+  );
+}
+
+function Career() {
+  const [selectedFiles, setSelectedFiles] =
+    useState([]);
+
+  const [formStatus, setFormStatus] =
+    useState("");
+
+  const scrollToApplication = () => {
+    document
+      .getElementById("career-application")
+      ?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
   };
 
   const handleFileChange = (event) => {
-  const { name, files } = event.target;
-  const selectedFile = files?.[0] ?? null;
-
-  if (!selectedFile) {
-    if (name === "cv") {
-      setCvFile(null);
-    }
-
-    if (name === "additionalDocuments") {
-      setAdditionalFile(null);
-    }
-
-    return;
-  }
-
-  const allowedTypes = [
-    "application/pdf",
-    "application/msword",
-    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-  ];
-
-  const maximumFileSize = 5 * 1024 * 1024;
-
-  if (!allowedTypes.includes(selectedFile.type)) {
-    setError(
-      "Bitte lade nur Dateien im Format PDF, DOC oder DOCX hoch.",
+    const files = Array.from(
+      event.target.files || []
     );
-    event.target.value = "";
-    return;
-  }
 
-  if (selectedFile.size > maximumFileSize) {
-    setError("Die ausgewählte Datei darf maximal 5 MB groß sein.");
-    event.target.value = "";
-    return;
-  }
-
-  if (name === "cv") {
-    setCvFile(selectedFile);
-  }
-
-  if (name === "additionalDocuments") {
-    setAdditionalFile(selectedFile);
-  }
-
-  setError("");
-};
+    setSelectedFiles(files);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const requiredFields = [
-      formData.name,
-      formData.email,
-      formData.position,
-      formData.message,
-    ];
+    const formData =
+      new FormData(event.currentTarget);
 
-    if (requiredFields.some((field) => !field.trim())) {
-      setError(
-        "Bitte fülle alle Pflichtfelder aus.",
+    const name =
+      formData
+        .get("name")
+        ?.toString()
+        .trim() || "";
+
+    const email =
+      formData
+        .get("email")
+        ?.toString()
+        .trim() || "";
+
+    const phone =
+      formData
+        .get("phone")
+        ?.toString()
+        .trim() || "";
+
+    const area =
+      formData
+        .get("area")
+        ?.toString()
+        .trim() || "";
+
+    const employment =
+      formData
+        .get("employment")
+        ?.toString()
+        .trim() || "";
+
+    const startDate =
+      formData
+        .get("startDate")
+        ?.toString()
+        .trim() || "";
+
+    const experience =
+      formData
+        .get("experience")
+        ?.toString()
+        .trim() || "";
+
+    const message =
+      formData
+        .get("message")
+        ?.toString()
+        .trim() || "";
+
+    const fileNames =
+      selectedFiles.length > 0
+        ? selectedFiles
+            .map((file) => file.name)
+            .join(", ")
+        : "Keine Dateien ausgewählt";
+
+    const emailSubject =
+      `Bewerbung über die Website – ${area} – ${name}`;
+
+    const emailBody = [
+      "Neue Bewerbung über die Monty's Website",
+      "",
+      `Name: ${name}`,
+      `E-Mail-Adresse: ${email}`,
+      `Telefonnummer: ${phone || "Nicht angegeben"}`,
+      "",
+      `Gewünschter Bereich: ${area}`,
+      `Beschäftigungsart: ${employment}`,
+      `Frühester Start: ${startDate || "Nicht angegeben"}`,
+      "",
+      "Erfahrung:",
+      experience || "Keine Angabe",
+      "",
+      "Nachricht:",
+      message,
+      "",
+      "Ausgewählte Bewerbungsunterlagen:",
+      fileNames,
+      "",
+      "WICHTIG:",
+      "Die oben genannten Dateien müssen in der E-Mail-App noch manuell als Anhang hinzugefügt werden.",
+    ].join("\n");
+
+    const mailtoLink =
+      `mailto:${CAREER_EMAIL}` +
+      `?subject=${encodeURIComponent(
+        emailSubject
+      )}` +
+      `&body=${encodeURIComponent(
+        emailBody
+      )}`;
+
+    if (selectedFiles.length > 0) {
+      setFormStatus(
+        `Deine E-Mail-App wird geöffnet. Bitte füge dort noch ${selectedFiles.length === 1 ? "die ausgewählte Datei" : "die ausgewählten Dateien"} als Anhang hinzu: ${fileNames}`
       );
-      return;
+    } else {
+      setFormStatus(
+        "Deine E-Mail-App wird geöffnet. Du kannst dort bei Bedarf noch deinen Lebenslauf oder weitere Unterlagen anhängen."
+      );
     }
 
-    if (!cvFile) {
-  setError("Bitte lade deinen Lebenslauf hoch.");
-  return;
-}
-
-    const subject = encodeURIComponent(
-      `Bewerbung bei Monty's – ${formData.position}`,
-    );
-
-    const body = encodeURIComponent(
-      [
-  `Name: ${formData.name}`,
-  `E-Mail: ${formData.email}`,
-  `Telefon: ${formData.phone || "Keine Angabe"}`,
-  `Gewünschte Position: ${formData.position}`,
-  `Verfügbarkeit: ${formData.availability || "Keine Angabe"}`,
-  `Lebenslauf: ${cvFile?.name || "Nicht ausgewählt"}`,
-  `Weitere Unterlagen: ${
-    additionalFile?.name || "Keine weiteren Unterlagen"
-  }`,
-  "",
-  "Nachricht:",
-  formData.message,
-  "",
-  "WICHTIG:",
-  "Bitte den Lebenslauf und gegebenenfalls weitere Unterlagen vor dem Absenden manuell an diese E-Mail anhängen.",
-].join("\n"),
-    );
-
-    window.location.href =
-      `mailto:info@montys-bar-bayreuth.de?subject=${subject}&body=${body}`;
+    window.setTimeout(() => {
+      window.location.href = mailtoLink;
+    }, 300);
   };
 
   return (
     <main className="career-page">
+      {/* ==================================================
+          HERO
+      ================================================== */}
+
+      <section className="career-hero">
+        <div
+          className="career-hero__grain"
+          aria-hidden="true"
+        />
+
+
+       <div className="career-hero__container">
+  {/* LINKE SEITE */}
+
+  <div className="career-hero__content career-load-animation career-load-animation--left">
+    <p className="career-eyebrow">
+      Karriere bei Monty&apos;s
+    </p>
+
+    <h1>
+      Werde Teil
+      <span>unseres Teams.</span>
+    </h1>
+
+    <p className="career-hero__lead">
+      Du bist herzlich, zuverlässig und hast Lust auf gute
+      Gastronomie mit Persönlichkeit? Dann möchten wir dich
+      kennenlernen.
+    </p>
+
+    <p className="career-hero__text">
+      Bei Monty&apos;s zählen nicht nur Lebenslauf und Erfahrung.
+      Wichtig sind uns vor allem ein ehrliches Miteinander,
+      Verantwortungsbewusstsein und Freude am Umgang mit Menschen.
+    </p>
+
+    <div className="career-hero__buttons">
+      <button
+        type="button"
+        className="career-button career-button--primary"
+        onClick={scrollToApplication}
+      >
+        Jetzt bewerben
+        <FiArrowDown />
+      </button>
+
+      <a
+        href={`mailto:${CAREER_EMAIL}?subject=${encodeURIComponent(
+          "Frage zur Karriere bei Monty's"
+        )}`}
+        className="career-button career-button--secondary"
+      >
+        Frage stellen
+        <FiArrowRight />
+      </a>
+    </div>
+
+    <div className="career-hero__facts">
+      <div>
+        <FiUsers />
+
+        <span>
+          Persönliches Team
+          <small>Gemeinsam statt gegeneinander</small>
+        </span>
+      </div>
+
+      <div>
+        <FiHeart />
+
+        <span>
+          Echte Gastfreundschaft
+          <small>Mit Herz und Charakter</small>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  {/* RECHTE SEITE */}
+
+  <div className="career-hero__visual career-load-animation career-load-animation--right">
+    <div className="career-hero__panel">
+
+      <h2>
+        Vielleicht fehlst genau
+        <span>du in unserem Team.</span>
+      </h2>
+
+      <p className="career-hero__panel-text">
+        Wir freuen uns über Menschen, die zuverlässig sind,
+        gerne mit anderen zusammenarbeiten und unseren Gästen
+        einen richtig guten Abend bereiten möchten.
+      </p>
+
+      <div className="career-hero__panel-lines">
+        <div>
+          <FiCheck />
+          <span>Service & Bar</span>
+        </div>
+
+        <div>
+          <FiCheck />
+          <span>Küche</span>
+        </div>
+
+        <div>
+          <FiCheck />
+          <span>Aushilfe & Minijob</span>
+        </div>
+
+        <div>
+          <FiCheck />
+          <span>Initiativbewerbung</span>
+        </div>
+      </div>
+
+      <button
+        type="button"
+        className="career-hero__panel-link"
+        onClick={scrollToApplication}
+      >
+        Bewerbung starten
+        <FiArrowRight />
+      </button>
+    </div>
+
+  </div>
+</div>
+      </section>
+
+      {/* ==================================================
+          VORTEILE
+      ================================================== */}
+
+      <section className="career-highlights">
+        <Reveal
+          className="career-highlights__grid"
+          stagger
+        >
+          {careerHighlights.map(
+            (highlight) => (
+              <article
+                className="career-highlight-card"
+                key={highlight.title}
+              >
+                <div className="career-highlight-card__icon">
+                  {highlight.icon}
+                </div>
+
+                <h2>
+                  {highlight.title}
+                </h2>
+
+                <p>
+                  {highlight.text}
+                </p>
+              </article>
+            )
+          )}
+        </Reveal>
+      </section>
+
+      {/* ==================================================
+          EINLEITUNG
+      ================================================== */}
+
       <section className="career-intro">
-        <div className="career-container">
-          <p className="career-eyebrow">
-            Arbeiten bei Monty&apos;s
-          </p>
+        <div
+          className="career-intro__background-word"
+          aria-hidden="true"
+        >
+          Charakter
+        </div>
 
-          <div className="career-intro__content">
-            <h1>Werde Teil unseres Teams.</h1>
+        <div className="career-section-container">
+          <div className="career-intro__layout">
+            <Reveal
+              className="career-intro__content"
+              direction="left"
+            >
+              <p className="career-eyebrow">
+                Das passt zu uns
+              </p>
 
-            <p>
-              Du hast Freude an Gastronomie,
-              arbeitest gerne mit Menschen und
-              möchtest Teil eines herzlichen Teams
-              werden? Dann freuen wir uns darauf,
-              dich kennenzulernen.
-            </p>
+              <h2>
+                Wir suchen Menschen,
+                nicht nur Lebensläufe.
+              </h2>
+
+              <p className="career-intro__lead">
+                Gastronomie lebt von den
+                Menschen, die jeden Abend
+                dafür sorgen, dass Gäste
+                gerne kommen und gerne
+                wiederkommen.
+              </p>
+
+              <div className="career-intro__text">
+                <p>
+                  Erfahrung ist natürlich
+                  hilfreich, aber nicht immer
+                  entscheidend. Viele
+                  Aufgaben können gelernt
+                  werden. Wichtiger sind uns
+                  Zuverlässigkeit,
+                  Aufmerksamkeit und ein
+                  freundlicher Umgang.
+                </p>
+
+                <p>
+                  Du solltest gerne im Team
+                  arbeiten, auch in
+                  lebhaften Situationen
+                  ruhig bleiben und bereit
+                  sein, Verantwortung zu
+                  übernehmen.
+                </p>
+              </div>
+            </Reveal>
+
+            <Reveal
+              className="career-intro__quote"
+              direction="right"
+              delay={120}
+            >
+              <FiHeart />
+
+              <blockquote>
+                „Ein guter Abend entsteht
+                nicht nur durch gutes Essen,
+                sondern durch ein Team, das
+                gerne zusammenarbeitet.“
+              </blockquote>
+
+              <span>
+                Monty&apos;s Pub & Kitchen
+              </span>
+            </Reveal>
           </div>
         </div>
       </section>
 
-      <section className="career-content">
-        <div className="career-container">
-          <div className="career-layout">
-            <div className="career-main">
-              <section className="career-benefits">
-                <article className="career-benefit-card">
-                  <FiUsers />
+      {/* ==================================================
+          BEREICHE
+      ================================================== */}
 
-                  <div>
-                    <h2>Ein echtes Team</h2>
+      <section className="career-areas">
+        <div className="career-section-container">
+          <Reveal className="career-areas__heading">
+            <div>
+              <p className="career-eyebrow">
+                Mögliche Einsatzbereiche
+              </p>
 
-                    <p>
-                      Bei uns zählt ein respektvoller,
-                      unkomplizierter und herzlicher
-                      Umgang miteinander.
-                    </p>
+              <h2>
+                Wo du uns unterstützen
+                kannst.
+              </h2>
+            </div>
+
+            <p>
+              Auch ohne aktuell
+              ausgeschriebene Stelle freuen
+              wir uns über eine ehrliche
+              Initiativbewerbung.
+            </p>
+          </Reveal>
+
+          <Reveal
+            className="career-areas__grid"
+            stagger
+          >
+            {careerAreas.map((area) => (
+              <article
+                className="career-area-card"
+                key={area.number}
+              >
+                <div className="career-area-card__top">
+                  <span>
+                    {area.number}
+                  </span>
+
+                  <div className="career-area-card__icon">
+                    {area.icon}
                   </div>
-                </article>
-
-                <article className="career-benefit-card">
-                  <FiHeart />
-
-                  <div>
-                    <h2>Gastfreundschaft mit Herz</h2>
-
-                    <p>
-                      Wir möchten, dass sich Gäste und
-                      Mitarbeitende bei uns vom ersten
-                      Moment an wohlfühlen.
-                    </p>
-                  </div>
-                </article>
-
-                <article className="career-benefit-card">
-                  <FiClock />
-
-                  <div>
-                    <h2>Flexible Einsatzbereiche</h2>
-
-                    <p>
-                      Ob Service, Küche oder Bar:
-                      Gemeinsam schauen wir, welcher
-                      Bereich zu dir passt.
-                    </p>
-                  </div>
-                </article>
-
-                <article className="career-benefit-card">
-                  <FiBriefcase />
-
-                  <div>
-                    <h2>Mitgestalten statt nur mitlaufen</h2>
-
-                    <p>
-                      Ideen, Eigeninitiative und
-                      Verlässlichkeit sind bei uns
-                      ausdrücklich willkommen.
-                    </p>
-                  </div>
-                </article>
-              </section>
-
-              <section className="career-form-card">
-                <div className="career-form-card__header">
-                  <p className="career-eyebrow">
-                    Kurzbewerbung
-                  </p>
-
-                  <h2>Erzähl uns etwas über dich.</h2>
-
-                  <p>
-  Fülle das Formular aus und wähle deinen Lebenslauf sowie optional
-  weitere Unterlagen aus. Nach dem Klick öffnet sich dein E-Mail-Programm,
-  in dem du die Dateien noch als Anhänge hinzufügen kannst.
-</p>
                 </div>
 
-                {error && (
-                  <div className="career-form__error">
-                    {error}
+                <h3>
+                  {area.title}
+                </h3>
+
+                <p>
+                  {area.text}
+                </p>
+
+                <ul>
+                  {area.features.map(
+                    (feature) => (
+                      <li key={feature}>
+                        <FiCheck />
+                        {feature}
+                      </li>
+                    )
+                  )}
+                </ul>
+
+                <button
+                  type="button"
+                  onClick={scrollToApplication}
+                  className="career-area-card__link"
+                >
+                  Dafür bewerben
+                  <FiArrowRight />
+                </button>
+              </article>
+            ))}
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ==================================================
+          ABLAUF
+      ================================================== */}
+
+      <section className="career-process">
+        <div className="career-section-container">
+          <Reveal className="career-process__heading">
+            <p className="career-eyebrow">
+              So funktioniert es
+            </p>
+
+            <h2>
+              Deine Bewerbung in drei
+              Schritten.
+            </h2>
+          </Reveal>
+
+          <Reveal
+            className="career-process__grid"
+            stagger
+          >
+            {applicationSteps.map(
+              (step) => (
+                <article
+                  className="career-process-card"
+                  key={step.number}
+                >
+                  <span>
+                    {step.number}
+                  </span>
+
+                  <h3>
+                    {step.title}
+                  </h3>
+
+                  <p>
+                    {step.text}
+                  </p>
+                </article>
+              )
+            )}
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ==================================================
+          BEWERBUNG
+      ================================================== */}
+
+      <section
+        className="career-application"
+        id="career-application"
+      >
+        <div
+          className="career-application__background-word"
+          aria-hidden="true"
+        >
+          Bewerbung
+        </div>
+
+        <div className="career-section-container">
+          <div className="career-application__layout">
+            <Reveal
+              className="career-application__information"
+              direction="left"
+            >
+              <p className="career-eyebrow">
+                Bewirb dich bei uns
+              </p>
+
+              <h2>
+                Erzähl uns etwas über dich.
+              </h2>
+
+              <p className="career-application__lead">
+                Fülle das Formular aus.
+                Anschließend öffnet sich
+                deine E-Mail-App mit allen
+                Angaben.
+              </p>
+
+              <div className="career-application__notice">
+                <FiUploadCloud />
+
+                <div>
+                  <strong>
+                    Wichtig zu den Anhängen
+                  </strong>
+
+                  <p>
+                    Ausgewählte Dateien
+                    können technisch nicht
+                    automatisch an eine
+                    Mailto-E-Mail angehängt
+                    werden. Füge sie deshalb
+                    in deiner E-Mail-App
+                    manuell als Anhang hinzu.
+                  </p>
+                </div>
+              </div>
+
+              <div className="career-application__details">
+                <div>
+                  <FiMail />
+
+                  <span>
+                    Bewerbung per E-Mail
+                    <strong>
+                      {CAREER_EMAIL}
+                    </strong>
+                  </span>
+                </div>
+
+                <div>
+                  <FiFileText />
+
+                  <span>
+                    Geeignete Unterlagen
+                    <strong>
+                      Lebenslauf, Zeugnisse
+                      oder kurze Vorstellung
+                    </strong>
+                  </span>
+                </div>
+              </div>
+
+              <a
+                href={`mailto:${CAREER_EMAIL}?subject=${encodeURIComponent(
+                  "Bewerbung bei Monty's"
+                )}`}
+                className="career-text-link"
+              >
+                Direkt per E-Mail bewerben
+                <FiArrowRight />
+              </a>
+            </Reveal>
+
+            <Reveal
+              className="career-form-panel"
+              direction="right"
+              delay={120}
+            >
+              <div className="career-form-panel__heading">
+                <div className="career-form-panel__icon">
+                  <FiBriefcase />
+                </div>
+
+                <div>
+                  <p className="career-eyebrow">
+                    Bewerbungsformular
+                  </p>
+
+                  <h2>
+                    Deine Bewerbung
+                  </h2>
+                </div>
+              </div>
+
+              <p className="career-form-panel__intro">
+                Die Bewerbung wird nicht auf
+                unserer Website gespeichert.
+                Mit dem Absenden wird
+                lediglich deine E-Mail-App
+                geöffnet und eine Nachricht
+                vorbereitet.
+              </p>
+
+              <form
+                className="career-form"
+                onSubmit={handleSubmit}
+              >
+                <div className="career-form__row">
+                  <div className="career-form__field">
+                    <label htmlFor="career-name">
+                      Name
+                      <span>*</span>
+                    </label>
+
+                    <input
+                      id="career-name"
+                      name="name"
+                      type="text"
+                      placeholder="Vor- und Nachname"
+                      autoComplete="name"
+                      required
+                    />
+                  </div>
+
+                  <div className="career-form__field">
+                    <label htmlFor="career-email">
+                      E-Mail-Adresse
+                      <span>*</span>
+                    </label>
+
+                    <input
+                      id="career-email"
+                      name="email"
+                      type="email"
+                      placeholder="name@beispiel.de"
+                      autoComplete="email"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="career-form__row">
+                  <div className="career-form__field">
+                    <label htmlFor="career-phone">
+                      Telefonnummer
+                    </label>
+
+                    <input
+                      id="career-phone"
+                      name="phone"
+                      type="tel"
+                      placeholder="Optional"
+                      autoComplete="tel"
+                    />
+                  </div>
+
+                  <div className="career-form__field">
+                    <label htmlFor="career-area">
+                      Wunschbereich
+                      <span>*</span>
+                    </label>
+
+                    <select
+                      id="career-area"
+                      name="area"
+                      defaultValue=""
+                      required
+                    >
+                      <option
+                        value=""
+                        disabled
+                      >
+                        Bitte auswählen
+                      </option>
+
+                      <option value="Service und Bar">
+                        Service & Bar
+                      </option>
+
+                      <option value="Küche">
+                        Küche
+                      </option>
+
+                      <option value="Aushilfe oder Minijob">
+                        Aushilfe & Minijob
+                      </option>
+
+                      <option value="Initiativbewerbung">
+                        Initiativbewerbung
+                      </option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="career-form__row">
+                  <div className="career-form__field">
+                    <label htmlFor="career-employment">
+                      Beschäftigungsart
+                      <span>*</span>
+                    </label>
+
+                    <select
+                      id="career-employment"
+                      name="employment"
+                      defaultValue=""
+                      required
+                    >
+                      <option
+                        value=""
+                        disabled
+                      >
+                        Bitte auswählen
+                      </option>
+
+                      <option value="Vollzeit">
+                        Vollzeit
+                      </option>
+
+                      <option value="Teilzeit">
+                        Teilzeit
+                      </option>
+
+                      <option value="Minijob">
+                        Minijob
+                      </option>
+
+                      <option value="Aushilfe">
+                        Aushilfe
+                      </option>
+
+                      <option value="Praktikum">
+                        Praktikum
+                      </option>
+
+                      <option value="Flexibel">
+                        Flexibel
+                      </option>
+                    </select>
+                  </div>
+
+                  <div className="career-form__field">
+                    <label htmlFor="career-start">
+                      Frühester Start
+                    </label>
+
+                    <input
+                      id="career-start"
+                      name="startDate"
+                      type="date"
+                    />
+                  </div>
+                </div>
+
+                <div className="career-form__field">
+                  <label htmlFor="career-experience">
+                    Bisherige Erfahrung
+                  </label>
+
+                  <textarea
+                    id="career-experience"
+                    name="experience"
+                    rows="4"
+                    placeholder="Erzähl uns kurz, ob und wo du bereits gearbeitet hast."
+                  />
+                </div>
+
+                <div className="career-form__field">
+                  <label htmlFor="career-message">
+                    Deine Nachricht
+                    <span>*</span>
+                  </label>
+
+                  <textarea
+                    id="career-message"
+                    name="message"
+                    rows="6"
+                    placeholder="Warum möchtest du Teil unseres Teams werden?"
+                    required
+                  />
+                </div>
+
+                
+
+                <label className="career-form__privacy">
+                  <input
+                    type="checkbox"
+                    name="privacy"
+                    value="accepted"
+                    required
+                  />
+
+                  <span>
+                    Ich habe die{" "}
+                    <Link to="/datenschutz">
+                      Datenschutzerklärung
+                    </Link>{" "}
+                    gelesen und stimme der
+                    Verarbeitung meiner
+                    Angaben zur Bearbeitung
+                    meiner Bewerbung zu.
+                  </span>
+                </label>
+
+                {formStatus && (
+                  <div
+                    className="career-form__status"
+                    role="status"
+                  >
+                    <FiMail />
+                    {formStatus}
                   </div>
                 )}
 
-                <form
-                  className="career-form"
-                  onSubmit={handleSubmit}
+                <button
+                  type="submit"
+                  className="career-button career-button--primary career-form__submit"
                 >
-                  <div className="career-form__grid">
-                    <div className="career-form__group">
-                      <label htmlFor="career-name">
-                        Name <span>*</span>
-                      </label>
-
-                      <input
-                        id="career-name"
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        placeholder="Vor- und Nachname"
-                      />
-                    </div>
-
-                    <div className="career-form__group">
-                      <label htmlFor="career-email">
-                        E-Mail <span>*</span>
-                      </label>
-
-                      <input
-                        id="career-email"
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder="deine@email.de"
-                      />
-                    </div>
-
-                    <div className="career-form__group">
-                      <label htmlFor="career-phone">
-                        Telefonnummer
-                      </label>
-
-                      <input
-                        id="career-phone"
-                        type="tel"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        placeholder="Optional"
-                      />
-                    </div>
-
-                    <div className="career-form__group">
-                      <label htmlFor="career-position">
-                        Gewünschte Position <span>*</span>
-                      </label>
-
-                      <select
-                        id="career-position"
-                        name="position"
-                        value={formData.position}
-                        onChange={handleChange}
-                      >
-                        <option value="">
-                          Bitte auswählen
-                        </option>
-                        <option value="Service">
-                          Service
-                        </option>
-                        <option value="Bar">
-                          Bar
-                        </option>
-                        <option value="Küche">
-                          Küche
-                        </option>
-                        <option value="Spülkraft">
-                          Spülkraft
-                        </option>
-                        <option value="Aushilfe">
-                          Aushilfe
-                        </option>
-                        <option value="Initiativbewerbung">
-                          Initiativbewerbung
-                        </option>
-                      </select>
-                    </div>
-
-                    <div className="career-form__group career-form__group--full">
-                      <label htmlFor="career-availability">
-                        Verfügbarkeit
-                      </label>
-
-                      <input
-                        id="career-availability"
-                        type="text"
-                        name="availability"
-                        value={formData.availability}
-                        onChange={handleChange}
-                        placeholder="Zum Beispiel ab sofort oder ähnliches"
-                      />
-                    </div>
-
-                    <div className="career-form__group career-form__group--full">
-  <label htmlFor="career-cv">
-    Lebenslauf <span>*</span>
-  </label>
-
-  <input
-    id="career-cv"
-    type="file"
-    name="cv"
-    accept=".pdf,.doc,.docx"
-    onChange={handleFileChange}
-  />
-
-  <small className="career-form__file-hint">
-    Erlaubte Formate: PDF, DOC oder DOCX. Maximale Dateigröße: 5 MB.
-  </small>
-
-  {cvFile && (
-    <span className="career-form__selected-file">
-      Ausgewählt: {cvFile.name}
-    </span>
-  )}
-</div>
-
-<div className="career-form__group career-form__group--full">
-  <label htmlFor="career-documents">
-    Weitere Unterlagen
-  </label>
-
-  <input
-    id="career-documents"
-    type="file"
-    name="additionalDocuments"
-    accept=".pdf,.doc,.docx"
-    onChange={handleFileChange}
-  />
-
-  <small className="career-form__file-hint">
-    Optional, zum Beispiel Anschreiben oder Zeugnisse. Maximal 5 MB.
-  </small>
-
-  {additionalFile && (
-    <span className="career-form__selected-file">
-      Ausgewählt: {additionalFile.name}
-    </span>
-  )}
-</div>
-
-                    <div className="career-form__group career-form__group--full">
-                      <label htmlFor="career-message">
-                        Nachricht <span>*</span>
-                      </label>
-
-                      <textarea
-                        id="career-message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        placeholder="Erzähl uns kurz etwas über dich, deine Erfahrung und warum du gerne bei Monty's arbeiten möchtest."
-                        rows="7"
-                      />
-                    </div>
-                  </div>
-
-                  <p className="career-form__note">
-  * Pflichtfelder. Nach dem Klick öffnet sich dein E-Mail-Programm.
-  Bitte füge dort den zuvor ausgewählten Lebenslauf und gegebenenfalls
-  weitere Unterlagen noch einmal als Anhang hinzu.
-</p>
-
-                  <button
-                    type="submit"
-                    className="career-form__button"
-                  >
-                    Bewerbung vorbereiten
-                  </button>
-                </form>
-              </section>
-            </div>
-
-            <aside className="career-aside">
-              <div className="career-aside__card">
-                <p className="career-eyebrow">
-                  Aktuell gesucht
-                </p>
-
-                <h2>Wir freuen uns über Verstärkung.</h2>
-
-                <ul>
-                  <li>Servicekräfte</li>
-                  <li>Mitarbeitende für die Bar</li>
-                  <li>Küchenpersonal</li>
-                  <li>Aushilfen auf Minijob-Basis</li>
-                </ul>
-
-                <p>
-                  Auch wenn deine Wunschposition nicht
-                  aufgeführt ist, kannst du dich gerne
-                  initiativ bewerben.
-                </p>
-              </div>
-
-              <div className="career-aside__card">
-                <p className="career-eyebrow">
-                  Bewerbung per E-Mail
-                </p>
-
-                <h2>Lieber direkt schreiben?</h2>
-
-                <p>
-                  Sende deine Bewerbung mit Lebenslauf
-                  einfach per E-Mail an:
-                </p>
-
-                <a href="mailto:info@montys-bar-bayreuth.de">
-                  info@montys-bar-bayreuth.de
-                </a>
-              </div>
-            </aside>
+                  E-Mail vorbereiten
+                  <FiSend />
+                </button>
+              </form>
+            </Reveal>
           </div>
         </div>
       </section>
+
     </main>
   );
 }

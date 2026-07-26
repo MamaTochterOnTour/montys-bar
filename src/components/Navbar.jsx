@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { FiMenu, FiX } from "react-icons/fi";
 import "../styles/navbar.css";
 
 const navigationItems = [
@@ -8,13 +7,11 @@ const navigationItems = [
   { label: "Speisekarte", path: "/speisekarte" },
   { label: "Getränkekarte", path: "/getraenkekarte" },
   { label: "Über uns", path: "/ueber-uns" },
-  { label: "Galerie", path: "/galerie" },
   { label: "Karriere", path: "/karriere" },
   { label: "Kontakt", path: "/kontakt" },
 ];
 
 function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -97,15 +94,6 @@ function Navbar() {
           </NavLink>
         </nav>
 
-        <button
-          type="button"
-          className="navbar__toggle"
-          onClick={() => setMenuOpen((current) => !current)}
-          aria-expanded={menuOpen}
-          aria-label={menuOpen ? "Menü schließen" : "Menü öffnen"}
-        >
-          {menuOpen ? <FiX /> : <FiMenu />}
-        </button>
       </div>
     </header>
   );

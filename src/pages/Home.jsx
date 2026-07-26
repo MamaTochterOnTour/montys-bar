@@ -17,11 +17,15 @@ import {
   FiInstagram,
   FiMapPin,
   FiMusic,
+  FiStar,
   FiUsers,
 } from "react-icons/fi";
 import { LuBeer, LuChefHat } from "react-icons/lu";
 
 import "../styles/home.css";
+
+const REVIEW_URL =
+  "https://g.page/r/Cd1ZgBoPbiJwECE/review";
 
 const highlights = [
   {
@@ -267,23 +271,21 @@ function Home() {
             </h1>
 
             <p className="home-hero__lead">
-              Gutes Essen. Kalte Getränke. Gute Zeit.
+              Warme Küche. Kalte Drinks. Lange Nächte.
             </p>
 
             <p className="home-hero__text">
-              Ehrliche Gastfreundschaft, frisch zubereitete Küche und eine
-              gemütliche Atmosphäre, in der man ankommt, abschaltet und gerne
-              noch etwas länger bleibt.
+              Frisch zubereitete Küche bis spät in die Nacht, kalte Drinks und eine gemütliche Atmosphäre; der perfekte Treffpunkt für lange Abende mit Freunden.
             </p>
 
             <div className="home-hero__buttons">
               <Link
-                to="/reservierung"
-                className="home-button home-button--primary"
-              >
-                Tisch reservieren
-                <FiArrowRight />
-              </Link>
+  to="/reservierung"
+  className="menu-button menu-button--primary menu-tabs-reservation__button"
+>
+  Tisch reservieren
+  <FiArrowRight />
+</Link>
 
               <Link
                 to="/speisekarte"
@@ -347,6 +349,7 @@ function Home() {
   ))}
 </Reveal>
       </section>
+
 
       {/* WILLKOMMEN */}
       <section className="home-welcome">
@@ -476,6 +479,8 @@ function Home() {
           </div>
       </section>
 
+      
+
       {/* MONTY */}
 <section className="home-monty">
   <div className="home-monty__background-word" aria-hidden="true">
@@ -564,6 +569,34 @@ function Home() {
       </Reveal>
     </div>
   </div>
+</section>
+
+
+      {/* GOOGLE-BEWERTUNG */}
+<section className="home-review-strip">
+  <Reveal className="home-review-strip__inner">
+    <div className="home-review-strip__icon">
+      <FiStar />
+    </div>
+
+    <div className="home-review-strip__text">
+      <span>Schon bei uns gewesen?</span>
+
+      <p>
+        Dann freuen wir uns über eure ehrliche Google-Bewertung.
+      </p>
+    </div>
+
+    <a
+      href={REVIEW_URL}
+      target="_blank"
+      rel="noreferrer"
+      className="home-review-strip__button"
+    >
+      Google-Bewertung abgeben
+      <FiArrowRight />
+    </a>
+  </Reveal>
 </section>
 
         </main>

@@ -1,268 +1,943 @@
-import { LuLeaf } from "react-icons/lu";
-import { foodCategories, sideChoices } from "../data/food.js";
+import burgerImage from "../assets/images/food-burger.jpg";
+import ribsImage from "../assets/images/food-ribs.jpg";
+
+import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
+
+import {
+  FiArrowDown,
+  FiArrowRight,
+  FiCheck,
+  FiClock,
+  FiStar,
+} from "react-icons/fi";
+
+import {
+  LuChefHat,
+  LuLeaf,
+} from "react-icons/lu";
+
 import "../styles/menu.css";
 
-function MenuItem({ item, priceLabels }) {
-  return (
-    <div
-      className={`menu-item ${
-        item.featured ? "menu-item--featured" : ""
-      }`}
-    >
-      <div className="menu-item__content">
-        <div className="menu-item__title-row">
-          <h3>{item.name}</h3>
+const quickFacts = [
+  {
+    icon: <LuChefHat />,
+    title: "Frisch zubereitet",
+    text: "Ehrliche Pub-Küche mit guten Zutaten und viel Sorgfalt.",
+  },
+  {
+    icon: <FiClock />,
+    title: "Warme Küche",
+    text: "Bis 23 Uhr – freitags und samstags sogar bis 2 Uhr nachts.",
+  },
+  {
+  icon: <LuLeaf />,
+  title: "Vegane Auswahl",
+  text: "Auch vegane Burger, Schnitzel und Salate stehen auf der Karte.",
+},
+  {
+    icon: <FiStar />,
+    title: "Spare-Ribs-Abend",
+    text: "Jeden ersten und dritten Donnerstag im Monat.",
+  },
+];
 
-          {item.vegan && (
-            <LuLeaf
-              className="menu-item__vegan"
-              aria-label="Vegan"
-              title="Vegan"
+const categoryLinks = [
+  {
+    label: "Burger",
+    id: "burger",
+  },
+  {
+    label: "Schnitzel",
+    id: "schnitzel",
+  },
+  {
+    label: "Pulled Pork",
+    id: "pulled-pork",
+  },
+  {
+    label: "Pub Snacks",
+    id: "pub-snacks",
+  },
+  {
+    label: "Salate",
+    id: "salate",
+  },
+  {
+    label: "Loaded Fries",
+    id: "loaded-fries",
+  },
+  {
+    label: "Beilagen",
+    id: "extra-beilagen",
+  },
+  {
+    label: "Club Sandwiches",
+    id: "club-sandwiches",
+  },
+  {
+    label: "Spare Ribs",
+    id: "spare-ribs",
+  },
+  {
+    label: "Desserts",
+    id: "desserts",
+  },
+];
+
+const sideChoices = [
+  {
+    name: "Pommes",
+  },
+  {
+    name: "Süßkartoffel Fries",
+    extra: "+ 1,00 €",
+  },
+  {
+    name: "Onion Rings",
+  },
+  {
+    name: "Kroketten",
+  },
+  {
+    name: "Kleiner Beilagensalat",
+  },
+  {
+    name: "Coleslaw",
+  },
+  {
+    name: "Knoblauchbrot",
+  },
+];
+
+const burgers = [
+  {
+    name: "Monty’s Burger – Special",
+    smallPrice: "–",
+    largePrice: "16,50 €",
+    featured: true,
+  },
+  {
+    name: "Hamburger",
+    smallPrice: "10,50 €",
+    largePrice: "13,50 €",
+  },
+  {
+    name: "Original Cheeseburger",
+    smallPrice: "11,50 €",
+    largePrice: "14,50 €",
+  },
+  {
+    name: "Pulled Pork BBQ Burger",
+    smallPrice: "13,90 €",
+    largePrice: "16,90 €",
+  },
+  {
+    name: "Crispy Chicken Burger",
+    smallPrice: "12,90 €",
+    largePrice: "15,90 €",
+  },
+  {
+    name: "Chili Cheeseburger",
+    smallPrice: "12,90 €",
+    largePrice: "15,90 €",
+  },
+  {
+    name: "Veganer Burger",
+    smallPrice: "12,90 €",
+    largePrice: "16,90 €",
+    vegan: true,
+  },
+];
+
+const schnitzel = [
+  {
+    name: "Schnitzel Wiener Art",
+    price: "14,90 €",
+  },
+  {
+    name: "Schnitzel Barbecue Style",
+    price: "16,90 €",
+  },
+  {
+    name: "Schnitzel Western Style",
+    price: "16,90 €",
+  },
+  {
+    name: "Schnitzel Pilzrahm",
+    price: "16,90 €",
+  },
+  {
+    name: "Veganes Schnitzel",
+    price: "15,90 €",
+    vegan: true,
+  },
+  {
+    name: "Pub-Trio Platte",
+    price: "24,90 €",
+    description:
+      "Drei Schnitzel: Barbecue Style, Western Style und Pilzrahm, serviert mit Pommes.",
+    featured: true,
+  },
+];
+
+const pulledPork = [
+  {
+    name: "Pulled Pork",
+    price: "16,90 €",
+    description:
+      "Zartes Pulled Pork, frisch zubereitet und serviert.",
+  },
+];
+
+const pubSnacks = [
+  {
+    name: "Chicken Wings",
+    price: "6,90 €",
+  },
+  {
+    name: "Loaded Nachos",
+    price: "5,90 €",
+  },
+  {
+    name: "Chicken Stripes",
+    price: "6,90 €",
+  },
+  {
+    name: "Aufstrich mit Brot",
+    price: "8,90 €",
+  },
+];
+
+const salads = [
+  {
+    name: "Crispy Chicken Salad",
+    price: "13,90 €",
+  },
+  {
+    name: "Brotsalat",
+    price: "9,90 €",
+  },
+  {
+    name: "Veganer Salat",
+    price: "9,90 €",
+    vegan: true,
+  },
+];
+
+const loadedFries = [
+  {
+    name: "Chili Cheese Fries",
+    price: "5,90 €",
+  },
+  {
+    name: "Cheese Fries",
+    price: "5,90 €",
+  },
+  {
+    name: "Street Fries",
+    price: "5,90 €",
+  },
+  {
+    name: "Trüffel Parmesan Fries",
+    price: "5,90 €",
+  },
+];
+
+const extraSides = [
+  {
+    name: "Pommes",
+    price: "4,00 €",
+  },
+  {
+    name: "Süßkartoffel Fries",
+    price: "5,00 €",
+  },
+  {
+    name: "Onion Rings",
+    price: "4,00 €",
+  },
+  {
+    name: "Kroketten",
+    price: "4,00 €",
+  },
+  {
+    name: "Kleiner Beilagensalat",
+    price: "4,00 €",
+  },
+  {
+    name: "Coleslaw",
+    price: "4,00 €",
+  },
+  {
+    name: "Knoblauchbrot",
+    price: "4,00 €",
+  },
+];
+
+const clubSandwiches = [
+  {
+    name: "Classic Club",
+    price: "12,90 €",
+  },
+  {
+    name: "BBQ Chicken Club",
+    price: "13,90 €",
+  },
+  {
+    name: "Veggie Club",
+    price: "12,90 €",
+    vegan: true,
+  },
+];
+
+const desserts = [
+  {
+    name: "Frische Waffeln mit Vanilleeis & Sahne",
+    price: "6,90 €",
+  },
+  {
+    name: "American Cheesecake mit Blaubeeren",
+    price: "6,90 €",
+  },
+];
+
+function Reveal({
+  children,
+  className = "",
+  direction = "up",
+  delay = 0,
+  stagger = false,
+  as: Tag = "div",
+}) {
+  const elementRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const element = elementRef.current;
+
+    if (!element) {
+      return undefined;
+    }
+
+    if (!("IntersectionObserver" in window)) {
+      setIsVisible(true);
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(element);
+        }
+      },
+      {
+        threshold: 0.12,
+        rootMargin: "0px 0px -60px 0px",
+      }
+    );
+
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <Tag
+      ref={elementRef}
+      className={[
+        "menu-reveal",
+        `menu-reveal--${direction}`,
+        stagger ? "menu-reveal--stagger" : "",
+        isVisible ? "is-visible" : "",
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
+      style={{
+        "--menu-reveal-delay": `${delay}ms`,
+      }}
+    >
+      {children}
+    </Tag>
+  );
+}
+
+function DishList({ items }) {
+  return (
+    <div className="menu-dish-list">
+      {items.map((item) => (
+        <div
+          className={[
+            "menu-dish",
+            item.featured ? "menu-dish--featured" : "",
+          ]
+            .filter(Boolean)
+            .join(" ")}
+          key={item.name}
+        >
+          <div className="menu-dish__top">
+            <div className="menu-dish__name">
+              <span>{item.name}</span>
+
+              {item.vegan && (
+                <LuLeaf
+  className="menu-dish__leaf"
+  aria-label="Veganes Gericht"
+  title="Vegan"
+/>
+              )}
+            </div>
+
+            <span
+              className="menu-dish__dots"
+              aria-hidden="true"
             />
+
+            <strong>{item.price}</strong>
+          </div>
+
+          {item.description && (
+            <p className="menu-dish__description">
+              {item.description}
+            </p>
           )}
         </div>
-
-        {item.description && (
-          <p className="menu-item__description">
-            {item.description}
-          </p>
-        )}
-      </div>
-
-      {item.prices ? (
-        <div
-          className="menu-item__prices"
-          aria-label={
-            priceLabels
-              ? `${priceLabels.join(" und ")}`
-              : "Preise"
-          }
-        >
-          {item.prices.map((price, index) => (
-            <strong key={`${item.name}-${index}`}>
-              {price}
-            </strong>
-          ))}
-        </div>
-      ) : (
-        <strong className="menu-item__price">
-          {item.price}
-        </strong>
-      )}
+      ))}
     </div>
   );
 }
 
-function MenuCategory({
-  category,
-  variant = "",
-}) {
-  const classNames = [
-    "menu-category",
-    variant ? `menu-category--${variant}` : "",
-    category.featured ? "menu-category--featured" : "",
-  ]
-    .filter(Boolean)
-    .join(" ");
-
+function BurgerList() {
   return (
-    <article
-      id={category.id}
-      className={classNames}
-    >
-      <header className="menu-category__header">
-        <div>
-          <p className="menu-category__eyebrow">
-            Monty&apos;s Pub & Kitchen
-          </p>
-
-          <h2>{category.title}</h2>
-        </div>
-
-        {category.note && (
-          <span className="menu-category__note">
-            {category.note}
-          </span>
-        )}
-      </header>
-
-      {category.priceLabels && (
-        <div className="menu-category__price-headings">
-          <span />
-
-          {category.priceLabels.map((label) => (
-            <strong key={label}>
-              {label}
-            </strong>
-          ))}
-        </div>
-      )}
-
-      <div className="menu-category__items">
-        {category.items.map((item) => (
-          <MenuItem
-            key={item.name}
-            item={item}
-            priceLabels={category.priceLabels}
-          />
-        ))}
+    <div className="menu-burger-list">
+      <div className="menu-burger-list__heading">
+        <span>Gericht</span>
+        <strong>180 g</strong>
+        <strong>380 g</strong>
       </div>
-    </article>
+
+      {burgers.map((burger) => (
+        <div
+          className={[
+            "menu-burger-row",
+            burger.featured
+              ? "menu-burger-row--featured"
+              : "",
+          ]
+            .filter(Boolean)
+            .join(" ")}
+          key={burger.name}
+        >
+          <div className="menu-burger-row__name">
+            <span>{burger.name}</span>
+
+            {burger.vegan && (
+              <LuLeaf
+  className="menu-dish__leaf"
+  aria-label="Veganer Burger"
+  title="Vegan"
+/>
+            )}
+          </div>
+
+          <strong>{burger.smallPrice}</strong>
+          <strong>{burger.largePrice}</strong>
+        </div>
+      ))}
+    </div>
   );
 }
 
-function SideChoice() {
+function SideChoiceCard() {
   return (
-    <aside className="menu-side-note">
-      <div className="menu-side-note__heading">
-        <p>Zu Burgern, Schnitzeln & Pulled Pork</p>
-        <h2>Wähle deine Beilage</h2>
-      </div>
+    <aside className="menu-tab-sides">
+      <p className="menu-card__eyebrow">
+        Beilage inklusive
+      </p>
 
-      <div className="menu-side-note__list">
+      <h2>Wählt eure Beilage</h2>
+
+      <p className="menu-tab-sides__intro">
+        Gebt eure gewünschte Beilage einfach beim
+        Bestellen mit an.
+      </p>
+
+      <div className="menu-tab-sides__list">
         {sideChoices.map((side) => (
-          <span key={side.name}>
-            {side.name}
-            {side.extraPrice && (
-              <strong> + {side.extraPrice}</strong>
-            )}
-          </span>
+          <div
+            className="menu-tab-side"
+            key={side.name}
+          >
+            <FiCheck />
+
+            <span>
+              {side.name}
+
+              {side.extra && (
+                <small>{side.extra}</small>
+              )}
+            </span>
+          </div>
         ))}
       </div>
-
-      <p className="menu-side-note__hint">
-        Bitte gib deine Wahl beim Bestellen an.
-      </p>
     </aside>
   );
 }
 
-function FoodMenu() {
-  const getCategory = (id) =>
-    foodCategories.find(
-      (category) => category.id === id,
-    );
+function MenuCard({
+  id,
+  title,
+  eyebrow,
+  note,
+  icon,
+  children,
+  className = "",
+}) {
+  return (
+    <article
+      id={id}
+      className={`menu-card ${className}`}
+    >
+      <header className="menu-card__header">
+        <div className="menu-card__heading">
+          {icon && (
+            <div className="menu-card__icon">
+              {icon}
+            </div>
+          )}
 
-  const burger = getCategory("burger");
-  const schnitzel = getCategory("schnitzel");
-  const pulledPork = getCategory("pulled-pork");
-  const pubSnacks = getCategory("pub-snacks");
-  const salate = getCategory("salate");
-  const loadedFries = getCategory("loaded-fries");
-  const extraSides = getCategory("extra-beilagen");
-  const clubSandwiches = getCategory("clubsandwiches");
-  const spareRibs = getCategory("spare-ribs");
-  const desserts = getCategory("desserts");
+          <div>
+            {eyebrow && (
+              <p className="menu-card__eyebrow">
+                {eyebrow}
+              </p>
+            )}
+
+            <h2>{title}</h2>
+          </div>
+        </div>
+
+        {note && (
+          <p className="menu-card__note">
+            {note}
+          </p>
+        )}
+      </header>
+
+      {children}
+    </article>
+  );
+}
+
+function FoodMenu() {
+  const [activeCategory, setActiveCategory] =
+    useState("burger");
+
+  const scrollToMenu = () => {
+    document
+      .getElementById("menu-start")
+      ?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+  };
 
   return (
     <main className="menu-page">
-      <section className="menu-intro">
-        <div className="menu-container">
-          <p className="menu-intro__eyebrow">
-            Monty&apos;s Pub & Kitchen
-          </p>
+      {/* HERO */}
 
-          <div className="menu-intro__content">
-            <h1>Speisekarte</h1>
+      <section className="menu-hero">
+        <div
+          className="menu-hero__grain"
+          aria-hidden="true"
+        />
 
-            <p>
-              Burger, Schnitzel, Pub-Klassiker,
-              Salate, Snacks und Desserts –
-              frisch zubereitet und ehrlich
-              serviert.
+        <div className="menu-hero__container">
+          <div className="menu-hero__content menu-load-animation menu-load-animation--left">
+           
+
+            <h1>
+              Unsere
+              <span>Speisekarte</span>
+            </h1>
+
+            <p className="menu-hero__lead">
+              Ehrliche Pub-Küche. Frisch zubereitet.
+              Mit Liebe serviert.
             </p>
+
+            <p className="menu-hero__text">
+              Von saftigen Burgern und Schnitzeln
+              bis zu Loaded Fries, Club Sandwiches
+              und süßen Klassikern: Bei Monty&apos;s
+              findet jeder etwas für einen guten Abend.
+            </p>
+<div className="menu-hero__buttons">
+  <button
+    type="button"
+    className="menu-button menu-button--primary"
+    onClick={scrollToMenu}
+  >
+    Speisekarte entdecken
+    <FiArrowDown />
+  </button>
+
+  <Link
+    to="/reservierung"
+    className="menu-button menu-button--secondary"
+  >
+    Tisch reservieren
+    <FiArrowRight />
+  </Link>
+</div>
+
+            <div className="menu-hero__facts">
+              <div>
+                <FiClock />
+
+                <span>
+                  Warme Küche bis 23 Uhr
+                  <small>
+                    Freitags und samstags bis 2 Uhr
+                    nachts
+                  </small>
+                </span>
+              </div>
+
+              <div>
+                <FiStar />
+
+                <span>
+                  Spare-Ribs-Abend
+                  <small>
+                    Jeden 1. und 3. Donnerstag im Monat
+                  </small>
+                </span>
+              </div>
+            </div>
           </div>
+
+          <div className="menu-hero__visual menu-load-animation menu-load-animation--right">
+  <figure className="menu-hero__image menu-hero__image--main">
+    <img
+      src={burgerImage}
+      alt="Burger bei Monty's Pub & Kitchen"
+    />
+
+    <figcaption>
+      <strong>Frisch für euch</strong>
+    </figcaption>
+  </figure>
+
+</div>
         </div>
       </section>
 
-      <section className="menu-content">
-        <div className="menu-container">
-          {burger && (
-            <MenuCategory
-              category={burger}
-              variant="full"
-            />
-          )}
+      {/* HELLE HIGHLIGHT-LEISTE */}
 
-          <div className="menu-layout menu-layout--primary">
-            {schnitzel && (
-              <MenuCategory category={schnitzel} />
-            )}
+      <section className="menu-highlights">
+        <Reveal
+          className="menu-highlights__container"
+          stagger
+        >
+          {quickFacts.map((fact) => (
+            <article
+              className="menu-highlight-card"
+              key={fact.title}
+            >
+              <div className="menu-highlight-card__icon">
+                {fact.icon}
+              </div>
 
-            <div className="menu-layout__stack">
-              {pulledPork && (
-                <MenuCategory
-                  category={pulledPork}
-                  variant="compact"
-                />
-              )}
+              <h2>{fact.title}</h2>
+              <p>{fact.text}</p>
+            </article>
+          ))}
+        </Reveal>
+      </section>
 
-              <SideChoice />
+      {/* KATEGORIE-TABS */}
+
+<nav
+  className="menu-category-nav"
+  aria-label="Kategorien der Speisekarte"
+>
+  <div
+    className="menu-category-nav__inner"
+    role="tablist"
+  >
+    {categoryLinks.map((category) => {
+      const isActive =
+        activeCategory === category.id;
+
+      return (
+        <button
+          type="button"
+          role="tab"
+          id={`menu-tab-${category.id}`}
+          aria-selected={isActive}
+          aria-controls="menu-tab-panel"
+          className={
+            isActive
+              ? "menu-category-tab is-active"
+              : "menu-category-tab"
+          }
+          onClick={() => setActiveCategory(category.id)}
+          key={category.id}
+        >
+          {category.label}
+        </button>
+      );
+    })}
+  </div>
+</nav>
+
+{/* AKTIVE KATEGORIE */}
+
+<section
+  className="menu-tabs-section"
+  id="menu-start"
+>
+  <div className="menu-section-container">
+    <div
+      id="menu-tab-panel"
+      className="menu-tab-panel"
+      role="tabpanel"
+      aria-labelledby={`menu-tab-${activeCategory}`}
+    >
+      <div
+        className="menu-tab-panel__content"
+        key={activeCategory}
+      >
+        {/* BURGER */}
+
+        {activeCategory === "burger" && (
+          <div className="menu-tab-layout menu-tab-layout--with-sides">
+            <MenuCard
+              title="Burger"
+              eyebrow="Wählt eure Größe"
+              note="Beilage inklusive"
+              icon={<FiStar />}
+              className="menu-card--burger"
+            >
+              <BurgerList />
+
+              <div className="menu-card__bottom-note">
+                <FiCheck />
+
+                <p>
+                  Zu jedem Burger könnt ihr eine
+                  Beilage aus unserer Auswahl wählen.
+                </p>
+              </div>
+            </MenuCard>
+
+            <SideChoiceCard />
+          </div>
+        )}
+
+        {/* SCHNITZEL */}
+
+        {activeCategory === "schnitzel" && (
+  <div className="menu-tab-layout menu-tab-layout--with-sides menu-tab-layout--schnitzel">
+    <MenuCard
+      title="Schnitzel"
+      eyebrow="Frisch zubereitet"
+      note="Beilage inklusive"
+      icon={<LuChefHat />}
+    >
+      <DishList items={schnitzel} />
+    </MenuCard>
+
+    <SideChoiceCard />
+  </div>
+)}
+
+        {/* PULLED PORK */}
+
+        {activeCategory === "pulled-pork" && (
+  <div className="menu-tab-single">
+    <MenuCard
+      title="Pulled Pork"
+      eyebrow="Pub-Klassiker"
+      icon={<FiStar />}
+    >
+      <DishList items={pulledPork} />
+    </MenuCard>
+  </div>
+)}
+
+        {/* PUB SNACKS */}
+
+        {activeCategory === "pub-snacks" && (
+          <div className="menu-tab-single">
+            <MenuCard
+              title="Pub Snacks"
+              eyebrow="Für den kleinen Hunger"
+              icon={<FiStar />}
+            >
+              <DishList items={pubSnacks} />
+            </MenuCard>
+          </div>
+        )}
+
+        {/* SALATE */}
+
+        {activeCategory === "salate" && (
+          <div className="menu-tab-single">
+            <MenuCard
+              title="Salate"
+              eyebrow="Frisch und knackig"
+              icon={<LuLeaf />}
+              className="menu-card--green"
+            >
+              <DishList items={salads} />
+            </MenuCard>
+          </div>
+        )}
+
+        {/* LOADED FRIES */}
+
+        {activeCategory === "loaded-fries" && (
+          <div className="menu-tab-single">
+            <MenuCard
+              title="Loaded Fries"
+              eyebrow="Knusprig und herzhaft"
+              icon={<FiStar />}
+            >
+              <DishList items={loadedFries} />
+            </MenuCard>
+          </div>
+        )}
+
+        {/* EXTRA BEILAGEN */}
+
+        {activeCategory === "extra-beilagen" && (
+          <div className="menu-tab-single">
+            <MenuCard
+              title="Extra Beilagen"
+              eyebrow="Darf es noch etwas dazu sein?"
+              icon={<FiCheck />}
+              className="menu-card--green"
+            >
+              <DishList items={extraSides} />
+            </MenuCard>
+          </div>
+        )}
+
+        {/* CLUB SANDWICHES */}
+
+        {activeCategory ===
+          "club-sandwiches" && (
+          <div className="menu-tab-single">
+            <MenuCard
+              title="Club Sandwiches"
+              eyebrow="Knusprig, frisch und ordentlich belegt"
+              icon={<FiStar />}
+              className="menu-card--clubs"
+            >
+              <DishList
+                items={clubSandwiches}
+              />
+            </MenuCard>
+          </div>
+        )}
+
+        {/* SPARE RIBS */}
+
+        {activeCategory === "spare-ribs" && (
+          <article className="menu-ribs">
+            <div className="menu-ribs__image">
+              <img
+                src={ribsImage}
+                alt="Spare Ribs bei Monty's"
+              />
             </div>
-          </div>
 
-          <div className="menu-layout">
-            {clubSandwiches && (
-              <MenuCategory
-                category={clubSandwiches}
-              />
-            )}
+            <div className="menu-ribs__content">
+              <p className="menu-eyebrow">
+                Jeden 1. und 3. Donnerstag im
+                Monat
+              </p>
 
-            {pubSnacks && (
-              <MenuCategory category={pubSnacks} />
-            )}
-          </div>
+              <h2>Spare-Ribs-Abend</h2>
 
-          <div className="menu-layout">
-            {salate && (
-              <MenuCategory category={salate} />
-            )}
+              <p>
+                Freut euch auf saftige Spare Ribs,
+                frisch zubereitet und in
+                gemütlicher Pub-Atmosphäre
+                serviert.
+              </p>
 
-            {loadedFries && (
-              <MenuCategory
-                category={loadedFries}
-              />
-            )}
-          </div>
+              <div className="menu-ribs__bottom">
+                <strong>16,90 €</strong>
 
-          <div className="menu-layout">
-            {extraSides && (
-              <MenuCategory
-                category={extraSides}
-              />
-            )}
-
-            <div className="menu-layout__stack">
-              {spareRibs && (
-                <MenuCategory
-                  category={spareRibs}
-                  variant="compact"
-                />
-              )}
-
-              {desserts && (
-                <MenuCategory
-                  category={desserts}
-                  variant="compact"
-                />
-              )}
+                <Link
+                  to="/reservierung"
+                  className="menu-text-link"
+                >
+                  Tisch reservieren
+                  <FiArrowRight />
+                </Link>
+              </div>
             </div>
-          </div>
+          </article>
+        )}
 
-          <div className="menu-legal-note">
-            <p>
-              Änderungen und Irrtümer
-              vorbehalten. Informationen zu
-              Allergenen und Zusatzstoffen
-              erhaltet ihr bei unserem Team.
-            </p>
+        {/* DESSERTS */}
 
-            <span>
-              Alle Preise verstehen sich
-              inklusive der gesetzlichen
-              Mehrwertsteuer.
-            </span>
+        {activeCategory === "desserts" && (
+          <div className="menu-tab-single">
+            <MenuCard
+              title="Desserts"
+              eyebrow="Für den süßen Abschluss"
+              icon={<FiStar />}
+            >
+              <DishList items={desserts} />
+            </MenuCard>
           </div>
+        )}
+      </div>
+    </div>
+
+    <div className="menu-tabs-reservation">
+  <div className="menu-tabs-reservation__text">
+    <p className="menu-eyebrow">
+      Schon einen Favoriten gefunden?
+    </p>
+
+    <h2>
+      Dann reserviert euch einen Tisch.
+    </h2>
+  </div>
+
+  <Link
+    to="/reservierung"
+    className="menu-tabs-reservation__button"
+  >
+    Tisch reservieren
+    <FiArrowRight />
+  </Link>
+</div>
+  </div>
+</section>
+
+      {/* HINWEISE */}
+
+      <section className="menu-legal">
+        <div className="menu-section-container menu-legal__inner">
+          <p>
+            Informationen zu Allergenen und
+            Zusatzstoffen erhaltet ihr bei unserem
+            Team.
+          </p>
+
+          <p>
+            Änderungen, Irrtümer und
+            Angebotsänderungen vorbehalten.
+          </p>
         </div>
       </section>
     </main>
