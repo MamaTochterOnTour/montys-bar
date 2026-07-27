@@ -103,6 +103,9 @@ const sideChoices = [
     name: "Kleiner Beilagensalat",
   },
   {
+    name: "Kartoffelsalat",
+  },
+  {
     name: "Coleslaw",
   },
   {
@@ -263,6 +266,10 @@ const extraSides = [
   },
   {
     name: "Kleiner Beilagensalat",
+    price: "4,00 €",
+  },
+  {
+    name: "Kartoffelsalat",
     price: "4,00 €",
   },
   {
@@ -829,21 +836,30 @@ function FoodMenu() {
 
         {/* CLUB SANDWICHES */}
 
-        {activeCategory ===
-          "club-sandwiches" && (
-          <div className="menu-tab-single">
-            <MenuCard
-              title="Club Sandwiches"
-              eyebrow="Knusprig, frisch und ordentlich belegt"
-              icon={<FiStar />}
-              className="menu-card--clubs"
-            >
-              <DishList
-                items={clubSandwiches}
-              />
-            </MenuCard>
-          </div>
-        )}
+        {activeCategory === "club-sandwiches" && (
+  <div className="menu-tab-layout menu-tab-layout--with-sides">
+    <MenuCard
+      title="Club Sandwiches"
+      eyebrow="Knusprig, frisch und ordentlich belegt"
+      note="Beilage inklusive"
+      icon={<FiStar />}
+      className="menu-card--clubs"
+    >
+      <DishList items={clubSandwiches} />
+
+      <div className="menu-card__bottom-note">
+        <FiCheck />
+
+        <p>
+          Zu jedem Club Sandwich könnt ihr eine
+          Beilage aus unserer Auswahl wählen.
+        </p>
+      </div>
+    </MenuCard>
+
+    <SideChoiceCard />
+  </div>
+)}
 
         {/* SPARE RIBS */}
 

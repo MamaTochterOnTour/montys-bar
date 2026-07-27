@@ -1,806 +1,1427 @@
+import { Link } from "react-router-dom";
+
+import {
+  FiArrowLeft,
+  FiBriefcase,
+  FiCalendar,
+  FiDatabase,
+  FiExternalLink,
+  FiFileText,
+  FiGlobe,
+  FiLock,
+  FiMail,
+  FiMapPin,
+  FiServer,
+  FiShield,
+  FiUser,
+} from "react-icons/fi";
+
 import "../styles/legal.css";
 
 function Privacy() {
   return (
-    <main className="legal-page">
-      <section className="legal-intro">
-        <div className="legal-container">
+    <main className="legal-page legal-page--privacy">
+      {/* ==================================================
+          HERO
+      ================================================== */}
+
+      <section className="legal-hero">
+        <div
+          className="legal-hero__grain"
+          aria-hidden="true"
+        />
+
+        <div
+          className="legal-hero__background-word"
+          aria-hidden="true"
+        >
+          Datenschutz
+        </div>
+
+        <div className="legal-hero__container">
           <p className="legal-eyebrow">
-            Rechtliche Informationen
+            Schutz eurer Daten
           </p>
 
-          <div className="legal-intro__content">
-            <h1>Datenschutz</h1>
+          <h1>Datenschutzerklärung</h1>
 
-            <p>
-              Informationen über die Verarbeitung personenbezogener Daten
-              beim Besuch und bei der Nutzung dieser Website.
-            </p>
-          </div>
+          <p className="legal-hero__lead">
+            Informationen über die Verarbeitung
+            personenbezogener Daten beim Besuch der
+            Website von Monty&apos;s Pub &amp; Kitchen.
+          </p>
+
+          <Link
+            to="/"
+            className="legal-back-link"
+          >
+            <FiArrowLeft />
+            Zurück zur Startseite
+          </Link>
         </div>
       </section>
 
+      {/* ==================================================
+          INHALT
+      ================================================== */}
+
       <section className="legal-content">
-        <div className="legal-container">
-          <article className="legal-card">
-            {/* 01 */}
-            <section className="legal-section">
-              <p className="legal-section__number">01</p>
+        <div className="legal-section-container">
+          <div className="legal-content__layout">
+            {/* HAUPTINHALT */}
 
-              <div>
-                <h2>Verantwortlicher</h2>
+            <article className="legal-document">
+              <header className="legal-document__header">
+                <div className="legal-document__icon">
+                  <FiShield />
+                </div>
+
+                <div>
+                  <p className="legal-eyebrow">
+                    Informationen gemäß DSGVO
+                  </p>
+
+                  <h2>
+                    Datenschutz auf dieser Website
+                  </h2>
+                </div>
+              </header>
+
+              {/* ALLGEMEINE HINWEISE */}
+
+              <section className="legal-block">
+                <div className="legal-block__heading">
+                  <FiFileText />
+
+                  <h3>1. Allgemeine Hinweise</h3>
+                </div>
 
                 <p>
-                  Verantwortlich für die Datenverarbeitung auf dieser Website
-                  ist:
+                  Der Schutz eurer personenbezogenen Daten
+                  ist uns wichtig. Personenbezogene Daten
+                  sind alle Informationen, mit denen eine
+                  natürliche Person direkt oder indirekt
+                  identifiziert werden kann.
+                </p>
+
+                <p>
+                  Diese Datenschutzerklärung informiert
+                  darüber, welche Daten beim Besuch dieser
+                  Website verarbeitet werden, zu welchen
+                  Zwecken die Verarbeitung erfolgt und
+                  welche Rechte betroffene Personen haben.
+                </p>
+
+                <p>
+                  Wir verarbeiten personenbezogene Daten
+                  nur, soweit dies gesetzlich zulässig,
+                  zur Bereitstellung dieser Website
+                  erforderlich oder durch eine Einwilligung
+                  gestattet ist.
+                </p>
+              </section>
+
+              {/* VERANTWORTLICHER */}
+
+              <section className="legal-block">
+                <div className="legal-block__heading">
+                  <FiUser />
+
+                  <h3>
+                    2. Verantwortlicher
+                  </h3>
+                </div>
+
+                <p>
+                  Verantwortlicher im Sinne der
+                  Datenschutz-Grundverordnung ist:
                 </p>
 
                 <address className="legal-address">
-                  <strong>[Vollständiger Unternehmensname]</strong>
-                  <br />
-                  [Vorname und Nachname des Inhabers / der Inhaberin]
-                  <br />
-                  [Straße und Hausnummer]
-                  <br />
-                  [Postleitzahl und Ort]
-                  <br />
-                  <br />
-                  Telefon:{" "}
-                  <a href="tel:+490000000000">
-                    [Telefonnummer]
-                  </a>
-                  <br />
-                  E-Mail:{" "}
+                  <strong>
+                    Monty&apos;s Operations GmbH
+                  </strong>
+
+                  <span>Wölfelstraße 18</span>
+                  <span>95444 Bayreuth</span>
+                  <span>Deutschland</span>
+                </address>
+
+                <dl className="legal-details">
+                  <div>
+                    <dt>Geschäftsführung</dt>
+
+                    <dd>
+                      Ann-Kathrin Waltes
+                    </dd>
+                  </div>
+
+                  <div>
+                    <dt>E-Mail-Adresse</dt>
+
+                    <dd>
+                      <a href="mailto:info@montys-bar-bayreuth.de">
+                        info@montys-bar-bayreuth.de
+                      </a>
+                    </dd>
+                  </div>
+                </dl>
+              </section>
+
+              {/* DATENSCHUTZBEAUFTRAGTER */}
+
+              <section className="legal-block">
+                <div className="legal-block__heading">
+                  <FiShield />
+
+                  <h3>
+                    3. Datenschutzbeauftragter
+                  </h3>
+                </div>
+
+                <p>
+                  Ein betrieblicher Datenschutzbeauftragter
+                  wurde nicht benannt.
+                </p>
+
+                <p>
+                  Fragen zum Datenschutz können direkt an
+                  folgende E-Mail-Adresse gerichtet werden:
+                </p>
+
+                <p>
                   <a href="mailto:info@montys-bar-bayreuth.de">
-                    [E-Mail-Adresse]
+                    <strong>
+                      info@montys-bar-bayreuth.de
+                    </strong>
                   </a>
-                </address>
-              </div>
-            </section>
+                </p>
+              </section>
 
-            {/* 02 */}
-            <section className="legal-section">
-              <p className="legal-section__number">02</p>
+              {/* HOSTING */}
 
-              <div>
-                <h2>Datenschutzbeauftragter</h2>
+              <section className="legal-block">
+                <div className="legal-block__heading">
+                  <FiServer />
+
+                  <h3>
+                    4. Hosting durch STRATO
+                  </h3>
+                </div>
 
                 <p>
-                  Ein betrieblicher Datenschutzbeauftragter ist derzeit nicht
-                  benannt.
-                </p>
-
-                <p className="legal-hint">
-                  Diesen Text nur beibehalten, wenn tatsächlich keine
-                  Verpflichtung zur Benennung eines Datenschutzbeauftragten
-                  besteht. Falls ein Datenschutzbeauftragter vorhanden ist,
-                  müssen dessen Kontaktdaten hier eingetragen werden.
-                </p>
-              </div>
-            </section>
-
-            {/* 03 */}
-            <section className="legal-section">
-              <p className="legal-section__number">03</p>
-
-              <div>
-                <h2>Allgemeine Hinweise zur Datenverarbeitung</h2>
-
-                <p>
-                  Wir verarbeiten personenbezogene Daten nur, soweit dies zur
-                  Bereitstellung einer funktionsfähigen Website, zur
-                  Bearbeitung von Anfragen, zur Durchführung von
-                  Reservierungen oder zur Erfüllung gesetzlicher Pflichten
-                  erforderlich ist.
-                </p>
-
-                <p>
-                  Personenbezogene Daten sind alle Informationen, die sich auf
-                  eine identifizierte oder identifizierbare natürliche Person
-                  beziehen. Hierzu gehören beispielsweise Name,
-                  E-Mail-Adresse, Telefonnummer, IP-Adresse und Angaben im
-                  Rahmen einer Reservierung oder Bewerbung.
-                </p>
-              </div>
-            </section>
-
-            {/* 04 */}
-            <section className="legal-section">
-              <p className="legal-section__number">04</p>
-
-              <div>
-                <h2>Rechtsgrundlagen</h2>
-
-                <p>
-                  Je nach Art der Verarbeitung stützen wir die Verarbeitung
-                  personenbezogener Daten insbesondere auf folgende
-                  Rechtsgrundlagen:
-                </p>
-
-                <ul className="legal-list">
-                  <li>
-                    Art. 6 Abs. 1 lit. a DSGVO, wenn eine Einwilligung erteilt
-                    wurde.
-                  </li>
-
-                  <li>
-                    Art. 6 Abs. 1 lit. b DSGVO, wenn die Verarbeitung zur
-                    Durchführung vorvertraglicher Maßnahmen oder zur Erfüllung
-                    eines Vertrages erforderlich ist.
-                  </li>
-
-                  <li>
-                    Art. 6 Abs. 1 lit. c DSGVO, wenn die Verarbeitung zur
-                    Erfüllung einer rechtlichen Verpflichtung erforderlich
-                    ist.
-                  </li>
-
-                  <li>
-                    Art. 6 Abs. 1 lit. f DSGVO, wenn die Verarbeitung zur
-                    Wahrung unserer berechtigten Interessen oder der
-                    berechtigten Interessen eines Dritten erforderlich ist
-                    und keine überwiegenden Interessen der betroffenen Person
-                    entgegenstehen.
-                  </li>
-                </ul>
-              </div>
-            </section>
-
-            {/* 05 */}
-            <section className="legal-section">
-              <p className="legal-section__number">05</p>
-
-              <div>
-                <h2>Hosting und Server-Protokolldateien</h2>
-
-                <p>
-                  Diese Website wird bei folgendem Hostinganbieter betrieben:
+                  Diese Website wird bei folgendem
+                  Dienstleister gehostet:
                 </p>
 
                 <address className="legal-address">
-                  STRATO GmbH
-                  <br />
-                  Otto-Ostrowski-Straße 7
-                  <br />
-                  10249 Berlin
+                  <strong>STRATO GmbH</strong>
+
+                  <span>Otto-Ostrowski-Straße 7</span>
+                  <span>10249 Berlin</span>
+                  <span>Deutschland</span>
                 </address>
 
                 <p>
-                  Beim Aufruf der Website kann der Hostinganbieter
-                  insbesondere folgende Daten in Server-Protokolldateien
-                  verarbeiten:
+                  Beim Aufruf dieser Website werden durch
+                  den Hostinganbieter technisch notwendige
+                  Daten verarbeitet und in sogenannten
+                  Server-Logfiles gespeichert.
+                </p>
+
+                <p>
+                  Dabei können insbesondere folgende Daten
+                  verarbeitet werden:
                 </p>
 
                 <ul className="legal-list">
-                  <li>IP-Adresse des aufrufenden Geräts</li>
-                  <li>Datum und Uhrzeit des Zugriffs</li>
-                  <li>aufgerufene Seite oder Datei</li>
-                  <li>übertragene Datenmenge</li>
-                  <li>verwendeter Browser und Betriebssystem</li>
-                  <li>Referrer-URL</li>
-                  <li>HTTP-Statuscode</li>
+                  <li>
+                    IP-Adresse des verwendeten Endgeräts
+                  </li>
+
+                  <li>
+                    Datum und Uhrzeit des Zugriffs
+                  </li>
+
+                  <li>
+                    aufgerufene Seite oder Datei
+                  </li>
+
+                  <li>
+                    übertragene Datenmenge
+                  </li>
+
+                  <li>
+                    verwendeter Browser und Browserversion
+                  </li>
+
+                  <li>
+                    verwendetes Betriebssystem
+                  </li>
+
+                  <li>
+                    Referrer-URL
+                  </li>
+
+                  <li>
+                    Zugriffsstatus beziehungsweise
+                    HTTP-Statuscode
+                  </li>
                 </ul>
 
                 <p>
-                  Die Verarbeitung erfolgt zur sicheren und stabilen
-                  Bereitstellung der Website, zur Fehleranalyse und zur
-                  Abwehr missbräuchlicher Zugriffe. Rechtsgrundlage ist
-                  Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes Interesse
-                  liegt in einem sicheren, störungsfreien und technisch
-                  zuverlässigen Betrieb der Website.
+                  Die Verarbeitung erfolgt zur sicheren,
+                  stabilen und fehlerfreien Bereitstellung
+                  der Website sowie zur Erkennung und
+                  Abwehr von Angriffen.
                 </p>
 
                 <p>
-                  Mit dem Hostinganbieter ist, soweit erforderlich, ein
-                  Vertrag über die Verarbeitung personenbezogener Daten im
-                  Auftrag gemäß Art. 28 DSGVO abzuschließen.
-                </p>
-              </div>
-            </section>
-
-            {/* 06 */}
-            <section className="legal-section">
-              <p className="legal-section__number">06</p>
-
-              <div>
-                <h2>Kontaktaufnahme per E-Mail oder Telefon</h2>
-
-                <p>
-                  Wenn ihr uns per E-Mail oder Telefon kontaktiert, verarbeiten
-                  wir die von euch übermittelten Angaben zur Bearbeitung und
-                  Beantwortung der Anfrage.
+                  Rechtsgrundlage ist Art. 6 Abs. 1 lit. f
+                  DSGVO. Unser berechtigtes Interesse liegt
+                  in der sicheren und technisch
+                  funktionsfähigen Bereitstellung unseres
+                  Internetangebots.
                 </p>
 
                 <p>
-                  Je nach Inhalt der Anfrage erfolgt die Verarbeitung auf
-                  Grundlage von Art. 6 Abs. 1 lit. b DSGVO zur Durchführung
-                  vorvertraglicher Maßnahmen oder auf Grundlage von
-                  Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes Interesse
-                  liegt in der Bearbeitung und Beantwortung eingehender
-                  Anfragen.
+  Die Speicherdauer der Server-Logfiles richtet
+  sich nach den technischen und vertraglichen
+  Einstellungen des Hostinganbieters. Die Daten
+  werden gelöscht oder anonymisiert, sobald sie
+  für die genannten Zwecke nicht mehr erforderlich
+  sind und keine gesetzlichen oder sicherheitsbezogenen
+  Gründe für eine weitere Speicherung bestehen.
+</p>
+
+                <p>
+  Soweit STRATO personenbezogene Daten in
+  unserem Auftrag verarbeitet, erfolgt die
+  Verarbeitung auf Grundlage eines Vertrags
+  zur Auftragsverarbeitung gemäß Art. 28 DSGVO.
+  Der Abschluss und die Verwaltung dieses
+  Vertrags erfolgen über den Betreiber dieser
+  Website beziehungsweise das STRATO-Kundenkonto.
+</p>
+
+                <a
+                  href="https://www.strato.de/datenschutz/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="legal-external-link"
+                >
+                  Datenschutzhinweise von STRATO
+                  <FiExternalLink />
+                </a>
+              </section>
+
+              {/* SSL */}
+
+              <section className="legal-block">
+                <div className="legal-block__heading">
+                  <FiLock />
+
+                  <h3>
+                    5. SSL- beziehungsweise
+                    TLS-Verschlüsselung
+                  </h3>
+                </div>
+
+                <p>
+                  Diese Website nutzt aus
+                  Sicherheitsgründen und zum Schutz der
+                  Übertragung vertraulicher Inhalte eine
+                  SSL- beziehungsweise TLS-Verschlüsselung.
                 </p>
 
                 <p>
-                  Die Daten werden gelöscht, sobald die Anfrage abschließend
-                  bearbeitet wurde und keine gesetzlichen
-                  Aufbewahrungspflichten oder sonstigen berechtigten Gründe
-                  für eine weitere Speicherung bestehen.
-                </p>
-              </div>
-            </section>
-
-            {/* 07 */}
-            <section className="legal-section">
-              <p className="legal-section__number">07</p>
-
-              <div>
-                <h2>Kontaktformular</h2>
-
-                <p>
-                  Das derzeit auf dieser Website dargestellte Kontaktformular
-                  versendet die eingegebenen Daten nicht unmittelbar über
-                  einen eigenen Website-Server. Nach dem Betätigen des
-                  Absende-Buttons wird über einen sogenannten
-                  <code> mailto:</code>-Link das auf dem Endgerät eingerichtete
-                  E-Mail-Programm geöffnet.
+                  Eine verschlüsselte Verbindung ist
+                  insbesondere daran erkennbar, dass die
+                  Adresszeile des Browsers mit
+                  „https://“ beginnt.
                 </p>
 
                 <p>
-                  Die eigentliche Übermittlung erfolgt anschließend über den
-                  vom Nutzer eingesetzten E-Mail-Anbieter. Auf dessen
-                  Datenverarbeitung haben wir keinen Einfluss.
+                  Bei aktivierter Verschlüsselung können
+                  übermittelte Daten grundsätzlich nicht
+                  ohne Weiteres von unbefugten Dritten
+                  mitgelesen werden.
+                </p>
+              </section>
+
+              {/* TECHNISCH NOTWENDIGE SPEICHERUNG */}
+
+              <section className="legal-block">
+                <div className="legal-block__heading">
+                  <FiDatabase />
+
+                  <h3>
+                    6. Technisch notwendige Speicherung
+                    im Browser
+                  </h3>
+                </div>
+
+                <p>
+                  Auf der Startseite wird vorübergehend im
+                  sogenannten Session Storage gespeichert,
+                  ob der Hinweis zur Eröffnung von
+                  Monty&apos;s bereits geschlossen wurde.
                 </p>
 
                 <p>
-                  Erst wenn die vorbereitete E-Mail tatsächlich abgesendet
-                  wird, erhalten wir die darin enthaltenen Angaben.
-                </p>
-
-                <p className="legal-hint">
-                  Dieser Abschnitt muss geändert werden, sobald das Formular
-                  später über Formspree, EmailJS, Web3Forms, einen eigenen
-                  Server oder einen anderen Formularanbieter versendet wird.
-                </p>
-              </div>
-            </section>
-
-            {/* 08 */}
-            <section className="legal-section">
-              <p className="legal-section__number">08</p>
-
-              <div>
-                <h2>Bewerbungen</h2>
-
-                <p>
-                  Wenn ihr euch bei uns bewerbt, verarbeiten wir die im Rahmen
-                  der Bewerbung mitgeteilten personenbezogenen Daten zur
-                  Entscheidung über die Begründung eines
-                  Beschäftigungsverhältnisses.
+                  Dabei wird ausschließlich eine technische
+                  Information im Browser gespeichert. Sie
+                  wird nicht an unseren Server übertragen
+                  und normalerweise mit dem Ende der
+                  Browsersitzung gelöscht.
                 </p>
 
                 <p>
-                  Rechtsgrundlage ist § 26 Abs. 1 BDSG in Verbindung mit
-                  Art. 6 Abs. 1 lit. b DSGVO. Soweit eine Einwilligung erteilt
-                  wurde, erfolgt die Verarbeitung zusätzlich auf Grundlage von
-                  Art. 6 Abs. 1 lit. a DSGVO.
+                  Die Speicherung dient dazu, dass der
+                  Hinweis während derselben Browsersitzung
+                  nach dem Schließen nicht erneut angezeigt
+                  wird.
                 </p>
 
                 <p>
-                  Dazu können insbesondere folgende Daten gehören:
+                  Rechtsgrundlage für die damit
+                  verbundene Datenverarbeitung ist
+                  Art. 6 Abs. 1 lit. f DSGVO. Die
+                  Speicherung ist zur nutzerfreundlichen
+                  Bereitstellung der Website erforderlich.
                 </p>
+              </section>
 
-                <ul className="legal-list">
-                  <li>Name und Kontaktdaten</li>
-                  <li>gewünschte Tätigkeit und Verfügbarkeit</li>
-                  <li>beruflicher Werdegang und Qualifikationen</li>
-                  <li>Lebenslauf, Anschreiben und Zeugnisse</li>
-                  <li>weitere freiwillig mitgeteilte Angaben</li>
-                </ul>
+              {/* E-MAIL */}
+
+              <section className="legal-block">
+                <div className="legal-block__heading">
+                  <FiMail />
+
+                  <h3>
+                    7. Kontaktaufnahme per E-Mail
+                  </h3>
+                </div>
 
                 <p>
-                  Kommt kein Beschäftigungsverhältnis zustande, werden die
-                  Bewerbungsunterlagen grundsätzlich gelöscht, sobald ihre
-                  weitere Speicherung nicht mehr zur Geltendmachung,
-                  Ausübung oder Verteidigung von Rechtsansprüchen erforderlich
-                  ist. Üblicherweise erfolgt die Löschung spätestens sechs
-                  Monate nach Abschluss des Bewerbungsverfahrens, sofern keine
-                  Einwilligung in eine längere Speicherung erteilt wurde.
+                  Auf dieser Website werden Links
+                  bereitgestellt, über die das auf dem
+                  jeweiligen Endgerät eingerichtete
+                  E-Mail-Programm geöffnet werden kann.
                 </p>
 
                 <p>
-                  Das derzeitige Bewerbungsformular übermittelt keine Dateien
-                  über die Website. Ausgewählte Dateien müssen vom Bewerber im
-                  geöffneten E-Mail-Programm selbst als Anhang hinzugefügt
-                  werden.
-                </p>
-              </div>
-            </section>
-
-            {/* 09 */}
-            <section className="legal-section">
-              <p className="legal-section__number">09</p>
-
-              <div>
-                <h2>Online-Reservierungen über Resmio</h2>
-
-                <p>
-                  Auf unserer Reservierungsseite ist ein
-                  Online-Reservierungswidget der folgenden Anbieterin
-                  eingebunden:
+                  Durch das bloße Anklicken eines
+                  Mailto-Links wird noch keine Nachricht
+                  an uns versendet. Eine Übermittlung
+                  erfolgt erst, wenn die vorbereitete
+                  E-Mail über das eigene E-Mail-Programm
+                  tatsächlich abgesendet wird.
                 </p>
 
-                <address className="legal-address">
-                  resmio GmbH
-                  <br />
-                  Katzwanger Straße 150
-                  <br />
-                  Gebäude 1C
-                  <br />
-                  90461 Nürnberg
-                </address>
-
                 <p>
-                  Über das Widget können Gäste einen Tisch reservieren. Dabei
-                  können insbesondere folgende Angaben verarbeitet werden:
+                  Bei einer Kontaktaufnahme per E-Mail
+                  verarbeiten wir insbesondere:
                 </p>
 
                 <ul className="legal-list">
                   <li>Name</li>
-                  <li>E-Mail-Adresse und Telefonnummer</li>
-                  <li>Datum und Uhrzeit der Reservierung</li>
-                  <li>Anzahl der Gäste</li>
-                  <li>Reservierungs- und Kontaktdaten</li>
-                  <li>besondere Wünsche und freiwillige Anmerkungen</li>
+                  <li>E-Mail-Adresse</li>
+                  <li>gegebenenfalls Telefonnummer</li>
+                  <li>Inhalt der Nachricht</li>
                   <li>
-                    Angaben etwa zu Hund, Kinderwagen, Hochstuhl oder
-                    Barrierefreiheit, sofern diese abgefragt werden
+                    freiwillig übermittelte Anlagen und
+                    sonstige Angaben
                   </li>
-                  <li>technische Verbindungsdaten</li>
                 </ul>
 
                 <p>
-                  Die Verarbeitung erfolgt zur Entgegennahme und Durchführung
-                  der Reservierung auf Grundlage von Art. 6 Abs. 1 lit. b
-                  DSGVO.
+                  Die Verarbeitung erfolgt zur Bearbeitung
+                  und Beantwortung der jeweiligen Anfrage.
                 </p>
 
                 <p>
-                  Soweit Resmio Daten in unserem Auftrag verarbeitet, erfolgt
-                  dies auf Grundlage eines Vertrages zur Auftragsverarbeitung
-                  gemäß Art. 28 DSGVO. Soweit Resmio für einzelne
-                  Verarbeitungen selbst verantwortlich ist, gelten ergänzend
-                  die Datenschutzinformationen von Resmio.
+                  Bezieht sich die Anfrage auf einen
+                  Vertrag oder vorvertragliche Maßnahmen,
+                  erfolgt die Verarbeitung auf Grundlage
+                  von Art. 6 Abs. 1 lit. b DSGVO.
                 </p>
 
                 <p>
-                  Nach Angaben von Resmio verwendet das eingebundene Widget
-                  technisch notwendige Cookies beziehungsweise
-                  Session-Technologien, die für die Bereitstellung des
-                  Reservierungsvorgangs erforderlich sind. Resmio gibt an, in
-                  seinen Widgets keine Cookies zu Tracking- oder
-                  Werbezwecken einzusetzen.
-                </p>
-              </div>
-            </section>
-
-            {/* 10 */}
-            <section className="legal-section">
-              <p className="legal-section__number">10</p>
-
-              <div>
-                <h2>Cookies und ähnliche Technologien</h2>
-
-                <p>
-                  Diese Website setzt nach aktuellem Stand selbst keine
-                  Analyse-, Marketing- oder Werbe-Cookies ein.
+                  Bei sonstigen Anfragen erfolgt die
+                  Verarbeitung auf Grundlage von
+                  Art. 6 Abs. 1 lit. f DSGVO. Unser
+                  berechtigtes Interesse liegt in der
+                  Bearbeitung und Beantwortung der Anfrage.
                 </p>
 
                 <p>
-                  Beim Aufruf der Reservierungsseite können durch das
-                  eingebundene Resmio-Widget technisch notwendige Cookies oder
-                  vergleichbare Speichertechnologien eingesetzt werden. Diese
-                  dienen der technischen Durchführung der vom Nutzer
-                  ausdrücklich gewünschten Reservierung.
+                  Übermittelte Daten werden gelöscht,
+                  sobald die jeweilige Anfrage vollständig
+                  bearbeitet wurde und keine gesetzlichen
+                  Aufbewahrungspflichten oder sonstigen
+                  berechtigten Gründe für eine weitere
+                  Speicherung bestehen.
+                </p>
+              </section>
+
+              {/* BEWERBUNGEN */}
+
+              <section className="legal-block">
+                <div className="legal-block__heading">
+                  <FiBriefcase />
+
+                  <h3>
+                    8. Bewerbungen per E-Mail
+                  </h3>
+                </div>
+
+                <p>
+                  Auf der Karriereseite können Angaben für
+                  eine Bewerbung vorbereitet werden.
+                  Beim Absenden wird das E-Mail-Programm
+                  der bewerbenden Person geöffnet.
                 </p>
 
                 <p>
-                  Soweit der Zugriff auf Informationen im Endgerät für einen
-                  ausdrücklich gewünschten digitalen Dienst unbedingt
-                  erforderlich ist, kann dieser ohne vorherige Einwilligung
-                  zulässig sein. Für nicht notwendige Technologien ist
-                  grundsätzlich eine vorherige Einwilligung erforderlich.
-                </p>
-
-                <p className="legal-hint">
-                  Sobald Analyse-, Marketing-, Karten-, Video- oder sonstige
-                  nicht notwendige Dienste eingebunden werden, müssen ein
-                  Einwilligungsmanagement und diese Datenschutzerklärung
-                  entsprechend ergänzt werden.
-                </p>
-              </div>
-            </section>
-
-            {/* 11 */}
-            <section className="legal-section">
-              <p className="legal-section__number">11</p>
-
-              <div>
-                <h2>Instagram und Facebook</h2>
-
-                <p>
-                  Auf dieser Website befinden sich Links zu unseren Auftritten
-                  bei Instagram und Facebook. Dabei handelt es sich derzeit
-                  lediglich um externe Verlinkungen.
+                  Die Angaben werden nicht durch ein
+                  eigenes Bewerbungsformular auf unserem
+                  Webserver gespeichert. Die Übermittlung
+                  erfolgt erst durch den Versand der
+                  E-Mail über das jeweils verwendete
+                  E-Mail-Programm.
                 </p>
 
                 <p>
-                  Beim bloßen Aufruf unserer Website werden über diese Links
-                  keine Daten automatisch an die Betreiber der sozialen
-                  Netzwerke übertragen. Erst wenn ihr einen der Links
-                  anklickt, wird die jeweilige externe Plattform aufgerufen.
-                </p>
-
-                <p>
-                  Ab diesem Zeitpunkt kann der jeweilige Plattformbetreiber
-                  personenbezogene Daten verarbeiten. Dies gilt insbesondere,
-                  wenn ihr bei der Plattform angemeldet seid. Auf Art und
-                  Umfang der dortigen Datenverarbeitung haben wir keinen
-                  Einfluss.
-                </p>
-
-                <p>
-                  Anbieter der Plattformen sind insbesondere:
+                  Im Rahmen einer Bewerbung können
+                  insbesondere folgende Daten verarbeitet
+                  werden:
                 </p>
 
                 <ul className="legal-list">
                   <li>
-                    Meta Platforms Ireland Limited, Merrion Road, Dublin 4,
-                    D04 X2K5, Irland
+                    Stamm- und Kontaktdaten
                   </li>
+
                   <li>
-                    Instagram ist ein Angebot der Meta Platforms Ireland
-                    Limited.
+                    Angaben zur gewünschten Tätigkeit
+                  </li>
+
+                  <li>
+                    Angaben zum möglichen Eintrittstermin
+                  </li>
+
+                  <li>
+                    berufliche Qualifikationen und
+                    Erfahrungen
+                  </li>
+
+                  <li>
+                    Bewerbungsunterlagen wie Lebenslauf
+                    oder Zeugnisse
+                  </li>
+
+                  <li>
+                    weitere freiwillig mitgeteilte Angaben
                   </li>
                 </ul>
-              </div>
-            </section>
-
-            {/* 12 */}
-            <section className="legal-section">
-              <p className="legal-section__number">12</p>
-
-              <div>
-                <h2>Google Maps</h2>
 
                 <p>
-                  Nach aktuellem Stand ist auf dieser Website keine
-                  interaktive Google-Maps-Karte eingebunden.
+                  Die Verarbeitung erfolgt zur Entscheidung
+                  über die Begründung eines
+                  Beschäftigungsverhältnisses auf Grundlage
+                  von § 26 Abs. 1 BDSG in Verbindung mit
+                  Art. 6 Abs. 1 lit. b DSGVO.
                 </p>
 
                 <p>
-                  Soweit ein externer Link zu Google Maps verwendet wird,
-                  werden erst nach dem Anklicken des Links Daten an Google
-                  übertragen. Für die Datenverarbeitung auf der externen
-                  Google-Maps-Seite ist der dortige Anbieter verantwortlich.
+                  Kommt kein Beschäftigungsverhältnis
+                  zustande, werden Bewerbungsunterlagen
+                  grundsätzlich spätestens sechs Monate
+                  nach Abschluss des Bewerbungsverfahrens
+                  gelöscht, sofern keine Einwilligung in
+                  eine längere Speicherung erteilt wurde
+                  oder gesetzliche beziehungsweise
+                  berechtigte Gründe entgegenstehen.
                 </p>
-
-                <p className="legal-hint">
-                  Wird später eine interaktive Karte direkt in die Website
-                  eingebunden, muss dieser Abschnitt angepasst werden. Je nach
-                  Einbindungsart kann außerdem eine vorherige Einwilligung
-                  erforderlich sein.
-                </p>
-              </div>
-            </section>
-
-            {/* 13 */}
-            <section className="legal-section">
-              <p className="legal-section__number">13</p>
-
-              <div>
-                <h2>Schriftarten und Icons</h2>
 
                 <p>
-                  Die Website verwendet Systemschriftarten sowie innerhalb des
-                  Website-Projekts bereitgestellte Symbole und Icons. Nach
-                  aktuellem Stand werden keine Schriftarten beim Aufruf der
-                  Website von Servern von Google Fonts oder vergleichbaren
-                  externen Schriftdiensten nachgeladen.
+                  Kommt ein Beschäftigungsverhältnis
+                  zustande, können die Daten zur
+                  Durchführung des
+                  Beschäftigungsverhältnisses
+                  weiterverarbeitet werden.
                 </p>
+              </section>
 
-                <p className="legal-hint">
-                  Falls später externe Google Fonts, Adobe Fonts oder andere
-                  externe Schriftendienste eingebunden werden, muss dieser
-                  Abschnitt angepasst werden.
-                </p>
-              </div>
-            </section>
+              {/* RESMIO */}
 
-            {/* 14 */}
-            <section className="legal-section">
-              <p className="legal-section__number">14</p>
+              <section className="legal-block">
+                <div className="legal-block__heading">
+                  <FiCalendar />
 
-              <div>
-                <h2>Empfänger personenbezogener Daten</h2>
+                  <h3>
+                    9. Tischreservierungen über Resmio
+                  </h3>
+                </div>
 
                 <p>
-                  Personenbezogene Daten können im Rahmen der beschriebenen
-                  Zwecke insbesondere an folgende Empfänger oder Kategorien
-                  von Empfängern übermittelt werden:
+                  Für Online-Tischreservierungen wird der
+                  Dienst Resmio verwendet.
+                </p>
+
+                <address className="legal-address">
+                  <strong>resmio GmbH</strong>
+
+                  <span>Katzwanger Straße 150</span>
+                  <span>90461 Nürnberg</span>
+                  <span>Deutschland</span>
+                </address>
+
+                <p>
+                  Beim Aufruf und bei der Nutzung des
+                  Resmio-Reservierungswidgets können
+                  personenbezogene Daten an Resmio
+                  übermittelt werden.
+                </p>
+
+                <p>
+                  Hierzu können insbesondere gehören:
+                </p>
+
+                <ul className="legal-list">
+                  <li>IP-Adresse</li>
+
+                  <li>
+                    Informationen über Browser und
+                    Endgerät
+                  </li>
+
+                  <li>
+                    Datum und Uhrzeit des Zugriffs
+                  </li>
+
+                  <li>Name</li>
+
+                  <li>E-Mail-Adresse</li>
+
+                  <li>Telefonnummer</li>
+
+                  <li>
+                    gewünschtes Reservierungsdatum und
+                    gewünschte Uhrzeit
+                  </li>
+
+                  <li>Anzahl der Gäste</li>
+
+                  <li>
+                    freiwillig übermittelte Wünsche oder
+                    Bemerkungen
+                  </li>
+                </ul>
+
+                <p>
+                  Die im Reservierungsformular
+                  eingegebenen Daten werden zur Bearbeitung,
+                  Verwaltung und Bestätigung der
+                  Tischreservierung verwendet.
+                </p>
+
+                <p>
+                  Rechtsgrundlage für die Bearbeitung
+                  einer konkret angefragten Reservierung
+                  ist Art. 6 Abs. 1 lit. b DSGVO.
+                </p>
+
+                <p>
+  Das Resmio-Reservierungswidget wird beim Aufruf
+  der Reservierungsseite unmittelbar geladen.
+  Dabei wird bereits vor dem Absenden einer
+  Reservierungsanfrage eine Verbindung zu den
+  Servern von Resmio hergestellt. Hierbei können
+  insbesondere die IP-Adresse sowie Browser-,
+  Geräte- und Zugriffsinformationen an Resmio
+  übermittelt werden.
+</p>
+
+<p>
+  Die Einbindung dient der Bereitstellung einer
+  komfortablen Online-Tischreservierung.
+</p>
+
+                <p>
+                  Für die weitere Verarbeitung innerhalb
+                  des Resmio-Reservierungssystems gelten
+                  ergänzend die Datenschutzhinweise von
+                  Resmio.
+                </p>
+
+                <a
+                  href="https://www.resmio.com/datenschutz/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="legal-external-link"
+                >
+                  Datenschutzhinweise von Resmio
+                  <FiExternalLink />
+                </a>
+              </section>
+
+              {/* GOOGLE MAPS */}
+
+              <section className="legal-block">
+                <div className="legal-block__heading">
+                  <FiMapPin />
+
+                  <h3>
+                    10. Google Maps
+                  </h3>
+                </div>
+
+                <p>
+                  Auf der Kontaktseite wird eine Karte des
+                  Dienstes Google Maps eingebunden.
+                  Anbieter für Nutzerinnen und Nutzer im
+                  Europäischen Wirtschaftsraum ist:
+                </p>
+
+                <address className="legal-address">
+                  <strong>
+                    Google Ireland Limited
+                  </strong>
+
+                  <span>Gordon House</span>
+                  <span>Barrow Street</span>
+                  <span>Dublin 4</span>
+                  <span>Irland</span>
+                </address>
+
+                <p>
+                  Durch die Einbindung von Google Maps
+                  können insbesondere folgende Daten an
+                  Google übermittelt werden:
+                </p>
+
+                <ul className="legal-list">
+                  <li>IP-Adresse</li>
+
+                  <li>
+                    Browser- und Geräteinformationen
+                  </li>
+
+                  <li>
+                    Datum und Uhrzeit des Zugriffs
+                  </li>
+
+                  <li>
+                    aufgerufene Website beziehungsweise
+                    Unterseite
+                  </li>
+
+                  <li>
+                    gegebenenfalls Standortinformationen
+                  </li>
+
+                  <li>
+                    Daten aus einem vorhandenen
+                    Google-Konto, sofern die Person dort
+                    angemeldet ist
+                  </li>
+                </ul>
+
+                <p>
+                  Die Karte dient dazu, den Standort von
+                  Monty&apos;s anschaulich darzustellen und
+                  die Anfahrt zu erleichtern.
+                </p>
+
+                <p>
+  Die Google-Maps-Karte wird beim Aufruf der
+  Kontaktseite unmittelbar geladen. Dabei wird
+  eine Verbindung zu den Servern von Google
+  hergestellt und es können insbesondere die
+  IP-Adresse sowie Browser-, Geräte- und
+  Zugriffsinformationen an Google übermittelt
+  werden.
+</p>
+
+<p>
+  Die Einbindung dient der anschaulichen
+  Darstellung unseres Standorts und der
+  Erleichterung der Anfahrt.
+</p>
+
+                <p>
+                  Es kann nicht ausgeschlossen werden, dass
+                  personenbezogene Daten auch an
+                  Gesellschaften von Google außerhalb der
+                  Europäischen Union oder des Europäischen
+                  Wirtschaftsraums übermittelt und dort
+                  verarbeitet werden.
+                </p>
+
+                <p>
+                  Weitere Informationen zur Verarbeitung
+                  personenbezogener Daten durch Google
+                  befinden sich in der
+                  Datenschutzerklärung von Google.
+                </p>
+
+                <a
+                  href="https://policies.google.com/privacy?hl=de"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="legal-external-link"
+                >
+                  Datenschutzerklärung von Google
+                  <FiExternalLink />
+                </a>
+              </section>
+
+              {/* GOOGLE BEWERTUNG */}
+
+              <section className="legal-block">
+                <div className="legal-block__heading">
+                  <FiGlobe />
+
+                  <h3>
+                    11. Link zur Google-Bewertung
+                  </h3>
+                </div>
+
+                <p>
+                  Auf dieser Website befinden sich Links,
+                  über die eine Bewertung für Monty&apos;s
+                  bei Google abgegeben werden kann.
+                </p>
+
+                <p>
+                  Der Bewertungsdienst ist nicht unmittelbar
+                  in die Website eingebettet. Eine
+                  Verbindung zu Google wird grundsätzlich
+                  erst hergestellt, wenn der entsprechende
+                  Link angeklickt wird.
+                </p>
+
+                <p>
+                  Beim Öffnen der verlinkten Google-Seite
+                  können insbesondere die IP-Adresse,
+                  Browserinformationen, Geräteinformationen,
+                  Zeitpunkt des Zugriffs und die zuvor
+                  besuchte Seite an Google übermittelt
+                  werden.
+                </p>
+
+                <p>
+                  Ist die betroffene Person bei einem
+                  Google-Konto angemeldet, kann Google den
+                  Seitenaufruf gegebenenfalls dem
+                  jeweiligen Konto zuordnen.
+                </p>
+
+                <p>
+                  Für die Verarbeitung auf der externen
+                  Google-Seite ist grundsätzlich Google
+                  verantwortlich.
+                </p>
+
+                <a
+                  href="https://policies.google.com/privacy?hl=de"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="legal-external-link"
+                >
+                  Datenschutzerklärung von Google
+                  <FiExternalLink />
+                </a>
+              </section>
+
+              {/* EXTERNE LINKS */}
+
+              <section className="legal-block">
+                <div className="legal-block__heading">
+                  <FiExternalLink />
+
+                  <h3>
+                    12. Externe Links
+                  </h3>
+                </div>
+
+                <p>
+                  Diese Website enthält Links zu externen
+                  Websites und Diensten Dritter.
+                </p>
+
+                <p>
+                  Beim bloßen Anzeigen unserer Website
+                  findet durch einen normalen externen Link
+                  grundsätzlich noch keine Verbindung zu
+                  der verlinkten Website statt. Erst nach
+                  dem Anklicken wird die jeweilige externe
+                  Seite aufgerufen.
+                </p>
+
+                <p>
+                  Ab diesem Zeitpunkt gelten die
+                  Datenschutzbestimmungen des jeweiligen
+                  externen Anbieters. Auf Art und Umfang
+                  der dortigen Datenverarbeitung haben wir
+                  keinen unmittelbaren Einfluss.
+                </p>
+              </section>
+
+              {/* RECHTSGRUNDLAGEN */}
+
+              <section className="legal-block">
+                <div className="legal-block__heading">
+                  <FiFileText />
+
+                  <h3>
+                    13. Allgemeine Rechtsgrundlagen
+                  </h3>
+                </div>
+
+                <p>
+                  Je nach Art der Verarbeitung werden
+                  personenbezogene Daten insbesondere auf
+                  Grundlage der folgenden Vorschriften
+                  verarbeitet:
+                </p>
+
+                <ul className="legal-list">
+                  <li>
+                    Art. 6 Abs. 1 lit. a DSGVO bei einer
+                    erteilten Einwilligung
+                  </li>
+
+                  <li>
+                    Art. 6 Abs. 1 lit. b DSGVO zur
+                    Erfüllung eines Vertrags oder zur
+                    Durchführung vorvertraglicher
+                    Maßnahmen
+                  </li>
+
+                  <li>
+                    Art. 6 Abs. 1 lit. c DSGVO zur
+                    Erfüllung rechtlicher Verpflichtungen
+                  </li>
+
+                  <li>
+                    Art. 6 Abs. 1 lit. f DSGVO zur
+                    Wahrung berechtigter Interessen
+                  </li>
+
+                  <li>
+                    § 26 BDSG bei der Verarbeitung von
+                    Bewerber- und Beschäftigtendaten
+                  </li>
+
+                  <li>
+                    § 25 TDDDG beim Speichern oder Auslesen
+                    von Informationen auf Endgeräten
+                  </li>
+                </ul>
+              </section>
+
+              {/* SPEICHERDAUER */}
+
+              <section className="legal-block">
+                <div className="legal-block__heading">
+                  <FiDatabase />
+
+                  <h3>
+                    14. Speicherdauer
+                  </h3>
+                </div>
+
+                <p>
+                  Personenbezogene Daten werden nur so
+                  lange gespeichert, wie dies zur
+                  Erreichung des jeweiligen Zwecks
+                  erforderlich ist.
+                </p>
+
+                <p>
+                  Anschließend werden die Daten gelöscht,
+                  sofern keine gesetzlichen
+                  Aufbewahrungsfristen, vertraglichen
+                  Pflichten, behördlichen Anforderungen
+                  oder berechtigten Interessen einer
+                  Löschung entgegenstehen.
+                </p>
+
+                <p>
+                  Bestehen gesetzliche
+                  Aufbewahrungspflichten, werden die
+                  betreffenden Daten für deren Dauer
+                  gesperrt und ausschließlich zur
+                  Erfüllung dieser Verpflichtungen
+                  gespeichert.
+                </p>
+              </section>
+
+              {/* EMPFÄNGER */}
+
+              <section className="legal-block">
+                <div className="legal-block__heading">
+                  <FiGlobe />
+
+                  <h3>
+                    15. Empfänger personenbezogener Daten
+                  </h3>
+                </div>
+
+                <p>
+                  Personenbezogene Daten werden nur an
+                  externe Empfänger übermittelt, wenn dies
+                  zur Erfüllung eines Vertrags, zur
+                  Bereitstellung der Website, zur Erfüllung
+                  einer gesetzlichen Verpflichtung oder
+                  auf Grundlage einer Einwilligung
+                  erforderlich ist.
+                </p>
+
+                <p>
+                  Als mögliche Empfänger kommen
+                  insbesondere in Betracht:
                 </p>
 
                 <ul className="legal-list">
                   <li>Hosting- und IT-Dienstleister</li>
-                  <li>Resmio im Zusammenhang mit Online-Reservierungen</li>
-                  <li>E-Mail- und Telekommunikationsanbieter</li>
+
                   <li>
-                    Behörden und öffentliche Stellen, soweit eine gesetzliche
-                    Verpflichtung besteht
+                    Anbieter des
+                    Tischreservierungssystems
                   </li>
+
                   <li>
-                    Rechts-, Steuer- oder sonstige Berater, soweit dies
-                    erforderlich ist
+                    Anbieter eingebundener Karten- und
+                    Standortdienste
+                  </li>
+
+                  <li>
+                    E-Mail- und
+                    Kommunikationsdienstleister
+                  </li>
+
+                  <li>
+                    Behörden und sonstige öffentliche
+                    Stellen bei einer gesetzlichen
+                    Verpflichtung
+                  </li>
+
+                  <li>
+                    Rechts-, Steuer- oder sonstige Berater,
+                    soweit dies erforderlich ist
                   </li>
                 </ul>
+              </section>
+
+              {/* DRITTLAND */}
+
+              <section className="legal-block">
+                <div className="legal-block__heading">
+                  <FiGlobe />
+
+                  <h3>
+                    16. Datenübermittlung in Drittländer
+                  </h3>
+                </div>
 
                 <p>
-                  Eine Weitergabe zu Werbezwecken erfolgt nicht, sofern keine
-                  ausdrückliche Einwilligung vorliegt.
-                </p>
-              </div>
-            </section>
-
-            {/* 15 */}
-            <section className="legal-section">
-              <p className="legal-section__number">15</p>
-
-              <div>
-                <h2>Übermittlung in Drittländer</h2>
-
-                <p>
-                  Eine Übermittlung personenbezogener Daten in Staaten
-                  außerhalb der Europäischen Union oder des Europäischen
-                  Wirtschaftsraums erfolgt nur, wenn hierfür die gesetzlichen
-                  Voraussetzungen erfüllt sind.
-                </p>
-
-                <p>
-                  Beim Aufruf externer Dienste oder sozialer Netzwerke kann
-                  nicht ausgeschlossen werden, dass Daten auch in Drittländer,
-                  insbesondere in die USA, übermittelt werden.
+                  Bei der Nutzung bestimmter externer
+                  Dienste kann eine Verarbeitung
+                  personenbezogener Daten außerhalb der
+                  Europäischen Union beziehungsweise des
+                  Europäischen Wirtschaftsraums nicht
+                  vollständig ausgeschlossen werden.
                 </p>
 
                 <p>
-                  Soweit eine solche Übermittlung erfolgt, stützt sie sich je
-                  nach Anbieter auf einen Angemessenheitsbeschluss,
-                  geeignete Garantien wie Standardvertragsklauseln oder eine
-                  andere gesetzliche Grundlage.
-                </p>
-              </div>
-            </section>
-
-            {/* 16 */}
-            <section className="legal-section">
-              <p className="legal-section__number">16</p>
-
-              <div>
-                <h2>Speicherdauer</h2>
-
-                <p>
-                  Personenbezogene Daten werden nur so lange gespeichert, wie
-                  dies für den jeweiligen Verarbeitungszweck erforderlich ist
-                  oder gesetzliche Aufbewahrungspflichten bestehen.
+                  In diesen Fällen erfolgt eine Übermittlung
+                  nur, wenn die gesetzlichen Voraussetzungen
+                  der Art. 44 ff. DSGVO erfüllt sind.
                 </p>
 
                 <p>
-                  Nach Wegfall des Verarbeitungszwecks werden die Daten
-                  gelöscht oder anonymisiert, sofern keine gesetzlichen
-                  Aufbewahrungspflichten, berechtigten Interessen oder
-                  laufenden Rechtsansprüche einer Löschung entgegenstehen.
+                  Dies kann insbesondere auf Grundlage
+                  eines Angemessenheitsbeschlusses der
+                  Europäischen Kommission, geeigneter
+                  Garantien wie
+                  EU-Standardvertragsklauseln oder einer
+                  ausdrücklichen Einwilligung erfolgen.
                 </p>
-              </div>
-            </section>
+              </section>
 
-            {/* 17 */}
-            <section className="legal-section">
-              <p className="legal-section__number">17</p>
+              {/* BETROFFENENRECHTE */}
 
-              <div>
-                <h2>Pflicht zur Bereitstellung von Daten</h2>
+              <section className="legal-block">
+                <div className="legal-block__heading">
+                  <FiShield />
+
+                  <h3>
+                    17. Rechte betroffener Personen
+                  </h3>
+                </div>
 
                 <p>
-                  Die Bereitstellung personenbezogener Daten ist grundsätzlich
-                  freiwillig.
-                </p>
-
-                <p>
-                  Bestimmte Angaben können jedoch erforderlich sein, um eine
-                  Reservierung, Kontaktanfrage oder Bewerbung bearbeiten zu
-                  können. Ohne die erforderlichen Angaben kann die jeweilige
-                  Leistung gegebenenfalls nicht erbracht werden.
-                </p>
-              </div>
-            </section>
-
-            {/* 18 */}
-            <section className="legal-section">
-              <p className="legal-section__number">18</p>
-
-              <div>
-                <h2>Automatisierte Entscheidungsfindung</h2>
-
-                <p>
-                  Eine ausschließlich automatisierte Entscheidungsfindung
-                  einschließlich Profiling gemäß Art. 22 DSGVO findet durch
-                  uns nicht statt.
-                </p>
-              </div>
-            </section>
-
-            {/* 19 */}
-            <section className="legal-section">
-              <p className="legal-section__number">19</p>
-
-              <div>
-                <h2>Rechte der betroffenen Personen</h2>
-
-                <p>
-                  Betroffene Personen haben im Rahmen der gesetzlichen
-                  Voraussetzungen insbesondere folgende Rechte:
+                  Betroffene Personen haben im Rahmen der
+                  gesetzlichen Voraussetzungen
+                  insbesondere folgende Rechte:
                 </p>
 
                 <ul className="legal-list">
                   <li>
-                    Recht auf Auskunft über die verarbeiteten
-                    personenbezogenen Daten gemäß Art. 15 DSGVO
+                    Recht auf Auskunft gemäß Art. 15 DSGVO
                   </li>
+
                   <li>
-                    Recht auf Berichtigung unrichtiger Daten gemäß
+                    Recht auf Berichtigung gemäß
                     Art. 16 DSGVO
                   </li>
+
                   <li>
-                    Recht auf Löschung gemäß Art. 17 DSGVO
+                    Recht auf Löschung gemäß
+                    Art. 17 DSGVO
                   </li>
+
                   <li>
-                    Recht auf Einschränkung der Verarbeitung gemäß
-                    Art. 18 DSGVO
+                    Recht auf Einschränkung der
+                    Verarbeitung gemäß Art. 18 DSGVO
                   </li>
+
                   <li>
-                    Recht auf Datenübertragbarkeit gemäß Art. 20 DSGVO
+                    Recht auf Datenübertragbarkeit gemäß
+                    Art. 20 DSGVO
                   </li>
+
                   <li>
-                    Recht auf Widerspruch gegen bestimmte Verarbeitungen gemäß
+                    Recht auf Widerspruch gemäß
                     Art. 21 DSGVO
                   </li>
+
                   <li>
-                    Recht auf Widerruf einer erteilten Einwilligung mit Wirkung
-                    für die Zukunft gemäß Art. 7 Abs. 3 DSGVO
+                    Recht auf Widerruf einer Einwilligung
+                    gemäß Art. 7 Abs. 3 DSGVO
+                  </li>
+
+                  <li>
+                    Recht auf Beschwerde bei einer
+                    Datenschutzaufsichtsbehörde gemäß
+                    Art. 77 DSGVO
                   </li>
                 </ul>
 
                 <p>
-                  Der Widerruf einer Einwilligung berührt nicht die
-                  Rechtmäßigkeit der Verarbeitung, die bis zum Widerruf auf
-                  Grundlage der Einwilligung erfolgt ist.
-                </p>
-              </div>
-            </section>
-
-            {/* 20 */}
-            <section className="legal-section">
-              <p className="legal-section__number">20</p>
-
-              <div>
-                <h2>Widerspruchsrecht</h2>
-
-                <p>
-                  Erfolgt eine Datenverarbeitung auf Grundlage von
-                  Art. 6 Abs. 1 lit. e oder lit. f DSGVO, habt ihr das Recht,
-                  aus Gründen, die sich aus eurer besonderen Situation
-                  ergeben, jederzeit Widerspruch gegen diese Verarbeitung
-                  einzulegen.
+                  Der Widerruf einer Einwilligung wirkt nur
+                  für die Zukunft. Die Rechtmäßigkeit der
+                  bis zum Widerruf erfolgten Verarbeitung
+                  wird dadurch nicht berührt.
                 </p>
 
                 <p>
-                  Werden personenbezogene Daten zum Zweck der Direktwerbung
-                  verarbeitet, kann dieser Verarbeitung jederzeit ohne Angabe
-                  besonderer Gründe widersprochen werden.
-                </p>
-              </div>
-            </section>
-
-            {/* 21 */}
-            <section className="legal-section">
-              <p className="legal-section__number">21</p>
-
-              <div>
-                <h2>Beschwerderecht bei einer Aufsichtsbehörde</h2>
-
-                <p>
-                  Betroffene Personen haben das Recht, sich bei einer
-                  Datenschutzaufsichtsbehörde zu beschweren, wenn sie der
-                  Ansicht sind, dass die Verarbeitung ihrer
-                  personenbezogenen Daten gegen die DSGVO verstößt.
+                  Zur Ausübung dieser Rechte genügt eine
+                  formlose Nachricht an:
                 </p>
 
                 <p>
-                  Für nicht öffentliche Stellen mit Sitz in Bayern ist
-                  grundsätzlich folgende Behörde zuständig:
+                  <a href="mailto:info@montys-bar-bayreuth.de">
+                    <strong>
+                      info@montys-bar-bayreuth.de
+                    </strong>
+                  </a>
+                </p>
+              </section>
+
+              {/* WIDERSPRUCH */}
+
+              <section className="legal-block legal-block--highlight">
+                <div className="legal-block__heading">
+                  <FiShield />
+
+                  <h3>
+                    18. Widerspruchsrecht
+                  </h3>
+                </div>
+
+                <p>
+                  Werden personenbezogene Daten auf
+                  Grundlage von Art. 6 Abs. 1 lit. e oder
+                  lit. f DSGVO verarbeitet, besteht aus
+                  Gründen, die sich aus der besonderen
+                  Situation der betroffenen Person ergeben,
+                  jederzeit das Recht, gegen die
+                  Verarbeitung Widerspruch einzulegen.
+                </p>
+
+                <p>
+                  Nach einem Widerspruch verarbeiten wir
+                  die betroffenen personenbezogenen Daten
+                  grundsätzlich nicht mehr, es sei denn,
+                  wir können zwingende schutzwürdige
+                  Gründe für die Verarbeitung nachweisen,
+                  die die Interessen, Rechte und Freiheiten
+                  der betroffenen Person überwiegen.
+                </p>
+
+                <p>
+                  Eine weitere Verarbeitung kann außerdem
+                  erfolgen, wenn sie der Geltendmachung,
+                  Ausübung oder Verteidigung von
+                  Rechtsansprüchen dient.
+                </p>
+              </section>
+
+              {/* BESCHWERDE */}
+
+              <section className="legal-block">
+                <div className="legal-block__heading">
+                  <FiShield />
+
+                  <h3>
+                    19. Beschwerderecht bei der
+                    Aufsichtsbehörde
+                  </h3>
+                </div>
+
+                <p>
+                  Betroffene Personen haben das Recht, sich
+                  bei einer Datenschutzaufsichtsbehörde zu
+                  beschweren, wenn sie der Ansicht sind,
+                  dass die Verarbeitung ihrer
+                  personenbezogenen Daten gegen die DSGVO
+                  verstößt.
+                </p>
+
+                <p>
+                  Die für private Unternehmen in Bayern
+                  zuständige Aufsichtsbehörde ist:
                 </p>
 
                 <address className="legal-address">
-                  Bayerisches Landesamt für Datenschutzaufsicht
-                  <br />
-                  Promenade 18
-                  <br />
-                  91522 Ansbach
+                  <strong>
+                    Bayerisches Landesamt für
+                    Datenschutzaufsicht
+                  </strong>
+
+                  <span>Promenade 18</span>
+                  <span>91522 Ansbach</span>
+                  <span>Deutschland</span>
                 </address>
 
+                <a
+                  href="https://www.lda.bayern.de/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="legal-external-link"
+                >
+                  Website des BayLDA
+                  <FiExternalLink />
+                </a>
+              </section>
+
+              {/* PFLICHT ZUR BEREITSTELLUNG */}
+
+              <section className="legal-block">
+                <div className="legal-block__heading">
+                  <FiFileText />
+
+                  <h3>
+                    20. Pflicht zur Bereitstellung von Daten
+                  </h3>
+                </div>
+
                 <p>
-                  Das Beschwerderecht besteht unbeschadet anderweitiger
-                  verwaltungsrechtlicher oder gerichtlicher Rechtsbehelfe.
+                  Die Bereitstellung personenbezogener Daten
+                  ist grundsätzlich weder gesetzlich noch
+                  vertraglich vorgeschrieben.
+                </p>
+
+                <p>
+                  Für bestimmte Leistungen, insbesondere
+                  Tischreservierungen, die Bearbeitung von
+                  Anfragen oder Bewerbungen, sind einzelne
+                  Angaben jedoch erforderlich.
+                </p>
+
+                <p>
+                  Ohne diese Angaben kann die jeweilige
+                  Anfrage, Reservierung oder Bewerbung
+                  möglicherweise nicht bearbeitet werden.
+                </p>
+              </section>
+
+              {/* AUTOMATISIERTE ENTSCHEIDUNGEN */}
+
+              <section className="legal-block">
+                <div className="legal-block__heading">
+                  <FiDatabase />
+
+                  <h3>
+                    21. Automatisierte Entscheidungen und
+                    Profiling
+                  </h3>
+                </div>
+
+                <p>
+                  Es findet keine ausschließlich
+                  automatisierte Entscheidungsfindung im
+                  Sinne von Art. 22 DSGVO statt, die
+                  gegenüber betroffenen Personen
+                  rechtliche Wirkung entfaltet oder sie in
+                  ähnlicher Weise erheblich beeinträchtigt.
+                </p>
+
+                <p>
+                  Auf dieser Website findet durch die
+                  Monty&apos;s Operations GmbH kein
+                  Profiling statt.
+                </p>
+              </section>
+
+              {/* ÄNDERUNGEN */}
+
+              <section className="legal-block">
+                <div className="legal-block__heading">
+                  <FiFileText />
+
+                  <h3>
+                    22. Aktualisierung dieser
+                    Datenschutzerklärung
+                  </h3>
+                </div>
+
+                <p>
+                  Diese Datenschutzerklärung kann
+                  angepasst werden, wenn sich rechtliche
+                  Anforderungen, technische Funktionen
+                  oder eingesetzte Dienste ändern.
+                </p>
+
+                <p>
+                  Es gilt die jeweils auf dieser Website
+                  veröffentlichte Fassung.
+                </p>
+
+                <p>
+                  <strong>
+                    Stand: Juli 2026
+                  </strong>
+                </p>
+              </section>
+            </article>
+
+            {/* SEITENLEISTE */}
+
+            <aside className="legal-sidebar">
+              <div className="legal-sidebar__card">
+                <div className="legal-sidebar__icon">
+                  <FiShield />
+                </div>
+
+                <p className="legal-eyebrow">
+                  Verantwortlicher
+                </p>
+
+                <h2>
+                  Monty&apos;s Operations GmbH
+                </h2>
+
+                <address>
+                  Wölfelstraße 18
+                  <br />
+                  95444 Bayreuth
+                  <br />
+                  Deutschland
+                </address>
+
+                <a
+                  href="mailto:info@montys-bar-bayreuth.de"
+                  className="legal-sidebar__link"
+                >
+                  <FiMail />
+                  Datenschutzanfrage senden
+                </a>
+              </div>
+
+              <div className="legal-sidebar__navigation">
+                <p className="legal-eyebrow">
+                  Schnellnavigation
+                </p>
+
+                <a href="#top">
+                  Nach oben
+                  <FiExternalLink />
+                </a>
+
+                <Link to="/impressum">
+                  Impressum
+                  <FiExternalLink />
+                </Link>
+
+                <Link to="/kontakt">
+                  Kontakt
+                  <FiExternalLink />
+                </Link>
+
+                <Link to="/reservierung">
+                  Tisch reservieren
+                  <FiExternalLink />
+                </Link>
+              </div>
+
+              <div className="legal-sidebar__notice">
+                <FiLock />
+
+                <p>
+                  Personenbezogene Daten werden nur
+                  verarbeitet, soweit dies für die
+                  Bereitstellung der Website, die
+                  Bearbeitung einer Anfrage oder die
+                  Durchführung einer Reservierung
+                  erforderlich ist.
                 </p>
               </div>
-            </section>
+            </aside>
+          </div>
+        </div>
+      </section>
 
-            {/* 22 */}
-            <section className="legal-section">
-              <p className="legal-section__number">22</p>
+      {/* ==================================================
+          ABSCHLUSS
+      ================================================== */}
 
-              <div>
-                <h2>Datensicherheit</h2>
+      <section className="legal-footer-section">
+        <div
+          className="legal-footer-section__background-word"
+          aria-hidden="true"
+        >
+          Vertrauen
+        </div>
 
-                <p>
-                  Wir treffen angemessene technische und organisatorische
-                  Maßnahmen, um personenbezogene Daten vor Verlust,
-                  Manipulation, unbefugtem Zugriff und sonstigem Missbrauch zu
-                  schützen.
-                </p>
+        <div className="legal-footer-section__content">
+          <p className="legal-eyebrow">
+            Fragen zum Datenschutz?
+          </p>
 
-                <p>
-                  Die Website soll verschlüsselt über HTTPS übertragen werden.
-                  Eine verschlüsselte Verbindung erkennt ihr insbesondere an
-                  der Anzeige von „https://“ in der Adresszeile des Browsers.
-                </p>
-              </div>
-            </section>
+          <h2>
+            Eure Daten.
+            <span>Transparent verarbeitet.</span>
+          </h2>
 
-            {/* 23 */}
-            <section className="legal-section">
-              <p className="legal-section__number">23</p>
+          <p>
+            Bei Fragen zur Verarbeitung personenbezogener
+            Daten oder zur Ausübung eurer Rechte könnt ihr
+            euch jederzeit direkt an uns wenden.
+          </p>
 
-              <div>
-                <h2>Aktualität und Änderung dieser Datenschutzerklärung</h2>
-
-                <p>
-                  Diese Datenschutzerklärung entspricht dem derzeit geplanten
-                  technischen Stand der Website.
-                </p>
-
-                <p>
-                  Wir behalten uns vor, sie anzupassen, wenn sich eingesetzte
-                  Dienste, gesetzliche Anforderungen oder die
-                  Datenverarbeitung auf dieser Website ändern.
-                </p>
-
-                <p>
-                  Stand: [Monat und Jahr der Veröffentlichung]
-                </p>
-              </div>
-            </section>
-          </article>
-
-          <aside className="legal-warning">
-            <strong>Vor Veröffentlichung prüfen und ausfüllen</strong>
-
-            <p>
-              Die Angaben zum Verantwortlichen, zu Kontaktmöglichkeiten,
-              Datenschutzbeauftragtem und Veröffentlichungsstand sind noch
-              Platzhalter. Die Datenschutzerklärung muss vor Veröffentlichung
-              anhand der tatsächlich eingesetzten Dienste, Verträge und
-              Unternehmenseigenschaften abschließend geprüft werden.
-            </p>
-          </aside>
+          <a
+            href="mailto:info@montys-bar-bayreuth.de?subject=Datenschutzanfrage%20zur%20Website"
+            className="legal-button"
+          >
+            <FiMail />
+            Datenschutzanfrage senden
+          </a>
         </div>
       </section>
     </main>
