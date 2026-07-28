@@ -35,9 +35,6 @@ import "../styles/contact.css";
 const CONTACT_EMAIL =
   "info@montys-bar-bayreuth.de";
 
-
-  "https://formspree.io/f/DEINE_FORM_ID";
-
 const REVIEW_URL =
   "https://g.page/r/Cd1ZgBoPbiJwECE/review";
 
@@ -199,6 +196,8 @@ function Reveal({
 }
 
 function Contact() {
+  const [isMapLoaded, setIsMapLoaded] =
+    useState(false);
 
   const scrollToContactForm = () => {
     document
@@ -641,25 +640,19 @@ function Contact() {
                   />
                 </div>
 
-                <label className="contact-form__privacy">
-                  <input
-                    type="checkbox"
-                    name="privacy"
-                    value="accepted"
-                    required
-                  />
-
-                  <span>
-                    Ich habe die{" "}
-                    <Link to="/datenschutz">
-                      Datenschutzerklärung
-                    </Link>{" "}
-                    gelesen und stimme der
-                    Verarbeitung meiner
-                    Angaben zur Bearbeitung
-                    meiner Anfrage zu.
-                  </span>
-                </label>
+                <p className="contact-form__privacy-notice">
+  Mit „E-Mail vorbereiten“ werden eure Angaben
+  ausschließlich lokal in das auf eurem Gerät
+  eingerichtete E-Mail-Programm übernommen.
+  Eine Übermittlung an uns erfolgt erst, wenn ihr
+  die vorbereitete E-Mail selbst absendet.
+  Informationen zur anschließenden Verarbeitung
+  findet ihr in unserer{" "}
+  <Link to="/datenschutz">
+    Datenschutzerklärung
+  </Link>
+  .
+</p>
 
                 <button
   type="submit"
@@ -694,19 +687,87 @@ function Contact() {
           </Reveal>
 
           <Reveal
-            className="contact-map__frame"
-            delay={100}
-          >
-            <iframe
-              src={MAP_EMBED_URL}
-              title="Standort von Monty's Pub und Kitchen in Bayreuth"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              allowFullScreen
-            />
+  className="contact-map__frame"
+  delay={100}
+>
+  {isMapLoaded ? (
+  <div className="contact-map__loaded">
+    <iframe
+      src={MAP_EMBED_URL}
+      title="Standort von Monty's Pub & Kitchen in Bayreuth"
+      loading="lazy"
+      referrerPolicy="no-referrer-when-downgrade"
+      allowFullScreen
+    />
 
-            
-          </Reveal>
+    <button
+      type="button"
+      className="contact-map__revoke"
+      onClick={() => setIsMapLoaded(false)}
+    >
+      Google Maps wieder deaktivieren
+    </button>
+  </div>
+) : (
+    <div className="contact-map__consent">
+      <div className="contact-map__consent-content">
+        <FiMapPin aria-hidden="true" />
+
+        <p className="contact-eyebrow">
+          Externer Kartendienst
+        </p>
+
+        <h3>
+          Standortkarte anzeigen
+        </h3>
+
+        <p>
+          Mit dem Laden der Karte wird eine
+          Verbindung zu Google Maps hergestellt.
+          Dabei können personenbezogene Daten,
+          insbesondere eure IP-Adresse sowie
+          Browser- und Geräteinformationen, an
+          Google übermittelt werden.
+        </p>
+
+        <p>
+          Die Karte wird erst nach eurer
+          Zustimmung geladen.
+        </p>
+
+        <div className="contact-map__consent-actions">
+          <button
+            type="button"
+            className="contact-button contact-button--primary"
+            onClick={() => setIsMapLoaded(true)}
+          >
+            Google Maps laden
+            <FiMapPin />
+          </button>
+
+          <a
+            href={DIRECTIONS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="contact-button contact-button--secondary"
+          >
+            Route extern öffnen
+            <FiNavigation />
+          </a>
+        </div>
+
+        <small>
+          Weitere Informationen findet ihr in
+          unserer{" "}
+          <Link to="/datenschutz">
+            Datenschutzerklärung
+          </Link>
+          .
+        </small>
+      </div>
+    </div>
+  )}
+</Reveal>
         </div>
       </section>
 

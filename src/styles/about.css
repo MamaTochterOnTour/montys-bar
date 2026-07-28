@@ -1612,6 +1612,871 @@
 }
 
 /* ======================================================
+   TABLET – BIS 1100 PX
+====================================================== */
+
+@media (max-width: 1100px) {
+  .about-section-container {
+    width: min(calc(100% - 40px), 1000px);
+  }
+
+  /* ====================================================
+     HERO
+  ==================================================== */
+
+  .about-hero {
+    min-height: auto;
+    padding: 130px 0 95px;
+  }
+
+  .about-hero__container {
+    top: 0;
+
+    width: min(calc(100% - 40px), 1000px);
+
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(300px, 0.78fr);
+
+    align-items: center;
+    gap: 45px;
+  }
+
+  .about-hero__content {
+    max-width: none;
+    padding-top: 0;
+  }
+
+  .about-hero h1 {
+    font-size: clamp(4.2rem, 8vw, 6.3rem);
+  }
+
+  .about-hero h1 span {
+    margin-top: 17px;
+    font-size: clamp(2.7rem, 5.5vw, 4.4rem);
+  }
+
+  .about-hero__lead {
+    margin-top: 29px;
+    font-size: 1.35rem;
+  }
+
+  .about-hero__text {
+    font-size: 0.92rem;
+    line-height: 1.72;
+  }
+
+  .about-hero__facts {
+    margin-top: 30px;
+    padding-top: 21px;
+    gap: 16px;
+  }
+
+  .about-hero__visual {
+    max-width: 430px;
+  }
+
+  .about-hero__image {
+    height: 510px;
+  }
+
+  .about-hero__image img {
+    object-position: center 65%;
+  }
+
+  .about-hero__seal {
+    top: 19px;
+    left: 19px;
+
+    width: 112px;
+    height: 112px;
+  }
+
+  .about-hero__seal span {
+    font-size: 1.1rem;
+  }
+
+  .about-hero__seal strong {
+    font-size: 0.5rem;
+  }
+
+  .about-hero__background-word {
+    right: -35px;
+    bottom: 25px;
+    font-size: clamp(10rem, 25vw, 20rem);
+  }
+
+  /* ====================================================
+     HIGHLIGHT-LEISTE – 2 × 2
+  ==================================================== */
+
+  .about-highlights__container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .about-highlight-card {
+    min-height: 190px;
+    padding: 28px 23px;
+  }
+
+  .about-highlight-card:nth-child(2) {
+    border-right: 0;
+  }
+
+  .about-highlight-card:nth-child(3),
+  .about-highlight-card:nth-child(4) {
+    border-top: 1px solid rgba(76, 48, 33, 0.2);
+  }
+
+  .about-highlight-card:nth-child(4) {
+    border-right: 0;
+  }
+
+  /* ====================================================
+     GESCHICHTE
+  ==================================================== */
+
+  .about-story {
+    padding: 100px 0 110px;
+  }
+
+  .about-story__layout {
+    grid-template-columns:
+      minmax(0, 0.92fr)
+      minmax(330px, 1.08fr);
+
+    gap: 50px;
+  }
+
+  .about-story__content h2 {
+    font-size: clamp(2.8rem, 5.4vw, 4.2rem);
+  }
+
+  .about-story__lead {
+    margin-top: 23px;
+    font-size: 1.15rem;
+  }
+
+  .about-story__text {
+    margin-top: 23px;
+  }
+
+  .about-story__text p {
+    font-size: 0.84rem;
+    line-height: 1.7;
+  }
+
+  .about-story__quote {
+    margin-top: 25px;
+    padding: 20px 0;
+  }
+
+  .about-story__quote p {
+    font-size: 1.05rem;
+  }
+
+  .about-story__image {
+    height: 570px;
+  }
+
+  .about-story__visual {
+  position: relative;
+}
+
+.about-story__image {
+  width: 100%;
+  height: 570px;
+}
+
+.about-story__note {
+  right: 0;
+  bottom: 0;
+
+  width: min(90%, 350px);
+  padding: 22px;
+}
+
+  .about-story__background-word {
+    right: -20px;
+    font-size: clamp(7rem, 18vw, 13rem);
+  }
+
+  /* ====================================================
+     WERTE – 2 × 2
+  ==================================================== */
+
+  .about-values {
+    padding: 95px 0 105px;
+  }
+
+  .about-values__heading {
+    margin-bottom: 42px;
+
+    grid-template-columns: minmax(0, 1fr) 0.78fr;
+    gap: 40px;
+  }
+
+  .about-values__heading h2 {
+    font-size: clamp(3rem, 6vw, 4.5rem);
+  }
+
+  .about-values__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .about-value-card {
+    min-height: 290px;
+    padding: 28px 26px;
+  }
+
+  .about-value-card__top > span {
+    font-size: 4rem;
+  }
+
+  /* ====================================================
+     MONTY
+  ==================================================== */
+
+  .about-monty {
+    padding: 105px 0;
+  }
+
+  .about-monty__layout {
+    grid-template-columns:
+      minmax(0, 0.95fr)
+      minmax(0, 1.05fr);
+
+    gap: 50px;
+  }
+
+  .about-monty__gallery {
+    min-height: 560px;
+
+    grid-template-columns:
+      minmax(0, 1.28fr)
+      minmax(130px, 0.72fr);
+
+    gap: 16px;
+  }
+
+  .about-monty__image--large {
+    min-height: 560px;
+  }
+
+  .about-monty__image--small {
+    height: 350px;
+  }
+
+  .about-monty__content h2 {
+    font-size: clamp(2.8rem, 5.2vw, 4.25rem);
+  }
+
+  .about-monty__lead {
+    margin-top: 23px;
+    font-size: 1.13rem;
+  }
+
+  .about-monty__text {
+    margin-top: 23px;
+  }
+
+  .about-monty__text p {
+    font-size: 0.85rem;
+    line-height: 1.72;
+  }
+
+  .about-monty::before {
+    right: -25px;
+    font-size: clamp(10rem, 24vw, 20rem);
+  }
+
+  /* ====================================================
+     FAKTEN
+  ==================================================== */
+
+  .about-fact-card {
+    min-height: 210px;
+    padding: 28px 22px;
+  }
+
+  .about-fact-card h3 {
+    font-size: 1.32rem;
+  }
+
+  .about-fact-card p {
+    font-size: 0.74rem;
+  }
+
+  /* ====================================================
+     CTA
+  ==================================================== */
+
+  .about-cta {
+    min-height: 560px;
+    padding: 90px 30px;
+  }
+
+  .about-cta__content h2 {
+    font-size: clamp(3.4rem, 8vw, 5.2rem);
+  }
+
+  .about-cta::before {
+    font-size: clamp(5rem, 15vw, 10rem);
+  }
+}
+
+/* ======================================================
+   HANDY – BIS 768 PX
+====================================================== */
+
+@media (max-width: 768px) {
+  .about-section-container {
+    width: min(calc(100% - 28px), 1280px);
+  }
+
+  /* ====================================================
+     HERO
+  ==================================================== */
+
+  .about-hero {
+    min-height: auto;
+    padding: 105px 0 62px;
+  }
+
+  .about-hero__container {
+    top: 0;
+
+    width: min(calc(100% - 28px), 1280px);
+
+    display: flex;
+    flex-direction: column;
+    gap: 34px;
+  }
+
+  .about-hero__content {
+    width: 100%;
+    max-width: none;
+    padding-top: 0;
+
+    text-align: center;
+  }
+
+  .about-hero h1 {
+    font-size: clamp(3.3rem, 15vw, 4.8rem);
+    line-height: 0.87;
+  }
+
+  .about-hero h1 span {
+    margin-top: 13px;
+
+    font-size: clamp(2.35rem, 11vw, 3.6rem);
+    line-height: 0.94;
+  }
+
+  .about-hero__lead {
+    max-width: 430px;
+    margin: 25px auto 0;
+
+    font-size: 1.2rem;
+    line-height: 1.42;
+  }
+
+  .about-hero__text {
+    max-width: 470px;
+    margin: 16px auto 0;
+
+    font-size: 0.89rem;
+    line-height: 1.7;
+  }
+
+  .about-hero__facts {
+    margin-top: 30px;
+    padding-top: 21px;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 13px;
+
+    text-align: left;
+  }
+
+  .about-hero__facts > div {
+    min-width: 0;
+    gap: 9px;
+  }
+
+  .about-hero__facts svg {
+    font-size: 1rem;
+  }
+
+  .about-hero__facts span {
+    font-size: 0.68rem;
+  }
+
+  .about-hero__facts small {
+    font-size: 0.6rem;
+    line-height: 1.45;
+  }
+
+  .about-hero__visual {
+    width: 100%;
+    max-width: none;
+  }
+
+  .about-hero__image {
+    height: 430px;
+  }
+
+  .about-hero__image img {
+    object-position: center 65%;
+  }
+
+  .about-hero__image figcaption {
+    right: 20px;
+    bottom: 20px;
+    left: 20px;
+  }
+
+  .about-hero__image figcaption strong {
+    font-size: 1.65rem;
+  }
+
+  .about-hero__seal {
+    top: 17px;
+    left: 17px;
+
+    width: 98px;
+    height: 98px;
+  }
+
+  .about-hero__seal span {
+    font-size: 1rem;
+  }
+
+  .about-hero__seal strong {
+    font-size: 0.45rem;
+  }
+
+  .about-hero__background-word {
+    right: -22px;
+    bottom: 22px;
+
+    font-size: 9rem;
+  }
+
+  /* ====================================================
+     HIGHLIGHTS – 2 × 2
+  ==================================================== */
+
+  .about-highlights__container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .about-highlight-card {
+    min-width: 0;
+    min-height: 180px;
+    padding: 23px 13px;
+  }
+
+  .about-highlight-card:first-child {
+    border-left: 0;
+  }
+
+  .about-highlight-card:nth-child(2),
+  .about-highlight-card:nth-child(4) {
+    border-right: 0;
+  }
+
+  .about-highlight-card:nth-child(3),
+  .about-highlight-card:nth-child(4) {
+    border-top: 1px solid rgba(76, 48, 33, 0.22);
+  }
+
+  .about-highlight-card__icon {
+    margin-bottom: 12px;
+    font-size: 1.65rem;
+  }
+
+  .about-highlight-card h2 {
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+
+  .about-highlight-card p {
+    max-width: 155px;
+    margin-top: 8px;
+
+    font-size: 0.67rem;
+    line-height: 1.48;
+  }
+
+  /* ====================================================
+     GESCHICHTE
+  ==================================================== */
+
+  .about-story {
+    padding: 78px 0 88px;
+  }
+
+  .about-story__layout {
+    display: flex;
+    flex-direction: column;
+    gap: 38px;
+  }
+
+  .about-story__content {
+  width: 100%;
+  max-width: none;
+
+  padding-inline: 1px;
+}
+
+  .about-story__content h2 {
+    font-size: clamp(2.65rem, 12vw, 4rem);
+    line-height: 1;
+  }
+
+  .about-story__lead {
+    margin-top: 22px;
+
+    font-size: 1.12rem;
+    line-height: 1.55;
+  }
+
+  .about-story__text {
+    margin-top: 23px;
+    padding-left: 17px;
+  }
+
+  .about-story__text p {
+    font-size: 0.86rem;
+    line-height: 1.72;
+  }
+
+  .about-story__quote {
+    margin-top: 26px;
+    padding: 21px 0;
+  }
+
+  .about-story__quote p {
+    font-size: 1.05rem;
+  }
+
+  .about-story__visual {
+  position: relative;
+
+  width: 100%;
+  margin-left: 0;
+}
+
+  .about-story__image {
+    height: 440px;
+  }
+
+  .about-story__image img {
+    width: 110%;
+    left: 0;
+
+    object-position: center;
+    transform: translateX(-5%);
+  }
+
+  .about-story__image:hover img {
+    transform: translateX(-5%);
+  }
+
+  .about-story__note {
+  position: absolute;
+
+  right: 0;
+  bottom: 0;
+
+  width: min(90%, 340px);
+  margin: 0;
+  padding: 20px 18px;
+
+  grid-template-columns: 30px minmax(0, 1fr);
+}
+
+  .about-story__note strong {
+    font-size: 0.9rem;
+  }
+
+  .about-story__background-word {
+    top: 18px;
+    right: -12px;
+
+    font-size: 6.7rem;
+  }
+
+  /* ====================================================
+     WERTE – AUCH AUF HANDY ALS 2 × 2 RASTER
+  ==================================================== */
+
+  .about-values {
+    padding: 76px 0 84px;
+  }
+
+  .about-values__heading {
+    margin-bottom: 31px;
+
+    display: block;
+  }
+
+  .about-values__heading h2 {
+    font-size: clamp(2.7rem, 12vw, 4rem);
+  }
+
+  .about-values__heading > p {
+    max-width: none;
+    margin: 19px 0 0;
+    padding-left: 17px;
+
+    border-left: 1px solid rgba(195, 154, 90, 0.4);
+
+    font-size: 0.84rem;
+    line-height: 1.7;
+  }
+
+  .about-values__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .about-value-card {
+    min-width: 0;
+    min-height: 270px;
+    padding: 20px 16px;
+  }
+
+  .about-value-card::before {
+    inset: 6px;
+  }
+
+  .about-value-card__top {
+    gap: 8px;
+  }
+
+  .about-value-card__top > span {
+    font-size: 3.2rem;
+  }
+
+  .about-value-card__icon {
+    width: 39px;
+    height: 39px;
+
+    font-size: 0.95rem;
+  }
+
+  .about-value-card h3 {
+    margin-top: 18px;
+
+    font-size: 1.35rem;
+  }
+
+  .about-value-card p {
+    margin-top: 11px;
+
+    font-size: 0.68rem;
+    line-height: 1.58;
+  }
+
+  /* ====================================================
+     MONTY
+  ==================================================== */
+
+  .about-monty {
+    padding: 82px 0 86px;
+  }
+
+  .about-monty__layout {
+    display: flex;
+    flex-direction: column;
+    gap: 41px;
+  }
+
+  .about-monty__gallery {
+    width: 100%;
+    min-height: 0;
+
+    display: grid;
+    grid-template-columns:
+      minmax(0, 1.45fr)
+      minmax(105px, 0.65fr);
+
+    align-items: end;
+    gap: 10px;
+  }
+
+  .about-monty__image--large {
+    min-height: 470px;
+  }
+
+  .about-monty__image--large img {
+    object-position: center 35%;
+  }
+
+  .about-monty__image--small {
+    height: 300px;
+  }
+
+  .about-monty__content {
+    max-width: none;
+  }
+
+  .about-monty__content h2 {
+    font-size: clamp(2.65rem, 12vw, 4rem);
+    line-height: 1;
+  }
+
+  .about-monty__lead {
+    margin-top: 22px;
+
+    font-size: 1.12rem;
+    line-height: 1.55;
+  }
+
+  .about-monty__text {
+    margin-top: 23px;
+    padding-left: 17px;
+  }
+
+  .about-monty__text p {
+    font-size: 0.86rem;
+    line-height: 1.72;
+  }
+
+  .about-monty__list {
+    margin-top: 26px;
+  }
+
+  .about-monty__list li {
+    min-height: 52px;
+
+    font-size: 0.74rem;
+  }
+
+  .about-monty::before {
+    top: 18px;
+    right: -16px;
+
+    font-size: 8rem;
+  }
+
+  /* ====================================================
+     FAKTEN – ERSTE KARTE BREIT, DARUNTER ZWEI HALBE
+  ==================================================== */
+
+  .about-facts__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .about-fact-card {
+    min-width: 0;
+    min-height: 190px;
+    padding: 25px 15px;
+  }
+
+  .about-fact-card:first-child {
+    grid-column: 1 / -1;
+
+    min-height: 175px;
+
+    border-left: 0;
+  }
+
+  .about-fact-card:nth-child(2) {
+    border-left: 0;
+  }
+
+  .about-fact-card:nth-child(3) {
+    border-right: 0;
+  }
+
+  .about-fact-card__icon {
+    width: 42px;
+    height: 42px;
+    margin-bottom: 14px;
+  }
+
+  .about-fact-card h3 {
+    font-size: 1.18rem;
+  }
+
+  .about-fact-card p {
+    max-width: 270px;
+    margin-top: 9px;
+
+    font-size: 0.68rem;
+    line-height: 1.55;
+  }
+
+  /* ====================================================
+     CTA
+  ==================================================== */
+
+  .about-cta {
+    min-height: auto;
+    padding: 82px 20px 88px;
+  }
+
+  .about-cta__content h2 {
+    font-size: clamp(2.8rem, 13vw, 4.4rem);
+    line-height: 1;
+  }
+
+  .about-cta__content > p:not(.about-eyebrow) {
+    margin-top: 21px;
+
+    font-size: 0.88rem;
+    line-height: 1.7;
+  }
+
+  .about-cta__buttons {
+    margin-top: 28px;
+
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-cta__buttons .about-button {
+    width: min(100%, 300px);
+  }
+
+  .about-cta::before {
+    bottom: 18px;
+
+    font-size: 4.8rem;
+  }
+
+  /* ====================================================
+     ANIMATIONEN AUF HANDY NUR VON UNTEN
+  ==================================================== */
+
+  .about-reveal--left,
+  .about-reveal--right {
+    transform: translateY(35px);
+  }
+
+  .about-load-animation--left,
+  .about-load-animation--right {
+    animation-name: about-mobile-load;
+  }
+}
+
+@keyframes about-mobile-load {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ======================================================
    REDUZIERTE BEWEGUNG
 ====================================================== */
 

@@ -993,25 +993,30 @@ function Career() {
 
                 
 
-                <label className="career-form__privacy">
-                  <input
-                    type="checkbox"
-                    name="privacy"
-                    value="accepted"
-                    required
-                  />
+               <label className="career-form__privacy">
+  <input
+    type="checkbox"
+    name="privacy"
+    value="acknowledged"
+    required
+  />
 
-                  <span>
-                    Ich habe die{" "}
-                    <Link to="/datenschutz">
-                      Datenschutzerklärung
-                    </Link>{" "}
-                    gelesen und stimme der
-                    Verarbeitung meiner
-                    Angaben zur Bearbeitung
-                    meiner Bewerbung zu.
-                  </span>
-                </label>
+  <span>
+    Ich habe die Hinweise zur Verarbeitung
+    meiner Bewerbungsdaten in der{" "}
+    <Link to="/datenschutz">
+      Datenschutzerklärung
+    </Link>{" "}
+    zur Kenntnis genommen.
+  </span>
+</label>
+<p className="career-form__privacy-note">
+  Mit „E-Mail vorbereiten“ werden deine Angaben
+  ausschließlich lokal in das auf deinem Gerät
+  eingerichtete E-Mail-Programm übernommen.
+  Eine Übermittlung an Monty&apos;s erfolgt erst,
+  wenn du die vorbereitete E-Mail selbst absendest.
+</p>
 
                 {formStatus && (
                   <div

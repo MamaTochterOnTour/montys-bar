@@ -45,22 +45,42 @@ function Page({ title }) {
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
+
   return (
     <header className="navbar">
       <div className="navbar-inner">
         <NavLink
-  to="/"
-  className="brand"
-  onClick={() => setMenuOpen(false)}
->
-  <img
-    src={logo}
-    alt="Monty's Bar Bayreuth"
-    className="brand-logo"
-  />
-</NavLink>
+          to="/"
+          className="brand"
+          onClick={closeMenu}
+          aria-label="Monty's Bar Bayreuth Startseite"
+        >
+          <img
+            src={logo}
+            alt="Monty's Bar Bayreuth"
+            className="brand-logo"
+          />
+        </NavLink>
 
-        <nav className={menuOpen ? "navigation open" : "navigation"}>
+        <button
+          type="button"
+          className="menu-button"
+          onClick={() => setMenuOpen((currentValue) => !currentValue)}
+          aria-label={menuOpen ? "Menü schließen" : "Menü öffnen"}
+          aria-expanded={menuOpen}
+          aria-controls="main-navigation"
+        >
+          {menuOpen ? <FiX /> : <FiMenu />}
+        </button>
+
+        <nav
+          id="main-navigation"
+          className={menuOpen ? "navigation open" : "navigation"}
+          aria-label="Hauptnavigation"
+        >
           <div className="nav-links">
             {pages.map((page) => (
               <NavLink
@@ -70,7 +90,7 @@ function Navbar() {
                 className={({ isActive }) =>
                   isActive ? "nav-link active" : "nav-link"
                 }
-                onClick={() => setMenuOpen(false)}
+                onClick={closeMenu}
               >
                 {page.label}
               </NavLink>
@@ -80,11 +100,20 @@ function Navbar() {
           <NavLink
             to="/reservierung"
             className="reservation-button"
-            onClick={() => setMenuOpen(false)}
+            onClick={closeMenu}
           >
             Tisch reservieren
           </NavLink>
         </nav>
+
+        {menuOpen && (
+          <button
+            type="button"
+            className="navigation-overlay"
+            aria-label="Menü schließen"
+            onClick={closeMenu}
+          />
+        )}
       </div>
     </header>
   );

@@ -174,6 +174,9 @@ function Reveal({
 }
 
 function Reservation() {
+  const [isResmioLoaded, setIsResmioLoaded] =
+    useState(false);
+
   const scrollToWidget = () => {
     document
       .getElementById("reservation-widget")
@@ -381,9 +384,10 @@ function Reservation() {
                 </div>
 
                 <div>
-                  <p className="reservation-eyebrow">
-                    Reservierungsformular
-                  </p>
+                  <p className="reservation-eyebrow reservation-eyebrow--mobile-break">
+  <span>Reservierungs-</span>
+  <span>formular</span>
+</p>
 
                   <h3>
                     Euren Tisch auswählen
@@ -392,29 +396,100 @@ function Reservation() {
               </div>
 
               <div className="reservation-widget-panel__frame">
-                <iframe
-                  src={RESMIO_WIDGET_URL}
-                  title="Tischreservierung bei Monty's über Resmio"
-                  loading="lazy"
-                  allow="payment"
-                />
-              </div>
+  {isResmioLoaded ? (
+    <div className="reservation-widget-panel__loaded">
+      <iframe
+        src={RESMIO_WIDGET_URL}
+        title="Tischreservierung bei Monty's über Resmio"
+        loading="lazy"
+        allow="payment"
+      />
 
-              <div className="reservation-widget-panel__fallback">
-                <p>
-                  Das Formular wird nicht
-                  richtig angezeigt?
-                </p>
+      <button
+        type="button"
+        className="reservation-widget-panel__revoke"
+        onClick={() => setIsResmioLoaded(false)}
+      >
+        Resmio wieder deaktivieren
+      </button>
+    </div>
+  ) : (
+    <div className="reservation-widget-panel__consent">
+      <LuCalendarCheck aria-hidden="true" />
 
-                <a
-                  href={RESMIO_WIDGET_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Reservierung direkt öffnen
-                  <FiArrowRight />
-                </a>
-              </div>
+      <p className="reservation-eyebrow">
+        Externes Reservierungssystem
+      </p>
+
+      <h4 className="reservation-consent-title">
+  <span>Reservierungsformular</span>
+  <span>laden</span>
+</h4>
+
+      <p>
+        Für die Online-Reservierung verwenden
+        wir den externen Dienst Resmio. Beim
+        Laden des Formulars wird eine Verbindung
+        zu Resmio hergestellt. Dabei können
+        insbesondere eure IP-Adresse sowie
+        Browser-, Geräte- und Zugriffsinformationen
+        an Resmio übermittelt werden.
+      </p>
+
+      <p>
+        Das Reservierungsformular wird erst
+        geladen, wenn ihr aktiv zustimmt.
+      </p>
+
+      <div className="reservation-widget-panel__consent-actions">
+        <button
+          type="button"
+          className="reservation-button reservation-button--primary"
+          onClick={() => setIsResmioLoaded(true)}
+        >
+          Resmio laden
+          <FiCalendar />
+        </button>
+
+        <a
+          href={RESMIO_WIDGET_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="reservation-button reservation-button--secondary"
+        >
+          Reservierung extern öffnen
+          <FiArrowRight />
+        </a>
+      </div>
+
+      <small>
+        Weitere Informationen findet ihr in
+        unserer{" "}
+        <Link to="/datenschutz">
+          Datenschutzerklärung
+        </Link>
+        .
+      </small>
+    </div>
+  )}
+</div>
+
+              {isResmioLoaded && (
+  <div className="reservation-widget-panel__fallback">
+    <p>
+      Das Formular wird nicht richtig angezeigt?
+    </p>
+
+    <a
+      href={RESMIO_WIDGET_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Reservierung direkt öffnen
+      <FiArrowRight />
+    </a>
+  </div>
+)}
             </Reveal>
 
             {/* ÖFFNUNGSZEITEN */}

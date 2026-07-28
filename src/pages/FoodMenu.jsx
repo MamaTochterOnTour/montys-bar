@@ -618,24 +618,7 @@ function FoodMenu() {
               und süßen Klassikern: Bei Monty&apos;s
               findet jeder etwas für einen guten Abend.
             </p>
-<div className="menu-hero__buttons">
-  <button
-    type="button"
-    className="menu-button menu-button--primary"
-    onClick={scrollToMenu}
-  >
-    Speisekarte entdecken
-    <FiArrowDown />
-  </button>
 
-  <Link
-    to="/reservierung"
-    className="menu-button menu-button--secondary"
-  >
-    Tisch reservieren
-    <FiArrowRight />
-  </Link>
-</div>
 
             <div className="menu-hero__facts">
               <div>

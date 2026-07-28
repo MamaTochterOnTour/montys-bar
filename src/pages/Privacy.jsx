@@ -634,19 +634,21 @@ function Privacy() {
                 </p>
 
                 <p>
-  Das Resmio-Reservierungswidget wird beim Aufruf
-  der Reservierungsseite unmittelbar geladen.
-  Dabei wird bereits vor dem Absenden einer
-  Reservierungsanfrage eine Verbindung zu den
-  Servern von Resmio hergestellt. Hierbei können
-  insbesondere die IP-Adresse sowie Browser-,
-  Geräte- und Zugriffsinformationen an Resmio
-  übermittelt werden.
+  Das Resmio-Reservierungswidget wird nicht
+  automatisch beim Aufruf der Reservierungsseite
+  geladen. Zunächst wird lediglich ein Hinweis
+  angezeigt.
 </p>
 
 <p>
-  Die Einbindung dient der Bereitstellung einer
-  komfortablen Online-Tischreservierung.
+  Erst nachdem die nutzende Person das Laden des
+  Reservierungswidgets ausdrücklich freigibt,
+  wird eine Verbindung zu den Servern von Resmio
+  hergestellt. Dabei können insbesondere die
+  IP-Adresse sowie Browser-, Geräte- und
+  Zugriffsinformationen an Resmio übermittelt
+  werden. Die Einbindung dient der Bereitstellung
+  einer komfortablen Online-Tischreservierung.
 </p>
 
                 <p>
@@ -736,19 +738,21 @@ function Privacy() {
                 </p>
 
                 <p>
-  Die Google-Maps-Karte wird beim Aufruf der
-  Kontaktseite unmittelbar geladen. Dabei wird
-  eine Verbindung zu den Servern von Google
-  hergestellt und es können insbesondere die
-  IP-Adresse sowie Browser-, Geräte- und
-  Zugriffsinformationen an Google übermittelt
-  werden.
+  Die Google-Maps-Karte wird nicht automatisch
+  geladen. Zunächst wird lediglich ein Hinweis
+  angezeigt.
 </p>
 
 <p>
-  Die Einbindung dient der anschaulichen
-  Darstellung unseres Standorts und der
-  Erleichterung der Anfahrt.
+  Erst nachdem die nutzende Person das Laden der
+  Karte ausdrücklich freigibt, wird eine
+  Verbindung zu den Servern von Google
+  hergestellt. Dabei können insbesondere die
+  IP-Adresse sowie Browser-, Geräte- und
+  Zugriffsinformationen an Google übermittelt
+  werden. Die Einbindung dient der
+  Standortdarstellung und erleichtert die
+  Anfahrt.
 </p>
 
                 <p>

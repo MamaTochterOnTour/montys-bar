@@ -1,8 +1,16 @@
+/* ======================================================
+   NAVBAR – DESKTOP
+====================================================== */
+
 .navbar {
   position: fixed;
-  inset: 0 0 auto;
+  top: 0;
+  right: 0;
+  left: 0;
   z-index: 1000;
+
   width: 100%;
+
   background:
     linear-gradient(
       to bottom,
@@ -10,6 +18,7 @@
       rgba(8, 8, 7, 0.45),
       transparent
     );
+
   transition:
     background 250ms ease,
     box-shadow 250ms ease,
@@ -17,51 +26,95 @@
 }
 
 .navbar--solid {
-  background: rgba(13, 13, 11, 0.94);
   border-bottom: 1px solid var(--color-border);
+  background: rgba(13, 13, 11, 0.96);
   box-shadow: 0 14px 35px rgba(0, 0, 0, 0.28);
+
   backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 .navbar__inner {
-  width: min(calc(100% - 48px), var(--container-width));
+  position: relative;
+  z-index: 1;
+
+  width: min(
+    calc(100% - 48px),
+    var(--container-width)
+  );
+
   min-height: var(--navbar-height);
   margin: 0 auto;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 28px;
 }
 
+/* ======================================================
+   LOGO
+====================================================== */
+
 .navbar__brand {
+  position: relative;
+  z-index: 1004;
+
+  min-width: 0;
+
   display: flex;
   align-items: center;
   gap: 12px;
   flex-shrink: 0;
+
   color: var(--color-cream);
   text-decoration: none;
 }
 
 .navbar__monogram {
-  display: grid;
-  place-items: center;
   width: 52px;
   height: 52px;
+
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+
   border: 1px solid var(--color-brass);
   border-radius: 50%;
+
   background:
-    linear-gradient(145deg, var(--color-green-soft), var(--color-green));
+    linear-gradient(
+      145deg,
+      var(--color-green-soft),
+      var(--color-green)
+    );
+
   color: var(--color-cream);
+
   font-family: var(--font-heading);
   font-size: 2rem;
+
   box-shadow:
     inset 0 0 0 4px rgba(0, 0, 0, 0.15),
     0 8px 22px rgba(0, 0, 0, 0.22);
 }
 
+.brand-logo {
+  width: auto;
+  max-width: 170px;
+  height: 54px;
+
+  display: block;
+
+  object-fit: contain;
+}
+
+/* Falls du diese Klassen noch irgendwo benutzt */
+
 .navbar__brand-text {
   display: flex;
   flex-direction: column;
+
   line-height: 1.05;
 }
 
@@ -74,13 +127,21 @@
 
 .navbar__brand-text small {
   margin-top: 5px;
+
   color: var(--color-brass);
+
   font-size: 0.65rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
 }
 
+/* ======================================================
+   DESKTOP-NAVIGATION
+====================================================== */
+
 .navbar__nav {
+  min-width: 0;
+
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -96,25 +157,33 @@
 
 .navbar__link {
   position: relative;
-  padding-block: 12px;
+
+  padding: 12px 0;
+
   color: var(--color-cream);
+
   font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-decoration: none;
   text-transform: uppercase;
   white-space: nowrap;
+
   transition: color 200ms ease;
 }
 
 .navbar__link::after {
   content: "";
+
   position: absolute;
   right: 50%;
   bottom: 4px;
   left: 50%;
+
   height: 1px;
+
   background: var(--color-brass);
+
   transition:
     right 200ms ease,
     left 200ms ease;
@@ -131,23 +200,38 @@
   left: 0;
 }
 
+/* ======================================================
+   RESERVIERUNGSBUTTON
+====================================================== */
+
 .navbar__reservation {
+  min-height: 48px;
+  padding: 0 22px;
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 48px;
-  padding: 0 22px;
+  flex-shrink: 0;
+
   border: 1px solid var(--color-brass);
   border-radius: 2px;
+
   background:
-    linear-gradient(135deg, var(--color-green-soft), var(--color-green));
+    linear-gradient(
+      135deg,
+      var(--color-green-soft),
+      var(--color-green)
+    );
+
   color: var(--color-cream);
+
   font-size: 0.82rem;
   font-weight: 800;
   letter-spacing: 0.06em;
   text-decoration: none;
   text-transform: uppercase;
   white-space: nowrap;
+
   transition:
     background 200ms ease,
     color 200ms ease,
@@ -155,7 +239,343 @@
 }
 
 .navbar__reservation:hover {
+  transform: translateY(-2px);
+
   background: var(--color-brass);
   color: var(--color-ink);
+}
+
+/* ======================================================
+   HAMBURGER-BUTTON
+====================================================== */
+
+.navbar__toggle {
+  position: relative;
+  z-index: 1004;
+
+  width: 52px;
+  height: 52px;
+  padding: 0;
+
+  display: none;
+  place-items: center;
+  flex-shrink: 0;
+
+  border: 1px solid var(--color-brass);
+  border-radius: 2px;
+
+  appearance: none;
+  -webkit-appearance: none;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(44, 75, 56, 0.95),
+      rgba(29, 56, 42, 0.98)
+    );
+
+  color: var(--color-cream);
+
+  font: inherit;
+  font-size: 1.75rem;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    background 200ms ease,
+    color 200ms ease,
+    border-color 200ms ease,
+    transform 200ms ease;
+}
+
+.navbar__toggle svg {
+  width: 26px;
+  height: 26px;
+
+  display: block;
+
+  stroke-width: 2;
+}
+
+.navbar__toggle:hover {
   transform: translateY(-2px);
+
+  background: var(--color-brass);
+  color: var(--color-ink);
+}
+
+/* ======================================================
+   HINTERGRUND-OVERLAY
+====================================================== */
+
+.navbar__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1001;
+
+  background: rgba(5, 5, 4, 0.72);
+
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+
+  animation: navbar-overlay-in 250ms ease forwards;
+}
+
+@keyframes navbar-overlay-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* ======================================================
+   TABLET UND HANDY
+====================================================== */
+
+@media (max-width: 1050px) {
+  .navbar {
+    background: rgba(13, 13, 11, 0.96);
+
+    border-bottom: 1px solid
+      rgba(195, 154, 90, 0.18);
+
+    box-shadow: 0 14px 35px
+      rgba(0, 0, 0, 0.24);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  .navbar__inner {
+    width: calc(100% - 36px);
+    min-height: 82px;
+  }
+
+  .navbar__toggle {
+    display: grid;
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .navbar__nav {
+    position: fixed;
+    z-index: 1002;
+
+    top: 0;
+    right: 0;
+
+    width: min(390px, 88vw);
+    height: 100dvh;
+    min-height: 100vh;
+
+    padding:
+      118px
+      34px
+      max(36px, env(safe-area-inset-bottom));
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 34px;
+
+    overflow-y: auto;
+    overscroll-behavior: contain;
+
+    border-left: 1px solid
+      rgba(195, 154, 90, 0.24);
+
+    background:
+      radial-gradient(
+        circle at 100% 0%,
+        rgba(195, 154, 90, 0.12),
+        transparent 20rem
+      ),
+      radial-gradient(
+        circle at 0% 100%,
+        rgba(44, 75, 56, 0.48),
+        transparent 25rem
+      ),
+      linear-gradient(
+        145deg,
+        #1d3326 0%,
+        #15241b 42%,
+        #100d09 100%
+      );
+
+    box-shadow:
+      -25px 0 70px rgba(0, 0, 0, 0.48);
+
+    transform: translateX(105%);
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+      transform 350ms
+        cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 350ms ease;
+  }
+
+  .navbar__nav--open {
+    transform: translateX(0);
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .navbar__links {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+
+    border-top: 1px solid
+      rgba(195, 154, 90, 0.2);
+  }
+
+  .navbar__link {
+    width: 100%;
+    min-height: 59px;
+    padding: 18px 0;
+
+    display: flex;
+    align-items: center;
+
+    border-bottom: 1px solid
+      rgba(195, 154, 90, 0.14);
+
+    color: var(--color-cream);
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .navbar__link::after {
+    display: none;
+  }
+
+  .navbar__link:hover,
+  .navbar__link--active {
+    padding-left: 10px;
+
+    color: var(--color-brass);
+  }
+
+  .navbar__reservation {
+    width: 100%;
+    min-height: 54px;
+    margin-top: auto;
+
+    flex-shrink: 0;
+  }
+}
+
+/* ======================================================
+   HANDY
+====================================================== */
+
+@media (max-width: 650px) {
+  .navbar__inner {
+    width: calc(100% - 28px);
+    min-height: 74px;
+  }
+
+  .navbar__monogram {
+    width: 44px;
+    height: 44px;
+
+    font-size: 1.65rem;
+  }
+
+  .brand-logo {
+    max-width: 125px;
+    height: 43px;
+  }
+
+  .navbar__toggle {
+    width: 46px;
+    height: 46px;
+
+    font-size: 1.55rem;
+  }
+
+  .navbar__toggle svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .navbar__nav {
+    width: min(355px, 92vw);
+
+    padding:
+      100px
+      26px
+      max(28px, env(safe-area-inset-bottom));
+  }
+
+  .navbar__link {
+    min-height: 55px;
+    padding: 16px 0;
+
+    font-size: 1.15rem;
+  }
+}
+
+/* ======================================================
+   SEHR KLEINE HANDYS
+====================================================== */
+
+@media (max-width: 390px) {
+  .navbar__inner {
+    width: calc(100% - 22px);
+  }
+
+  .navbar__monogram {
+    width: 41px;
+    height: 41px;
+
+    font-size: 1.5rem;
+  }
+
+  .brand-logo {
+    max-width: 105px;
+    height: 39px;
+  }
+
+  .navbar__toggle {
+    width: 43px;
+    height: 43px;
+  }
+
+  .navbar__nav {
+    width: 100%;
+    max-width: none;
+
+    border-left: 0;
+  }
+}
+
+/* ======================================================
+   REDUZIERTE BEWEGUNG
+====================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar,
+  .navbar__nav,
+  .navbar__toggle,
+  .navbar__overlay,
+  .navbar__link,
+  .navbar__reservation {
+    animation: none;
+    transition: none;
+  }
 }

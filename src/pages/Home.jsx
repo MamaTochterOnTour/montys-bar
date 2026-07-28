@@ -279,13 +279,7 @@ function Home() {
             </p>
 
             <div className="home-hero__buttons">
-              <Link
-  to="/reservierung"
-  className="menu-button menu-button--primary menu-tabs-reservation__button"
->
-  Tisch reservieren
-  <FiArrowRight />
-</Link>
+        
 
               <Link
                 to="/speisekarte"

@@ -25,6 +25,19 @@
   margin: 0 auto;
 }
 
+.career-form__privacy-note {
+  margin: -8px 0 0 29px;
+
+  color: var(--career-muted);
+
+  font-size: 0.68rem;
+  line-height: 1.65;
+}
+
+.career-form__privacy-note a {
+  color: var(--career-brass);
+}
+
 .career-eyebrow {
   margin: 0 0 16px;
 
@@ -2218,6 +2231,892 @@ input[type="file"] {
   animation-delay: 280ms;
 }
 
+/* ======================================================
+   TABLET – BIS 1100 PX
+====================================================== */
+
+@media (max-width: 1100px) {
+  .career-section-container {
+    width: min(calc(100% - 40px), 1000px);
+  }
+
+  /* ====================================================
+     HERO
+  ==================================================== */
+
+  .career-hero {
+    min-height: auto;
+    padding: 130px 0 95px;
+  }
+
+  .career-hero__container {
+    width: min(calc(100% - 40px), 1000px);
+
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(320px, 0.8fr);
+
+    align-items: center;
+    gap: 46px;
+  }
+
+  .career-hero__content {
+    max-width: none;
+    padding-top: 0;
+  }
+
+  .career-hero h1 {
+    font-size: clamp(4.1rem, 8vw, 6.3rem);
+  }
+
+  .career-hero h1 span {
+    margin-top: 17px;
+    font-size: clamp(2.7rem, 5.5vw, 4.4rem);
+  }
+
+  .career-hero__lead {
+    margin-top: 29px;
+    font-size: 1.3rem;
+  }
+
+  .career-hero__text {
+    font-size: 0.91rem;
+    line-height: 1.72;
+  }
+
+  .career-hero__buttons {
+    margin-top: 27px;
+    gap: 10px;
+  }
+
+  .career-hero__buttons .career-button {
+    min-height: 50px;
+    padding-inline: 18px;
+  }
+
+  .career-hero__facts {
+    margin-top: 30px;
+    padding-top: 21px;
+    gap: 15px;
+  }
+
+  .career-hero__visual {
+    max-width: 430px;
+  }
+
+  .career-hero__panel {
+    min-height: 535px;
+    padding: 42px 36px 35px;
+  }
+
+  .career-hero__panel h2 {
+    font-size: clamp(2.25rem, 4.3vw, 3.25rem);
+  }
+
+  .career-hero__panel-text {
+    font-size: 0.8rem;
+    line-height: 1.7;
+  }
+
+  .career-hero__panel-lines {
+    margin-top: 25px;
+  }
+
+  .career-hero__panel-lines > div {
+    min-height: 47px;
+  }
+
+  .career-hero__panel::after {
+    font-size: 7rem;
+  }
+
+  /* ====================================================
+     VORTEILE – 2 × 2
+  ==================================================== */
+
+  .career-highlights__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .career-highlight-card {
+    min-height: 185px;
+    padding: 27px 24px;
+  }
+
+  .career-highlight-card:nth-child(2) {
+    border-right: 0;
+  }
+
+  .career-highlight-card:nth-child(3),
+  .career-highlight-card:nth-child(4) {
+    border-top: 1px solid rgba(76, 48, 33, 0.2);
+  }
+
+  .career-highlight-card:nth-child(4) {
+    border-right: 0;
+  }
+
+  /* ====================================================
+     EINLEITUNG
+  ==================================================== */
+
+  .career-intro {
+    padding: 100px 0 110px;
+  }
+
+  .career-intro__layout {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(320px, 0.78fr);
+
+    gap: 50px;
+  }
+
+  .career-intro__content h2 {
+    font-size: clamp(2.9rem, 5.8vw, 4.4rem);
+  }
+
+  .career-intro__lead {
+    margin-top: 23px;
+    font-size: 1.14rem;
+  }
+
+  .career-intro__text {
+    margin-top: 23px;
+  }
+
+  .career-intro__text p {
+    font-size: 0.84rem;
+    line-height: 1.72;
+  }
+
+  .career-intro__quote {
+    padding: 34px 30px;
+  }
+
+  .career-intro__quote blockquote {
+    font-size: clamp(1.3rem, 2.4vw, 1.75rem);
+  }
+
+  .career-intro__background-word {
+    right: -25px;
+    font-size: clamp(8rem, 18vw, 14rem);
+  }
+
+  /* ====================================================
+     EINSATZBEREICHE – 2 × 2
+  ==================================================== */
+
+  .career-areas {
+    padding: 100px 0 110px;
+  }
+
+  .career-areas__heading {
+    margin-bottom: 43px;
+
+    grid-template-columns:
+      minmax(0, 1fr)
+      0.75fr;
+
+    gap: 40px;
+  }
+
+  .career-areas__heading h2 {
+    font-size: clamp(3rem, 6vw, 4.6rem);
+  }
+
+  .career-areas__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .career-area-card {
+    min-height: 440px;
+    padding: 28px 26px;
+  }
+
+  .career-area-card__top > span {
+    font-size: 4rem;
+  }
+
+  .career-area-card h3 {
+    margin-top: 18px;
+    font-size: 1.65rem;
+  }
+
+  /* ====================================================
+     ABLAUF
+  ==================================================== */
+
+  .career-process {
+    padding: 95px 0;
+  }
+
+  .career-process__heading {
+    margin-bottom: 42px;
+  }
+
+  .career-process__heading h2 {
+    font-size: clamp(3rem, 6vw, 4.6rem);
+  }
+
+  .career-process-card {
+    min-height: 255px;
+    padding: 30px 25px;
+  }
+
+  .career-process-card > span {
+    font-size: 3.2rem;
+  }
+
+  .career-process-card h3 {
+    margin-top: 22px;
+    font-size: 1.35rem;
+  }
+
+  /* ====================================================
+     BEWERBUNG
+  ==================================================== */
+
+  .career-application {
+    padding: 105px 0;
+  }
+
+  .career-application__layout {
+    grid-template-columns: 1fr;
+    gap: 52px;
+  }
+
+  .career-application__information {
+    width: min(100%, 760px);
+    max-width: none;
+  }
+
+  .career-application__information h2 {
+    font-size: clamp(3rem, 6vw, 4.5rem);
+  }
+
+  .career-application__notice {
+    width: min(100%, 650px);
+  }
+
+  .career-application__details {
+    width: min(100%, 650px);
+  }
+
+  .career-form-panel {
+    width: 100%;
+    padding: 40px;
+  }
+
+  .career-application__background-word {
+    right: -25px;
+    font-size: clamp(8rem, 19vw, 15rem);
+  }
+}
+
+/* ======================================================
+   HANDY – BIS 768 PX
+====================================================== */
+
+@media (max-width: 768px) {
+  .career-section-container {
+    width: min(calc(100% - 28px), 1280px);
+  }
+
+  /* ====================================================
+     HERO
+  ==================================================== */
+
+  .career-hero {
+    min-height: auto;
+    padding: 105px 0 65px;
+  }
+
+  .career-form__privacy-note {
+    margin-left: 29px;
+
+    font-size: 0.65rem;
+    line-height: 1.6;
+  }
+
+  .career-hero__container {
+    width: min(calc(100% - 28px), 1280px);
+
+    display: flex;
+    flex-direction: column;
+    gap: 34px;
+  }
+
+  .career-hero__content {
+    width: 100%;
+    max-width: none;
+    padding-top: 0;
+
+    text-align: center;
+  }
+
+  .career-hero h1 {
+    font-size: clamp(3.25rem, 15vw, 4.7rem);
+    line-height: 0.87;
+  }
+
+  .career-hero h1 span {
+    margin-top: 13px;
+
+    font-size: clamp(2.25rem, 11vw, 3.5rem);
+    line-height: 0.94;
+  }
+
+  .career-hero__lead {
+    max-width: 440px;
+    margin: 25px auto 0;
+
+    font-size: 1.17rem;
+    line-height: 1.45;
+  }
+
+  .career-hero__text {
+    max-width: 470px;
+    margin: 16px auto 0;
+
+    font-size: 0.88rem;
+    line-height: 1.7;
+  }
+
+  .career-hero__buttons {
+    margin-top: 27px;
+
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .career-hero__buttons .career-button {
+    min-width: 145px;
+    min-height: 49px;
+    padding-inline: 15px;
+
+    font-size: 0.64rem;
+  }
+
+  .career-hero__facts {
+    margin-top: 30px;
+    padding-top: 21px;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 13px;
+
+    text-align: left;
+  }
+
+  .career-hero__facts > div {
+    min-width: 0;
+    gap: 9px;
+  }
+
+  .career-hero__facts svg {
+    font-size: 1rem;
+  }
+
+  .career-hero__facts span {
+    font-size: 0.67rem;
+  }
+
+  .career-hero__facts small {
+    font-size: 0.59rem;
+    line-height: 1.45;
+  }
+
+  .career-hero__visual {
+    width: 100%;
+    max-width: none;
+  }
+
+  .career-hero__panel {
+    min-height: auto;
+    padding: 35px 25px 30px;
+  }
+
+  .career-hero__panel h2 {
+    max-width: 410px;
+    margin-inline: auto;
+
+    font-size: clamp(2.15rem, 10vw, 3.1rem);
+    text-align: center;
+  }
+
+  .career-hero__panel-text {
+    max-width: 430px;
+    margin: 18px auto 0;
+
+    font-size: 0.79rem;
+    line-height: 1.68;
+    text-align: center;
+  }
+
+  .career-hero__panel-lines {
+    margin-top: 24px;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .career-hero__panel-lines > div {
+    min-width: 0;
+    min-height: 55px;
+    padding: 11px 8px;
+
+    font-size: 0.67rem;
+  }
+
+  .career-hero__panel-lines > div:nth-child(odd) {
+    border-right: 1px solid rgba(195, 154, 90, 0.14);
+  }
+
+  .career-hero__panel-link {
+    margin: 25px auto 0;
+    padding-top: 0;
+  }
+
+  .career-hero__panel::after {
+    right: -12px;
+    bottom: 5px;
+
+    font-size: 5.4rem;
+  }
+
+  /* ====================================================
+     VORTEILE – 2 × 2
+  ==================================================== */
+
+  .career-highlights__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .career-highlight-card {
+    min-width: 0;
+    min-height: 180px;
+    padding: 23px 13px;
+  }
+
+  .career-highlight-card:first-child {
+    border-left: 0;
+  }
+
+  .career-highlight-card:nth-child(2),
+  .career-highlight-card:nth-child(4) {
+    border-right: 0;
+  }
+
+  .career-highlight-card:nth-child(3),
+  .career-highlight-card:nth-child(4) {
+    border-top: 1px solid rgba(76, 48, 33, 0.22);
+  }
+
+  .career-highlight-card__icon {
+    margin-bottom: 12px;
+    font-size: 1.65rem;
+  }
+
+  .career-highlight-card h2 {
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+
+  .career-highlight-card p {
+    max-width: 155px;
+    margin-top: 8px;
+
+    font-size: 0.67rem;
+    line-height: 1.48;
+  }
+
+  /* ====================================================
+     EINLEITUNG
+  ==================================================== */
+
+  .career-intro {
+    padding: 78px 0 88px;
+  }
+
+  .career-intro__layout {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .career-intro__content {
+    width: 100%;
+    max-width: none;
+
+    padding-inline: 5px;
+  }
+
+  .career-intro__content h2 {
+    font-size: clamp(2.65rem, 12vw, 4rem);
+    line-height: 1;
+  }
+
+  .career-intro__lead {
+    margin-top: 22px;
+
+    font-size: 1.1rem;
+    line-height: 1.55;
+  }
+
+  .career-intro__text {
+    margin-top: 23px;
+    padding-left: 17px;
+  }
+
+  .career-intro__text p {
+    font-size: 0.85rem;
+    line-height: 1.72;
+  }
+
+  .career-intro__quote {
+    width: calc(100% - 14px);
+    margin-left: 14px;
+    padding: 28px 24px;
+  }
+
+  .career-intro__quote > svg {
+    margin-bottom: 18px;
+    font-size: 1.65rem;
+  }
+
+  .career-intro__quote blockquote {
+    font-size: 1.3rem;
+    line-height: 1.48;
+  }
+
+  .career-intro__quote span {
+    margin-top: 20px;
+    font-size: 0.55rem;
+  }
+
+  .career-intro__background-word {
+    top: 20px;
+    right: -15px;
+
+    font-size: 6.7rem;
+  }
+
+  /* ====================================================
+     EINSATZBEREICHE – 2 × 2
+  ==================================================== */
+
+  .career-areas {
+    padding: 78px 0 88px;
+  }
+
+  .career-areas__heading {
+    margin-bottom: 31px;
+
+    display: block;
+  }
+
+  .career-areas__heading h2 {
+    font-size: clamp(2.7rem, 12vw, 4rem);
+    line-height: 1;
+  }
+
+  .career-areas__heading > p {
+    max-width: none;
+    margin: 19px 0 0;
+    padding-left: 17px;
+
+    border-left: 1px solid rgba(195, 154, 90, 0.4);
+
+    font-size: 0.83rem;
+    line-height: 1.7;
+  }
+
+  .career-areas__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .career-area-card {
+    min-width: 0;
+    min-height: 405px;
+    padding: 19px 15px;
+  }
+
+  .career-area-card::before {
+    inset: 6px;
+  }
+
+  .career-area-card__top {
+    gap: 8px;
+  }
+
+  .career-area-card__top > span {
+    font-size: 3.1rem;
+  }
+
+  .career-area-card__icon {
+    width: 39px;
+    height: 39px;
+
+    font-size: 0.95rem;
+  }
+
+  .career-area-card h3 {
+    margin-top: 16px;
+
+    font-size: 1.3rem;
+    line-height: 1.15;
+  }
+
+  .career-area-card > p {
+    margin-top: 11px;
+
+    font-size: 0.66rem;
+    line-height: 1.57;
+  }
+
+  .career-area-card ul {
+    margin-top: 17px;
+    gap: 9px;
+  }
+
+  .career-area-card li {
+    align-items: flex-start;
+    gap: 7px;
+
+    font-size: 0.62rem;
+    line-height: 1.4;
+  }
+
+  .career-area-card li svg {
+    margin-top: 2px;
+  }
+
+  .career-area-card__link {
+    margin-top: auto;
+    padding-top: 20px;
+
+    font-size: 0.56rem;
+    letter-spacing: 0.07em;
+  }
+
+  /* ====================================================
+     ABLAUF – HORIZONTALE KARTEN
+  ==================================================== */
+
+  .career-process {
+    padding: 78px 0 82px;
+  }
+
+  .career-process__heading {
+    margin-bottom: 30px;
+  }
+
+  .career-process__heading h2 {
+    font-size: clamp(2.65rem, 12vw, 4rem);
+    line-height: 1;
+  }
+
+  .career-process__grid {
+    width: calc(100% + 14px);
+    margin-right: -14px;
+    padding-right: 14px;
+
+    display: flex;
+    gap: 12px;
+
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+
+    border: 0;
+  }
+
+  .career-process__grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .career-process-card {
+    flex: 0 0 82%;
+    min-height: 255px;
+    padding: 28px 24px;
+
+    scroll-snap-align: start;
+
+    border: 1px solid rgba(76, 48, 33, 0.22);
+  }
+
+  .career-process-card > span {
+    font-size: 3.2rem;
+  }
+
+  .career-process-card h3 {
+    margin-top: 21px;
+    font-size: 1.45rem;
+  }
+
+  .career-process-card p {
+    font-size: 0.77rem;
+    line-height: 1.7;
+  }
+
+  /* ====================================================
+     BEWERBUNG
+  ==================================================== */
+
+  .career-application {
+    padding: 80px 0 88px;
+  }
+
+  .career-application__layout {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .career-application__information {
+    width: 100%;
+    max-width: none;
+
+    padding-inline: 5px;
+  }
+
+  .career-application__information h2 {
+    font-size: clamp(2.65rem, 12vw, 4rem);
+    line-height: 1;
+  }
+
+  .career-application__lead {
+    margin-top: 21px;
+
+    font-size: 0.86rem;
+    line-height: 1.72;
+  }
+
+  .career-application__notice {
+    margin-top: 27px;
+    padding: 20px 17px;
+
+    grid-template-columns: 29px minmax(0, 1fr);
+    gap: 11px;
+  }
+
+  .career-application__notice > svg {
+    font-size: 1.25rem;
+  }
+
+  .career-application__notice strong {
+    font-size: 0.98rem;
+  }
+
+  .career-application__notice p {
+    font-size: 0.7rem;
+    line-height: 1.6;
+  }
+
+  .career-application__details > div {
+    min-height: 73px;
+  }
+
+  .career-text-link {
+    max-width: 100%;
+
+    font-size: 0.62rem;
+    line-height: 1.5;
+  }
+
+  .career-form-panel {
+    width: 100%;
+    padding: 27px 18px;
+  }
+
+  .career-form-panel__heading {
+    grid-template-columns: 47px minmax(0, 1fr);
+    gap: 13px;
+  }
+
+  .career-form-panel__icon {
+    width: 44px;
+    height: 44px;
+
+    font-size: 1.05rem;
+  }
+
+  .career-form-panel__heading h2 {
+    font-size: clamp(2.05rem, 10vw, 3rem);
+  }
+
+  .career-form-panel__intro {
+    margin-top: 20px;
+
+    font-size: 0.78rem;
+    line-height: 1.68;
+  }
+
+  .career-form {
+    margin-top: 27px;
+    gap: 19px;
+  }
+
+  .career-form__row {
+    grid-template-columns: 1fr;
+    gap: 19px;
+  }
+
+  .career-form__field input,
+  .career-form__field select {
+    height: 52px;
+  }
+
+  .career-form__field input,
+  .career-form__field select,
+  .career-form__field textarea {
+    font-size: 0.82rem;
+  }
+
+  .career-form__field textarea {
+    min-height: 125px;
+  }
+
+  .career-form__privacy {
+    grid-template-columns: 18px minmax(0, 1fr);
+
+    font-size: 0.67rem;
+  }
+
+  .career-form__status {
+    padding: 14px;
+
+    font-size: 0.7rem;
+  }
+
+  .career-form__submit {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .career-application__background-word {
+    top: 20px;
+    right: -15px;
+
+    font-size: 6.3rem;
+  }
+
+  /* ====================================================
+     ANIMATIONEN AUF HANDY NUR VON UNTEN
+  ==================================================== */
+
+  .career-reveal--left,
+  .career-reveal--right {
+    transform: translateY(35px);
+  }
+
+  .career-load-animation--left,
+  .career-load-animation--right {
+    animation-name: career-mobile-load;
+  }
+}
+
 @keyframes career-load-left {
   from {
     opacity: 0;
@@ -2241,6 +3140,18 @@ input[type="file"] {
   to {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+@keyframes career-mobile-load {
+  from {
+    opacity: 0;
+    transform: translateY(35px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
