@@ -80,6 +80,10 @@ const categoryLinks = [
     id: "spare-ribs",
   },
   {
+    label: "Kinder",
+    id: "kinder",
+  },
+  {
     label: "Desserts",
     id: "desserts",
   },
@@ -306,6 +310,39 @@ const desserts = [
   {
     name: "American Cheesecake mit Blaubeeren",
     price: "6,90 €",
+  },
+];
+
+const kidsMenu = [
+  {
+    name: "Cheeseburger mit Pommes",
+    price: "7,90 €",
+  },
+  {
+    name: "Chicken Nuggets",
+    description: "ohne Pommes",
+    price: "4,00 €",
+  },
+  {
+    name: "Chicken Nuggets",
+    description: "mit Pommes",
+    price: "6,50 €",
+  },
+  {
+    name: "Kleines Schnitzel",
+    description: "mit Pommes",
+    price: "7,90 €",
+  },
+  {
+    name: "Fischstäbchen",
+    description: "mit Pommes",
+    price: "6,90 €",
+  },
+  {
+    name: "3 Kugeln Eis",
+    description:
+      "Vanille, Schokolade oder Erdbeere mit Smarties",
+    price: "3,50 €",
   },
 ];
 
@@ -901,6 +938,30 @@ function FoodMenu() {
             </div>
           </article>
         )}
+
+        {/* KINDER */}
+
+        {activeCategory === "kinder" && (
+  <div className="menu-tab-single">
+    <MenuCard
+      title="Kindergerichte"
+      eyebrow="Für unsere kleinen Gäste"
+      icon={<FiStar />}
+      className="menu-card--green"
+    >
+      <DishList items={kidsMenu} />
+
+      <div className="menu-card__bottom-note">
+        <FiCheck />
+
+        <p>
+          Informationen zu Allergenen erhaltet ihr
+          jederzeit bei unserem Team.
+        </p>
+      </div>
+    </MenuCard>
+  </div>
+)}
 
         {/* DESSERTS */}
 
