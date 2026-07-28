@@ -878,7 +878,7 @@ function FoodMenu() {
     <MenuCard
       title="Club Sandwiches"
       eyebrow="Knusprig, frisch und ordentlich belegt"
-      note="Beilage inklusive"
+      note="Wähle deine Beilage"
       icon={<FiStar />}
       className="menu-card--clubs"
     >

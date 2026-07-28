@@ -36,63 +36,63 @@ export const drinkCategories = [
         items: [
           {
             name: "Wasser still",
-            prices: ["2,90 €", "5,90 €"],
+            prices: ["2,90 €", "4,00 €"],
           },
           {
             name: "Wasser spritzig",
-            prices: ["2,90 €", "5,90 €"],
+            prices: ["2,90 €", "4,00 €"],
           },
         ],
       },
       {
         title: "Softdrinks",
-        volume: "0,5 l",
+        volume: "0,3 l",
         items: [
           {
             name: "Cola",
-            price: "4,30 €",
+            price: "3,50 €",
           },
           {
             name: "Cola Zero",
-            price: "4,30 €",
+            price: "3,50 €",
           },
           {
             name: "Cola-Mix",
-            price: "4,30 €",
+            price: "3,50 €",
           },
           {
             name: "Orangenlimonade",
-            price: "4,30 €",
+            price: "3,50 €",
           },
           {
             name: "Zitronenlimonade",
-            price: "4,30 €",
+            price: "3,50 €",
           },
         ],
       },
       {
         title: "Säfte",
-        volume: "0,5 l",
+        volume: "0,3 l",
         items: [
           {
             name: "Apfel trüb",
-            price: "4,80 €",
+            price: "3,80 €",
           },
           {
             name: "Orange",
-            price: "4,80 €",
+            price: "3,80 €",
           },
           {
             name: "Johannisbeere",
-            price: "4,80 €",
+            price: "3,80 €",
           },
           {
             name: "Maracuja",
-            price: "4,80 €",
+            price: "3,80 €",
           },
           {
             name: "Saftschorle",
-            price: "4,30 €",
+            price: "3,50 €",
           },
         ],
       },
@@ -127,7 +127,8 @@ export const drinkCategories = [
         ],
       },
       {
-        title: "Homemade Limos",
+        title: "Homemade Lemonades",
+        volume: "0,5 l",
         items: [
           {
             name: "Brombeere – Limette",
@@ -523,7 +524,7 @@ export const drinkCategories = [
             description: "Alle Sorten",
           },
           {
-            name: "Granini Säfte",
+            name: "Säfte",
             description: "Alle Sorten",
           },
           {
@@ -632,6 +633,62 @@ export const drinkCategories = [
   },
 
   {
+  id: "whisky",
+  navigationLabel: "Whisky",
+  eyebrow: "Scotch, Bourbon und Irish Whiskey",
+  title: "Whisky & Whiskey",
+  description:
+    "Ausgewählte Scotch Whiskys, Bourbon und Tennessee Whiskeys sowie Irish Whiskeys.",
+  groups: [
+    {
+      title: "Scotch Whisky",
+      items: [
+        {
+          name: "Johnnie Walker Black Label",
+        },
+        {
+          name: "Chivas Regal 12 Years",
+        },
+        {
+          name: "Ballantine’s Finest",
+        },
+        {
+          name: "Glenfiddich 12 Years",
+        },
+      ],
+    },
+    {
+      title: "Bourbon & Tennessee Whiskey",
+      items: [
+        {
+          name: "Jack Daniel’s Old No. 7",
+        },
+        {
+          name: "Jim Beam White Label",
+        },
+        {
+          name: "Maker’s Mark",
+        },
+      ],
+    },
+    {
+      title: "Irish Whiskey",
+      items: [
+        {
+          name: "Jameson Irish Whiskey",
+        },
+        {
+          name: "Bushmills Original",
+        },
+        {
+          name: "Redbreast 12 Years",
+        },
+      ],
+    },
+  ],
+},
+
+  {
     id: "heissgetraenke",
     navigationLabel: "Kaffee & Tee",
     eyebrow: "Warm und gemütlich",
@@ -711,19 +768,19 @@ export const drinkCategories = [
       items: [
         {
           name: "Classic Vanille",
-          price: null,
+          price: "5,40 €",
         },
         {
           name: "Schoko Deluxe",
-          price: null,
+          price: "5,40 €",
         },
         {
           name: "Erdbeer Cream",
-          price: null,
+          price: "5,40 €",
         },
         {
           name: "Oreo Overload",
-          price: null,
+          price: "5,40 €",
         },
       ],
     },

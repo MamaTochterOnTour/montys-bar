@@ -40,6 +40,7 @@ const categoryIcons = {
   cocktails: <LuMartini />,
   longdrinks: <FiMoon />,
   shots: <FiDroplet />,
+  whisky: <FiDroplet />,
   heissgetraenke: <FiCoffee />,
   milkshakes: <FiStar />,
 };
@@ -489,26 +490,22 @@ function DrinksMenu() {
                               </div>
 
                               {item.prices ? (
-                                <div className="drinks-item__prices">
-                                  {item.prices.map(
-                                    (
-                                      price,
-                                      priceIndex
-                                    ) => (
-                                      <span
-                                        key={`${price}-${priceIndex}`}
-                                      >
-                                        {price}
-                                      </span>
-                                    )
-                                  )}
-                                </div>
-                              ) : (
-                                <span className="drinks-item__price">
-                                  {item.price ||
-                                    "Preis folgt"}
-                                </span>
-                              )}
+  <div className="drinks-item__prices">
+    {item.prices.map(
+      (price, priceIndex) => (
+        <span
+          key={`${price}-${priceIndex}`}
+        >
+          {price}
+        </span>
+      )
+    )}
+  </div>
+) : item.price ? (
+  <span className="drinks-item__price">
+    {item.price}
+  </span>
+) : null}
                             </div>
                           )
                         )}
