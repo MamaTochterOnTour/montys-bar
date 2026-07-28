@@ -45,57 +45,57 @@ export const drinkCategories = [
         ],
       },
       {
-        title: "Softdrinks",
-        volume: "0,3 l",
-        items: [
-          {
-            name: "Cola",
-            price: "3,50 €",
-          },
-          {
-            name: "Cola Zero",
-            price: "3,50 €",
-          },
-          {
-            name: "Cola-Mix",
-            price: "3,50 €",
-          },
-          {
-            name: "Orangenlimonade",
-            price: "3,50 €",
-          },
-          {
-            name: "Zitronenlimonade",
-            price: "3,50 €",
-          },
-        ],
-      },
+  title: "Softdrinks",
+  columns: ["0,3 l", "0,5 l"],
+  items: [
+    {
+      name: "Cola",
+      prices: ["3,50 €", "4,30 €"],
+    },
+    {
+      name: "Cola Zero",
+      prices: ["3,50 €", "4,30 €"],
+    },
+    {
+      name: "Cola-Mix",
+      prices: ["3,50 €", "4,30 €"],
+    },
+    {
+      name: "Orangenlimonade",
+      prices: ["3,50 €", "4,30 €"],
+    },
+    {
+      name: "Zitronenlimonade",
+      prices: ["3,50 €", "4,30 €"],
+    },
+  ],
+},
       {
-        title: "Säfte",
-        volume: "0,3 l",
-        items: [
-          {
-            name: "Apfel trüb",
-            price: "3,80 €",
-          },
-          {
-            name: "Orange",
-            price: "3,80 €",
-          },
-          {
-            name: "Johannisbeere",
-            price: "3,80 €",
-          },
-          {
-            name: "Maracuja",
-            price: "3,80 €",
-          },
-          {
-            name: "Saftschorle",
-            price: "3,50 €",
-          },
-        ],
-      },
+  title: "Säfte",
+  columns: ["0,3 l", "0,5 l"],
+  items: [
+    {
+      name: "Apfel trüb",
+      prices: ["3,80 €", "4,80 €"],
+    },
+    {
+      name: "Orange",
+      prices: ["3,80 €", "4,80 €"],
+    },
+    {
+      name: "Johannisbeere",
+      prices: ["3,80 €", "4,80 €"],
+    },
+    {
+      name: "Maracuja",
+      prices: ["3,80 €", "4,80 €"],
+    },
+    {
+      name: "Saftschorle",
+      prices: ["3,50 €", "4,50 €"],
+    },
+  ],
+},
       {
         title: "Trade Island Eistee",
         volume: "0,33 l Flasche",
