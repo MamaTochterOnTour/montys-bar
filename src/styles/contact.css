@@ -1534,6 +1534,10 @@
   animation-delay: 280ms;
 }
 
+.contact-form-panel {
+  scroll-margin-top: 110px;
+}
+
 /* ======================================================
    TABLET – BIS 1100 PX
 ====================================================== */
@@ -1725,6 +1729,10 @@
 @media (max-width: 768px) {
   .contact-section-container {
     width: min(calc(100% - 28px), 1280px);
+  }
+  
+  .contact-form-panel {
+    scroll-margin-top: 80px;
   }
 
   /* ====================================================

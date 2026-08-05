@@ -2862,11 +2862,11 @@ input[type="file"] {
   }
 
   .career-area-card h3 {
-    margin-top: 16px;
+  margin-top: 16px;
 
-    font-size: 1.3rem;
-    line-height: 1.15;
-  }
+  font-size: 1.05rem;
+  line-height: 1.2;
+}
 
   .career-area-card > p {
     margin-top: 11px;

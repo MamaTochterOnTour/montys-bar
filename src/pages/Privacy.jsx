@@ -297,11 +297,9 @@ function Privacy() {
                 <p>
   Soweit STRATO personenbezogene Daten in
   unserem Auftrag verarbeitet, erfolgt die
-  Verarbeitung auf Grundlage eines Vertrags
-  zur Auftragsverarbeitung gemäß Art. 28 DSGVO.
-  Der Abschluss und die Verwaltung dieses
-  Vertrags erfolgen über den Betreiber dieser
-  Website beziehungsweise das STRATO-Kundenkonto.
+  Verarbeitung auf Grundlage eines mit STRATO
+  abgeschlossenen Vertrags zur
+  Auftragsverarbeitung gemäß Art. 28 DSGVO.
 </p>
 
                 <a
@@ -632,6 +630,14 @@ function Privacy() {
                   einer konkret angefragten Reservierung
                   ist Art. 6 Abs. 1 lit. b DSGVO.
                 </p>
+
+                <p>
+  Soweit Resmio personenbezogene Daten in
+  unserem Auftrag verarbeitet, erfolgt die
+  Verarbeitung auf Grundlage eines mit Resmio
+  abgeschlossenen Vertrags zur
+  Auftragsverarbeitung gemäß Art. 28 DSGVO.
+</p>
 
                 <p>
   Das Resmio-Reservierungswidget wird nicht
@@ -1309,7 +1315,7 @@ function Privacy() {
 
                 <p>
                   <strong>
-                    Stand: Juli 2026
+                    Stand: August 2026
                   </strong>
                 </p>
               </section>

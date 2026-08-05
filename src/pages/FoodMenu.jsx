@@ -741,7 +741,7 @@ function FoodMenu() {
         {/* BURGER */}
 
         {activeCategory === "burger" && (
-          <div className="menu-tab-layout menu-tab-layout--with-sides">
+          <div className="menu-tab-layout menu-tab-layout--with-sides menu-tab-layout--natural-height">
             <MenuCard
               title="Burger"
               eyebrow="Wählt eure Größe"
@@ -768,7 +768,7 @@ function FoodMenu() {
         {/* SCHNITZEL */}
 
         {activeCategory === "schnitzel" && (
-  <div className="menu-tab-layout menu-tab-layout--with-sides menu-tab-layout--schnitzel">
+  <div className="menu-tab-layout menu-tab-layout--with-sides menu-tab-layout--natural-height">
     <MenuCard
       title="Schnitzel"
       eyebrow="Frisch zubereitet"
@@ -785,14 +785,25 @@ function FoodMenu() {
         {/* PULLED PORK */}
 
         {activeCategory === "pulled-pork" && (
-  <div className="menu-tab-single">
+  <div className="menu-tab-layout menu-tab-layout--with-sides menu-tab-layout--natural-height">
     <MenuCard
       title="Pulled Pork"
       eyebrow="Pub-Klassiker"
+      note="Beilage inklusive"
       icon={<FiStar />}
     >
       <DishList items={pulledPork} />
+
+      <div className="menu-card__bottom-note">
+        <FiCheck />
+        <p>
+          Zu jedem Pulled Pork könnt ihr eine
+          Beilage aus unserer Auswahl wählen.
+        </p>
+      </div>
     </MenuCard>
+
+    <SideChoiceCard />
   </div>
 )}
 
@@ -857,7 +868,7 @@ function FoodMenu() {
         {/* CLUB SANDWICHES */}
 
         {activeCategory === "club-sandwiches" && (
-  <div className="menu-tab-layout menu-tab-layout--with-sides">
+  <div className="menu-tab-layout menu-tab-layout--with-sides menu-tab-layout--natural-height">
     <MenuCard
       title="Club Sandwiches"
       eyebrow="Knusprig, frisch und ordentlich belegt"
@@ -884,43 +895,45 @@ function FoodMenu() {
         {/* SPARE RIBS */}
 
         {activeCategory === "spare-ribs" && (
-          <article className="menu-ribs">
-            <div className="menu-ribs__image">
-              <img
-                src={ribsImage}
-                alt="Spare Ribs bei Monty's"
-              />
-            </div>
+  <div className="menu-ribs-wrapper">
+    <article className="menu-ribs">
+      <div className="menu-ribs__image">
+        <img
+          src={ribsImage}
+          alt="Spare Ribs bei Monty's"
+        />
+      </div>
 
-            <div className="menu-ribs__content">
-              <p className="menu-eyebrow">
-                Jeden 1. und 3. Donnerstag im
-                Monat
-              </p>
+      <div className="menu-ribs__content">
+        <p className="menu-eyebrow">
+          Jeden 1. und 3. Donnerstag im Monat
+        </p>
 
-              <h2>Spare-Ribs-Abend</h2>
+        <h2>Spare-Ribs-Abend</h2>
 
-              <p>
-                Freut euch auf saftige Spare Ribs,
-                frisch zubereitet und in
-                gemütlicher Pub-Atmosphäre
-                serviert.
-              </p>
+        <p>
+          Freut euch auf saftige Spare Ribs,
+          frisch zubereitet und in gemütlicher
+          Pub-Atmosphäre serviert.
+        </p>
 
-              <div className="menu-ribs__bottom">
-                <strong>16,90 €</strong>
+        <div className="menu-ribs__bottom">
+          <strong>16,90 €</strong>
 
-                <Link
-                  to="/reservierung"
-                  className="menu-text-link"
-                >
-                  Tisch reservieren
-                  <FiArrowRight />
-                </Link>
-              </div>
-            </div>
-          </article>
-        )}
+          <Link
+            to="/reservierung"
+            className="menu-text-link"
+          >
+            Tisch reservieren
+            <FiArrowRight />
+          </Link>
+        </div>
+      </div>
+    </article>
+
+    <SideChoiceCard />
+  </div>
+)}
 
         {/* KINDER */}
 

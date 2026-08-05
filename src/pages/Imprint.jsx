@@ -213,11 +213,8 @@ function Imprint() {
                 */}
 
                 <p>
-                  Die Monty&apos;s Operations GmbH ist nicht
-                  bereit und nicht verpflichtet, an
-                  Streitbeilegungsverfahren vor einer
-                  Verbraucherschlichtungsstelle teilzunehmen.
-                </p>
+                  Die Monty's Operations GmbH erklärt ihre Bereitschaft, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen. Eine gesetzliche Verpflichtung hierzu besteht nicht.
+                  </p>
               </section>
 
               {/* HAFTUNG FÜR INHALTE */}

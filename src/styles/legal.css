@@ -980,9 +980,17 @@
   }
 
   .legal-hero h1 {
-    font-size: clamp(3rem, 15vw, 4.5rem);
-    line-height: 0.98;
-  }
+  font-size: clamp(3rem, 15vw, 4.5rem);
+  line-height: 0.98;
+}
+
+/* Datenschutzerklärung auf dem Handy kleiner */
+
+.legal-page--privacy .legal-hero h1 {
+  font-size: clamp(2.25rem, 10vw, 3rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
 
   .legal-hero__lead {
     margin-top: 24px;

@@ -1701,6 +1701,16 @@
   animation-delay: 280ms;
 }
 
+.menu-ribs-wrapper {
+  width: 100%;
+}
+
+.menu-ribs-wrapper > .menu-tab-sides {
+  height: auto;
+  min-height: 0;
+  margin-top: 24px;
+}
+
 @keyframes menu-load-left {
   from {
     opacity: 0;
@@ -2195,14 +2205,19 @@
   background: var(--menu-brass);
 }
 
-.menu-tab-layout--schnitzel {
+.menu-tab-layout--natural-height {
   align-items: start;
 }
 
-.menu-tab-layout--schnitzel > .menu-card,
-.menu-tab-layout--schnitzel > .menu-tab-sides {
+.menu-tab-layout--natural-height > .menu-card,
+.menu-tab-layout--natural-height > .menu-tab-sides {
   height: auto;
   min-height: 0;
+  align-self: start;
+}
+
+.menu-tab-single .menu-tab-sides {
+  margin-top: 2rem;
 }
 
 /* ======================================================

@@ -134,6 +134,7 @@ function Reveal({
   delay = 0,
   stagger = false,
   as: Tag = "div",
+  id,
 }) {
   const elementRef = useRef(null);
   const [isVisible, setIsVisible] =
@@ -173,7 +174,8 @@ function Reveal({
 
   return (
     <Tag
-      ref={elementRef}
+  ref={elementRef}
+  id={id}
       className={[
         "contact-reveal",
         `contact-reveal--${direction}`,
@@ -200,13 +202,13 @@ function Contact() {
     useState(false);
 
   const scrollToContactForm = () => {
-    document
-      .getElementById("contact-form")
-      ?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-  };
+  document
+    .getElementById("contact-message-form")
+    ?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+};
 
   const handleSubmit = (event) => {
   event.preventDefault();
@@ -431,7 +433,6 @@ function Contact() {
 
       <section
         className="contact-main"
-        id="contact-form"
       >
         <div
           className="contact-main__background-word"
@@ -496,10 +497,11 @@ function Contact() {
             </Reveal>
 
             <Reveal
-              className="contact-form-panel"
-              direction="right"
-              delay={120}
-            >
+  id="contact-message-form"
+  className="contact-form-panel"
+  direction="right"
+  delay={120}
+>
               <div className="contact-form-panel__heading">
                 <div className="contact-form-panel__icon">
                   <FiMessageSquare />
