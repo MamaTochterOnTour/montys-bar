@@ -227,10 +227,6 @@ function Home() {
             Monty&apos;s öffnet seine Türen!
           </h2>
 
-          <p className="opening-popup__date">
-            Eröffnung ist Mitte September 2026
-          </p>
-
           <p className="opening-popup__text">
             Freut euch auf frisch zubereitete Küche, kalte Getränke
             und gemütliche Abende mitten in Bayreuth.

@@ -2206,6 +2206,12 @@ bottom: auto;
 
 }
 
+@media (max-width: 390px) {
+  .reservation-widget-panel__consent .reservation-consent-title {
+    font-size: clamp(1.45rem, 7vw, 1.8rem);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .opening-popup,
   .opening-popup__card {
