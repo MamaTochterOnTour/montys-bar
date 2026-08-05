@@ -48,65 +48,8 @@
 
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 28px;
-}
-
-/* ======================================================
-   LOGO
-====================================================== */
-
-.navbar__brand {
-  position: relative;
-  z-index: 1004;
-
-  min-width: 0;
-
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-shrink: 0;
-
-  color: var(--color-cream);
-  text-decoration: none;
-}
-
-.navbar__monogram {
-  width: 52px;
-  height: 52px;
-
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
-
-  border: 1px solid var(--color-brass);
-  border-radius: 50%;
-
-  background:
-    linear-gradient(
-      145deg,
-      var(--color-green-soft),
-      var(--color-green)
-    );
-
-  color: var(--color-cream);
-
-  font-family: var(--font-heading);
-  font-size: 2rem;
-
-  box-shadow:
-    inset 0 0 0 4px rgba(0, 0, 0, 0.15),
-    0 8px 22px rgba(0, 0, 0, 0.22);
-}
-
-.brand-logo {
-  width: auto;
-  max-width: 170px;
-  height: 54px;
-
-  display: block;
-
-  object-fit: contain;
 }
 
 /* Falls du diese Klassen noch irgendwo benutzt */
@@ -489,18 +432,6 @@
     min-height: 74px;
   }
 
-  .navbar__monogram {
-    width: 44px;
-    height: 44px;
-
-    font-size: 1.65rem;
-  }
-
-  .brand-logo {
-    max-width: 125px;
-    height: 43px;
-  }
-
   .navbar__toggle {
     width: 46px;
     height: 46px;
@@ -537,18 +468,6 @@
 @media (max-width: 390px) {
   .navbar__inner {
     width: calc(100% - 22px);
-  }
-
-  .navbar__monogram {
-    width: 41px;
-    height: 41px;
-
-    font-size: 1.5rem;
-  }
-
-  .brand-logo {
-    max-width: 105px;
-    height: 39px;
   }
 
   .navbar__toggle {

@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "../styles/navbar.css";
 import { FiMenu, FiX } from "react-icons/fi";
-
-import logo from "../assets/logos/montys-logo.png";
 
 const navigationItems = [
   { label: "Home", path: "/" },
@@ -44,35 +42,20 @@ function Navbar() {
       }`}
     >
       <div className="navbar__inner">
-        <Link
-          to="/"
-          className="navbar__brand"
-          onClick={closeMenu}
-          aria-label="Monty's Bar Startseite"
-        >
-          <span className="navbar__monogram">M</span>
+  <button
+    className="navbar__toggle"
+    onClick={() => setMenuOpen(!menuOpen)}
+    aria-label={menuOpen ? "Menü schließen" : "Menü öffnen"}
+  >
+    {menuOpen ? <FiX /> : <FiMenu />}
+  </button>
 
-  <img
-    src={logo}
-    alt="Monty's Bar Bayreuth"
-    className="brand-logo"
-  />
-        </Link>
-
-        <button
-  className="navbar__toggle"
-  onClick={() => setMenuOpen(!menuOpen)}
-  aria-label="Menü öffnen"
->
-  {menuOpen ? <FiX /> : <FiMenu />}
-</button>
-
-        <nav
-          className={`navbar__nav ${
-            menuOpen ? "navbar__nav--open" : ""
-          }`}
-          aria-label="Hauptnavigation"
-        >
+  <nav
+    className={`navbar__nav ${
+      menuOpen ? "navbar__nav--open" : ""
+    }`}
+    aria-label="Hauptnavigation"
+  >
           <div className="navbar__links">
             {navigationItems.map((item) => (
               <NavLink
